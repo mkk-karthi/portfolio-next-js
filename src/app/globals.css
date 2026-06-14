@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-charcoal-900: #1d2939;
+  --color-charcoal-700: #344054;
+  --color-charcoal-400: #98a2b3;
+  --color-charcoal-100: #f2f4f7;
+  --color-dark-100: #171717;
+  --color-dark-200: #151515;
+  --color-off-white: #fcfcfd;
+  --color-border-gray: #d0d5dd;
+  --color-warm-white: #fffaf5;
+  --color-cool-white: #f9fafb;
+}
+
+.swiper-pagination-bullets {
+  bottom: 0px !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  background: #d1d5db !important;
+  opacity: 1 !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb !important;
+  width: 60px !important;
+  height: 15px !important;
+  border-radius: 21px !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #fff;
+  scrollbar-color: #38bdf8 #f1f1f1;
+  scrollbar-width: thin;
+}
+
+html:where(.dark, .dark *) {
+  background: var(--color-neutral-950);
+  scrollbar-color: #38bdf8 #171717;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+html:where(.dark, .dark *) ::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #38bdf8; /* sky-400 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9; /* sky-500 */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+
