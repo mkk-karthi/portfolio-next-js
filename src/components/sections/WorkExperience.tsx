@@ -26,12 +26,12 @@ export default function WorkExperience() {
         className="w-full flex lg:flex-row items-start justify-center space-x-2.5 mb-6"
         data-aos="fade-up"
       >
-        <h3 className="font-semibold text-4xl sm:text-5xl lg:text-6xl text-charcoal-700 dark:text-white transition-colors">
-          Awesome
-        </h3>
-        <h3 className="font-semibold text-4xl sm:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">
-          Journey
-        </h3>
+        <h2 className="font-semibold text-4xl sm:text-5xl lg:text-6xl text-charcoal-700 dark:text-white transition-colors">
+          Awesome{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">
+            Journey
+          </span>
+        </h2>
       </div>
 
       {/* Tabs Selector */}

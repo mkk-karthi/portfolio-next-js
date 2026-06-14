@@ -8,14 +8,9 @@ export default function Contact() {
       id="contact"
       className="w-full bg-white dark:bg-neutral-950 flex flex-col items-center justify-center py-16 px-4 sm:px-6 lg:px-18 gap-10 transition-colors duration-500"
     >
-      <div className="w-full flex flex-wrap justify-center items-center gap-3 sm:gap-4">
-        <h3 className="font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-700 dark:text-white leading-tight transition-colors">
-          Let's{" "}
-        </h3>
-        <h3 className="font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400 leading-tight">
-          Connect
-        </h3>
-      </div>
+      <h2 className="w-full font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-700 dark:text-white leading-tight transition-colors text-center">
+        Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">Connect</span>
+      </h2>
 
       <ClientOnly>
         <div className="text-center">

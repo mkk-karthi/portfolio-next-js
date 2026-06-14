@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { CalendarDaysIcon, CircleCheckBigIcon, ArrowUpRightIcon } from "lucide-react";
 import ClientOnly from "@/components/ui/ClientOnly";
 import { skills, personalInfo } from "@/data/data";
-import AOS from "aos";
 
 function Counter({ target, duration = 1500 }: { target: number; duration?: number }) {
   const [count, setCount] = useState(0);
@@ -59,11 +58,13 @@ function Counter({ target, duration = 1500 }: { target: number; duration?: numbe
 
 export default function HireMe() {
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-      easing: "ease-out-quad",
-      mirror: true,
+    import("aos").then((AOSModule) => {
+      AOSModule.default.init({
+        duration: 800,
+        once: false,
+        easing: "ease-out-quad",
+        mirror: true,
+      });
     });
   }, []);
 
@@ -86,11 +87,9 @@ export default function HireMe() {
           data-aos="fade-right"
         >
           <div className="flex flex-col gap-6">
-            <div className="flex flex-wrap text-4xl sm:text-5xl lg:text-6xl font-extrabold gap-2.5">
-              <h3 className="text-slate-800 dark:text-white tracking-tight transition-colors">Why</h3>
-              <h3 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400 tracking-tight">Hire me</h3>
-              <h3 className="text-slate-800 dark:text-white tracking-tight transition-colors">?</h3>
-            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 dark:text-white tracking-tight transition-colors">
+              Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">Hire me</span>?
+            </h2>
 
             <p className="text-slate-500 dark:text-neutral-400 text-base sm:text-lg leading-relaxed max-w-none lg:max-w-md transition-colors">
               {personalInfo.description}
@@ -161,10 +160,10 @@ export default function HireMe() {
             data-aos="fade-up"
             data-aos-delay="150"
           >
-            <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-100 dark:border-neutral-850 pb-3 flex items-center gap-2 transition-colors">
+            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-100 dark:border-neutral-850 pb-3 flex items-center gap-2 transition-colors">
               <span className="w-1.5 h-6 bg-gradient-to-b from-blue-600 to-sky-500 rounded-full" />
               My Technical Skills
-            </h4>
+            </h3>
             <div className="flex flex-wrap gap-2.5">
               {skills.map((skill, i) => (
                 <span

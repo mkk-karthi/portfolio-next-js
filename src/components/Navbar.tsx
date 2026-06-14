@@ -51,9 +51,6 @@ const Navbar = () => {
                         height={50}
                         priority
                     />
-                    {/* <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <text x="4" y="18" fontSize="12" fontWeight="bold" fill="white">MKK</text>
-                    </svg> */}
                 </div>
             </div>
 
@@ -77,6 +74,7 @@ const Navbar = () => {
                     return (
                         <button
                             key={item.label}
+                            aria-label={item.label}
                             className="md:hidden flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-700 hover:to-sky-600 transition-all shadow-md"
                             onClick={() => handleScroll(item.label)}
                         >

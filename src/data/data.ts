@@ -123,7 +123,7 @@ export const metadatas: Metadata = {
     type: "website",
     images: [
       {
-        url: "/user.jpg",
+        url: "/user.webp",
         width: 400,
         height: 400,
       },
@@ -226,38 +226,38 @@ export const contacts: ContactItem[] = [
 
 export const projectData: PortfolioItem[] = [
   {
-    image: "/react-games.png",
+    image: "/react-games.webp",
     title: "React Games",
     href: "https://games.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/react-games",
     desc: "Interactive browser games built using React and TypeScript demonstrating advanced state management, animations, and modular component architecture.",
   },
   {
-    image: "/personal-portfolio.png",
+    image: "/personal-portfolio.webp",
     title: "Developer Portfolio",
     href: "https://mkkcreation.com/",
     github: "https://github.com/mkk-karthi/mkk-karthi.github.io",
     desc: "Personal portfolio site with dynamic project showcase, dark mode switcher, and skills timeline built on Next.js for SEO and high performance.",
   },
   {
-    image: "/create-new-express-project-npm.png",
+    image: "/create-new-express-project-npm.webp",
     title: "Create Express Project",
     href: "https://www.npmjs.com/package/create-new-express-project",
     github: "https://github.com/mkk-karthi/create-new-express-project",
     desc: "CLI scaffolding tool for Express.js APIs. Generates boilerplate code, structured folders, and configurations for fast, production-ready backend project setup.",
   },
   {
-    image: "/social-media.png",
+    image: "/social-media.webp",
     title: "Social Media Application",
     desc: "Full-featured social platform featuring user authentication, post creation, followers network, and real-time activity notifications built with PHP and MySQL.",
   },
   {
-    image: "/members-portal.png",
+    image: "/members-portal.webp",
     title: "Members Portal",
     desc: "Enterprise member management system featuring role-based access control, secure authentication, and personalized user dashboards developed using Laravel and Vue.js.",
   },
   {
-    image: "/ecommerce.png",
+    image: "/ecommerce.webp",
     title: "E-commerce Web Application",
     desc: "B2B e-commerce platform built with Laravel, Vue.js, and PostgreSQL. Features product catalogs, shopping carts, order pipelines, and Shopify/payment API integrations.",
   },

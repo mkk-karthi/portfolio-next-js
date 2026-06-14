@@ -60,7 +60,7 @@ export default function Hero() {
       id="home"
       className="group relative flex flex-col md:flex-row w-full min-h-full h-auto lg:-mb-2 xl:mb-0 sm:px-6 md:px-8 gap-6 sm:gap-8 md:gap-15 items-center justify-center mt-6"
     >
-      <div className="hidden lg:flex flex-col w-70 h-34 items-start justify-start transition-all duration-300 ease-in-out absolute top-[50%] left-20 group-hover:top-20">
+      <div className="hidden lg:flex flex-col w-70 h-34 items-start justify-start transition-all duration-300 ease-in-out absolute top-[50%] left-10 group-hover:top-20">
         <Quote size={40} className="text-charcoal-700 dark:text-neutral-400" />
         <p className="text-charcoal-700 dark:text-neutral-400 text-base font-medium leading-snug transition-colors">
           {personalInfo.quote}
@@ -69,21 +69,17 @@ export default function Hero() {
 
       <div className="relative w-full lg:w-[60%] flex flex-col items-center justify-center">
         <div className="flex w-full max-w-4xl flex-col items-center justify-center translate-y-10 sm:translate-y-14 lg:translate-y-16 transition-all duration-300 ease-in-out group-hover:translate-y-20 group-hover:opacity-0 px-4 sm:px-6">
-          <button className="h-10 px-5 py-2.5 rounded-full border border-dark-100 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-dark-100 dark:text-neutral-200 transition-colors my-4">
+          <span className="h-10 px-4 py-2 rounded-full border border-dark-100 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-dark-100 dark:text-neutral-200 transition-colors my-4">
             Hello!
-          </button>
+          </span>
           <div className="flex flex-col sm:flex-row sm:gap-2 items-center sm:items-end">
-            <h1 className="text-dark-100 dark:text-white font-semibold text-4xl sm:text-5xl md:text-6xl xl:text-7xl transition-colors">
-              I'm
-            </h1>
-            <div className="flex items-end">
-              <h1 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400 font-semibold text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
+            <h1 className="text-dark-100 dark:text-white font-semibold text-4xl sm:text-5xl md:text-6xl xl:text-7xl transition-colors flex flex-wrap justify-center sm:justify-start gap-x-2 gap-y-1">
+              <span>I'm</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">
                 {personalInfo.name}
-              </h1>
-              <h1 className="text-dark-100 dark:text-white font-semibold text-4xl sm:text-5xl md:text-6xl xl:text-7xl transition-colors">
-                ,
-              </h1>
-            </div>
+              </span>
+              <span>,</span>
+            </h1>
           </div>
           <h2 className="text-dark-100 dark:text-white font-semibold text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-center min-h-[1.2em] flex items-center justify-center transition-colors">
             {currentText}
@@ -103,17 +99,17 @@ export default function Hero() {
               width={1017}
               height={688}
               className="object-contain w-full h-auto fill-black"
-              priority
+              loading="lazy"
             />
           </div>
 
           <Image
-            src="/profile.png"
+            src="/profile.webp"
             alt="Karthikeyan Profile"
             width={0}
             height={0}
             sizes="100vw"
-            className="relative z-20 object-contain mt-5 w-[60%] sm:w-[45%] md:w-[55%] lg:w-[380px] max-w-[55%] h-auto"
+            className="relative z-20 object-contain mt-5 w-[60%] sm:w-[45%] md:w-[55%] max-w-[55%] h-auto"
             priority
           />
 
@@ -152,7 +148,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hidden lg:flex w-50 h-32 flex-col items-end justify-end gap-2 transition-all duration-300 ease-in-out absolute top-[50%] right-20 group-hover:top-20">
+      <div className="hidden lg:flex w-50 h-32 flex-col items-end justify-end gap-2 transition-all duration-300 ease-in-out absolute top-[50%] right-10 group-hover:top-20">
         <div className="flex gap-1">
           {[...Array(5)].map((_, i) => (
             <Star
@@ -162,9 +158,9 @@ export default function Hero() {
             />
           ))}
         </div>
-        <h1 className="text-3xl font-bold text-dark-100 dark:text-white leading-none whitespace-nowrap transition-colors">
+        <div className="text-3xl font-bold text-dark-100 dark:text-white leading-none whitespace-nowrap transition-colors">
           {personalInfo.totalExperience}+ Years
-        </h1>
+        </div>
         <p className="text-sm text-dark-100 dark:text-neutral-400 transition-colors">Experience</p>
       </div>
     </div>

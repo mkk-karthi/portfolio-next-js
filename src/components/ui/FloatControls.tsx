@@ -58,6 +58,7 @@ export default function FloatControls() {
       {/* Dark Mode Switch Button (Bottom Left) */}
       <button
         onClick={toggleTheme}
+        aria-label={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
         className="fixed bottom-5 left-5 z-50 w-12 h-12 rounded-full bg-black/60 dark:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/10 text-white flex items-center justify-center shadow-2xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-sky-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
         title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
       >
@@ -67,6 +68,7 @@ export default function FloatControls() {
       {/* Scroll to Top Button (Bottom Right) */}
       <button
         onClick={scrollToTop}
+        aria-label="Scroll to Top"
         className={`fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-black/60 dark:bg-white/10 backdrop-blur-md border border-white/20 dark:border-white/10 text-white flex items-center justify-center shadow-2xl hover:bg-gradient-to-r hover:from-blue-600 hover:to-sky-500 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
