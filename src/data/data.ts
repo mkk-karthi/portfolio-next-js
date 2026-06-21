@@ -29,6 +29,7 @@ export interface PortfolioItem {
   href?: string;
   github?: string;
   desc: string;
+  tech: string[];
 }
 
 export interface NavItem {
@@ -83,7 +84,7 @@ const totalExperience = calculateExperienceYears([
 
 export const personalInfo = {
   name: "Karthikeyan M",
-  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building scalable web applications across e-commerce, transport booking portals, social media, and enterprise platforms. Proficient in React.js, Node.js, Python (FastAPI), and Laravel, with expertise integrating third-party APIs (OpenAI, Shopify, Google Ads) and leveraging AI-assisted development tools (Claude Code, Codex) to accelerate feature delivery.`,
+  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building scalable web applications across e-commerce, transport booking portals, social media, and enterprise platforms. Proficient in React.js, Node.js, Python (FastAPI), and Laravel, with expertise integrating third-party APIs (OpenAI, Shopify, Google Ads) and leveraging AI-assisted development tools (Claude Code, Antigravity) to accelerate feature delivery.`,
   totalExperience: totalExperience,
   totalProjects: 10,
   quote:
@@ -158,6 +159,7 @@ export const skills: string[] = [
   "PostgreSQL",
   "Git",
   "Claude Code",
+  "Antigravity",
   "Codex",
 ];
 
@@ -166,7 +168,7 @@ export const experiences: Experience[] = [
     company: "ISYS Technologies, Chennai",
     duration: "Sep 2025 - Present",
     role: "Senior Software Engineer",
-    desc: "Architecting and developing full-stack web applications using Laravel and FastAPI. Designing RESTful APIs and integrating third-party services to meet B2B requirements. Utilizing AI-assisted development tools (Claude Code, Codex) to improve code quality and delivery speed.",
+    desc: "Architecting and developing full-stack web applications using Laravel and FastAPI. Designing RESTful APIs and integrating third-party services to meet B2B requirements. Utilizing AI-assisted development tools (Claude Code, Antigravity) to improve code quality and delivery speed.",
   },
   {
     company: "Clarity TTS, Chennai",
@@ -214,8 +216,8 @@ export const contacts: ContactItem[] = [
   },
   {
     icon: Linkedin,
-    name: "linkedin.com/in/karthikeyan-developer-mkk",
-    href: "https://www.linkedin.com/in/karthikeyan-developer-mkk",
+    name: "linkedin.com/in/mkk-karthi",
+    href: "https://www.linkedin.com/in/mkk-karthi",
   },
   {
     icon: Github,
@@ -231,13 +233,15 @@ export const projectData: PortfolioItem[] = [
     href: "https://games.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/react-games",
     desc: "Interactive browser games built using React and TypeScript demonstrating advanced state management, animations, and modular component architecture.",
+    tech: ["React", "TailwindCSS", "TypeScript"]
   },
   {
     image: "/personal-portfolio.webp",
     title: "Developer Portfolio",
-    href: "https://mkkcreation.com/",
+    href: "https://v1.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/mkk-karthi.github.io",
     desc: "Personal portfolio site with dynamic project showcase, dark mode switcher, and skills timeline built on Next.js for SEO and high performance.",
+    tech: ["HTML", "CSS", "Javescript"]
   },
   {
     image: "/create-new-express-project-npm.webp",
@@ -245,20 +249,24 @@ export const projectData: PortfolioItem[] = [
     href: "https://www.npmjs.com/package/create-new-express-project",
     github: "https://github.com/mkk-karthi/create-new-express-project",
     desc: "CLI scaffolding tool for Express.js APIs. Generates boilerplate code, structured folders, and configurations for fast, production-ready backend project setup.",
+    tech: ["NPM", "Node.js", "Express.js"]
   },
   {
     image: "/social-media.webp",
     title: "Social Media Application",
     desc: "Full-featured social platform featuring user authentication, post creation, followers network, and real-time activity notifications built with PHP and MySQL.",
+    tech: ["PHP", "MySQL"]
   },
   {
     image: "/members-portal.webp",
     title: "Members Portal",
     desc: "Enterprise member management system featuring role-based access control, secure authentication, and personalized user dashboards developed using Laravel and Vue.js.",
+    tech: ["Laravel", "Vue.js", "MySQL", "React.js"]
   },
   {
     image: "/ecommerce.webp",
     title: "E-commerce Web Application",
     desc: "B2B e-commerce platform built with Laravel, Vue.js, and PostgreSQL. Features product catalogs, shopping carts, order pipelines, and Shopify/payment API integrations.",
+    tech: ["Laravel", "Vue.js", "PostgreSQL", "Node.js", "OpenAI"]
   },
 ];

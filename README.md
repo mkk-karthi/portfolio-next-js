@@ -74,7 +74,7 @@ my-project/
 - **Navbar**: Translucent black glass responsive navigation menu with smooth scroll.
 - **FloatControls**: Dynamic client-side container holding the persistent theme switcher (bottom-left) and scroll-to-top (bottom-right) actions.
 - **GenericSlider**: Swiper-based layout slider component supporting cards.
-- **PortfolioCard**: Rounded hover display project showcase card with side-by-side Live Demo and GitHub actions.
+- **PortfolioCard**: Rounded hover display project showcase card with floating action links (Live and GitHub) in the top-right, and an animated hover details drawer at the bottom displaying technology badges.
 
 ## 📊 Data Structure
 
@@ -97,9 +97,10 @@ export interface ContactItem {
 export interface PortfolioItem {
   image: string;
   title: string;
-  href: string;
+  href?: string;
   github?: string;
   desc: string;
+  tech: string[];
 }
 ```
 

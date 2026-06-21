@@ -49,6 +49,7 @@ export function GenericSlider<T extends AllowedCard>({
                     href={item.href}
                     github={item.github}
                     desc={item.desc}
+                    tech={item.tech}
                     priority={index === 0}
                   />
                 )}
@@ -70,7 +71,8 @@ export function GenericSlider<T extends AllowedCard>({
           loop={true}
           autoplay={{
             delay: 3000,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
+            pauseOnMouseEnter: true,
           }}
           pagination={{ clickable: true }}
           breakpoints={{
@@ -109,6 +111,7 @@ export function GenericSlider<T extends AllowedCard>({
                   href={item.href}
                   github={item.github}
                   desc={item.desc}
+                  tech={item.tech}
                   priority={index === 0}
                 />
               )}
