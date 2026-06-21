@@ -14,7 +14,7 @@ export default function Contact() {
 
       <ClientOnly>
         <div className="text-center">
-          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start sm:justify-center gap-6 w-full px-4 text-sm sm:text-base md:text-lg font-medium text-black">
+          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-start sm:justify-center gap-6 w-full px-4 text-base md:text-lg font-medium text-black">
             {contacts.map((data, index) => {
               const Icon = data.icon;
               const isExternal = data.href.startsWith("http");

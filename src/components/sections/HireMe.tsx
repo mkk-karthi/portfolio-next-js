@@ -126,8 +126,8 @@ export default function HireMe() {
                 />
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white relative inline-block pr-4 after:content-['+'] after:text-2xl after:absolute after:top-1 after:right-0 leading-none transition-colors">
-                  <Counter target={personalInfo.totalExperience} duration={500} />
+                <p className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white relative inline-block pr-4 after:content-['+'] after:text-2xl/5 after:sm:text-2xl/7 after:absolute after:top-1 after:right-0 leading-none transition-colors">
+                  <Counter target={personalInfo.totalExperience} duration={2000} />
                 </p>
                 <p className="text-sm sm:text-base text-slate-500 dark:text-neutral-400 mt-1 font-semibold leading-tight transition-colors">
                   Years of Experience
@@ -144,8 +144,8 @@ export default function HireMe() {
                 />
               </div>
               <div>
-                <p className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white relative inline-block pr-4 after:content-['+'] after:text-2xl after:absolute after:top-1 after:right-0 leading-none transition-colors">
-                  <Counter target={personalInfo.totalProjects} duration={500} />
+                <p className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white relative inline-block pr-4 after:content-['+'] after:text-2xl/5 after:sm:text-2xl/7 after:absolute after:top-1 after:right-0 leading-none transition-colors">
+                  <Counter target={personalInfo.totalProjects} duration={2000} />
                 </p>
                 <p className="text-sm sm:text-base text-slate-500 dark:text-neutral-400 mt-1 font-semibold leading-tight transition-colors">
                   Project Completed

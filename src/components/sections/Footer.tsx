@@ -2,7 +2,7 @@ import { personalInfo } from "@/data/data";
 
 export default function Footer() {
   return (
-    <div className="text-center text-lg py-2 text-black dark:text-white">
+    <div className="text-center ext-sm sm:text-base md:text-lg py-2 text-black dark:text-white">
       &copy; <span>{new Date().getFullYear()} </span>
       <a
         href={personalInfo.website}
