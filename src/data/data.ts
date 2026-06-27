@@ -84,7 +84,7 @@ const totalExperience = calculateExperienceYears([
 
 export const personalInfo = {
   name: "Karthikeyan M",
-  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building scalable web applications across e-commerce, transport booking portals, social media, and enterprise platforms. Proficient in React.js, Node.js, Python (FastAPI), and Laravel, with expertise integrating third-party APIs (OpenAI, Shopify, Google Ads) and leveraging AI-assisted development tools (Claude Code, Antigravity) to accelerate feature delivery.`,
+  description: `Senior Full Stack Engineer with ${totalExperience}+ years of experience building scalable web applications across e-commerce and enterprise domains. Proficient in building high-performance architectures using React.js, Node.js, Python (FastAPI), and Laravel. Adept at integrating complex third-party APIs (OpenAI, Shopify, Stripe) and leveraging AI-assisted development tools (Claude Code, Antigravity) to accelerate release cycles, with a proven track record of optimizing system performance and collaborating in Agile/Scrum environments.`,
   totalExperience: totalExperience,
   totalProjects: 10,
   quote:
@@ -133,34 +133,39 @@ export const metadatas: Metadata = {
 };
 
 export const typingWords: string[] = [
-  "Web App Developer",
-  "Full Stack Developer",
-  "Frontend Developer",
-  "Backend Developer",
-  "Photo Editor",
+  "Senior Full Stack Developer",
+  "Senior Software Engineer",
+  // "Full Stack Developer",
+  // "Frontend Developer",
+  // "Backend Developer",
 ];
 
 export const skills: string[] = [
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "PHP",
-  "Python",
   "React.js",
-  "Vue.js",
   "Next.js",
-  "Laravel",
-  "Express.js",
-  "FastAPI",
-  "Node.js",
+  "TypeScript",
+  "JavaScript (ES6+)",
+  "HTML5",
+  "CSS3",
   "Tailwind CSS",
-  "Bootstrap",
+  "Node.js",
+  "Express.js",
+  "Python",
+  "FastAPI",
+  "PHP",
+  "Laravel",
   "MySQL",
   "PostgreSQL",
+  "Redis",
   "Git",
+  "GitHub",
+  "OWASP security practices",
   "Claude Code",
+  "GitHub Copilot",
   "Antigravity",
-  "Codex",
+  "API Gateway Design",
+  "MVC architecture",
+  "JWT Authentication",
 ];
 
 export const experiences: Experience[] = [
@@ -168,25 +173,25 @@ export const experiences: Experience[] = [
     company: "ISYS Technologies, Chennai",
     duration: "Sep 2025 - Present",
     role: "Senior Software Engineer",
-    desc: "Architecting and developing full-stack web applications using Laravel and FastAPI. Designing RESTful APIs and integrating third-party services to meet B2B requirements. Utilizing AI-assisted development tools (Claude Code, Antigravity) to improve code quality and delivery speed.",
+    desc: "Architecting full-stack applications using Laravel and FastAPI. Implemented an abandoned cart recovery system with coupon offers, recovering 18% of abandoned orders. Integrated Stripe payments and reduced disputes by 15% through robust error handling.",
   },
   {
     company: "Clarity TTS, Chennai",
     duration: "Feb 2025 - Jul 2025",
     role: "Full Stack Developer",
-    desc: "Developing B2B and B2C transport websites for booking flights, and hotels. Integrated real-time third-party APIs for live flight availability. Developed order management and invoice generation modules to streamline workflows.",
+    desc: "Architected B2B/B2C transport booking platform (Laravel + Node.js + MySQL) handling 10K+ daily transactions. Developed order management and invoice generation modules improving operational efficiency by 25%. Collaborated in agile environments to deliver high-quality features.",
   },
   {
     company: "Constient Global Solutions, Chennai",
     duration: "Aug 2022 - Oct 2024",
     role: "Software Engineer",
-    desc: "Developed e-commerce platforms, enhancing user experience and conversion rates. Integrated OpenAI API for intelligent recommendations, and Shopify/Google Ads APIs to optimize marketing funnels. Collaborated on real-time social web applications.",
+    desc: "Built e-commerce platform with (Laravel + Vue.js + Node.js + PostgreSQL) improving conversion rates by 15%. Integrated Google Ads and AI automation, cutting manual work by 200+ hours monthly. Mentored junior developers on Laravel and architecture patterns.",
   },
   {
     company: "Vaagai Tecknowledge, Virudhunagar",
     duration: "Jun 2021 - Jul 2022",
     role: "Junior Developer",
-    desc: "Developed an Order Management System for efficient order processing and inventory tracking. Built a Members Portal with integrated event management capabilities to boost user engagement and personalized access. Used modern frameworks to ensure scalable and maintainable applications.",
+    desc: "Launched members portal with Laravel + Vue.js + React.js improving engagement by 2x. Collaborated with teams to gather requirements and deliver timely solutions. Implemented responsive design patterns across major applications.",
   },
 ];
 
@@ -229,27 +234,33 @@ export const contacts: ContactItem[] = [
 export const projectData: PortfolioItem[] = [
   {
     image: "/react-games.webp",
-    title: "React Games",
+    title: "React Games Platform",
     href: "https://games.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/react-games",
-    desc: "Interactive browser games built using React and TypeScript demonstrating advanced state management, animations, and modular component architecture.",
-    tech: ["React", "TailwindCSS", "TypeScript"]
+    desc: "Interactive gaming platform with 10+ games. Showcases advanced state management, custom hooks, and fully responsive layouts.",
+    tech: ["React.js", "TypeScript", "Tailwind CSS"]
   },
   {
     image: "/personal-portfolio.webp",
     title: "Developer Portfolio",
-    href: "https://v1.mkkcreation.com/",
-    github: "https://github.com/mkk-karthi/mkk-karthi.github.io",
-    desc: "Personal portfolio site with dynamic project showcase, dark mode switcher, and skills timeline built on Next.js for SEO and high performance.",
-    tech: ["HTML", "CSS", "Javescript"]
+    href: "https://mkkcreation.com/",
+    github: "https://github.com/mkk-karthi/portfolio-next-js",
+    desc: "Modern personal portfolio with project showcase, dark mode, and analytics. Optimized for performance and SEO, built on Next.js.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
   },
   {
     image: "/create-new-express-project-npm.webp",
-    title: "Create Express Project",
+    title: "Create Express Project (npm Package)",
     href: "https://www.npmjs.com/package/create-new-express-project",
     github: "https://github.com/mkk-karthi/create-new-express-project",
-    desc: "CLI scaffolding tool for Express.js APIs. Generates boilerplate code, structured folders, and configurations for fast, production-ready backend project setup.",
-    tech: ["NPM", "Node.js", "Express.js"]
+    desc: "Production-ready Express.js CLI scaffolding tool that generates boilerplate code, structured folders, and custom configurations for rapid backend setup.",
+    tech: ["Node.js", "npm", "MVC Architecture", "JavaScript"]
+  },
+  {
+    image: "/ecommerce.webp",
+    title: "E-commerce Web Application",
+    desc: "Full-stack SaaS platform with product catalog, cart, payments, and analytics. Features include promotion creation, campaign management, and performance optimizations.",
+    tech: ["Laravel", "Vue.js", "PostgreSQL", "Node.js", "Redis Caching", "OpenAI Integration"]
   },
   {
     image: "/social-media.webp",
@@ -262,11 +273,5 @@ export const projectData: PortfolioItem[] = [
     title: "Members Portal",
     desc: "Enterprise member management system featuring role-based access control, secure authentication, and personalized user dashboards developed using Laravel and Vue.js.",
     tech: ["Laravel", "Vue.js", "MySQL", "React.js"]
-  },
-  {
-    image: "/ecommerce.webp",
-    title: "E-commerce Web Application",
-    desc: "B2B e-commerce platform built with Laravel, Vue.js, and PostgreSQL. Features product catalogs, shopping carts, order pipelines, and Shopify/payment API integrations.",
-    tech: ["Laravel", "Vue.js", "PostgreSQL", "Node.js", "OpenAI"]
   },
 ];

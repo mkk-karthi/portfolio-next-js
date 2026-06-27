@@ -68,7 +68,7 @@ export default function Hero() {
       </div>
 
       <div className="relative w-full lg:w-[60%] flex flex-col items-center justify-center">
-        <div className="flex w-full max-w-4xl flex-col items-center justify-center translate-y-10 sm:translate-y-14 lg:translate-y-16 transition-all duration-300 ease-in-out group-hover:translate-y-20 group-hover:opacity-0 px-4 sm:px-6">
+        <div className="flex w-full max-w-4xl flex-col items-center justify-center translate-y-10 sm:translate-y-14 lg:translate-y-14 transition-all duration-300 ease-in-out group-hover:translate-y-20 group-hover:opacity-0 px-4 sm:px-6">
           <span className="h-10 px-4 py-2 rounded-full border border-dark-100 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-dark-100 dark:text-neutral-200 transition-colors my-4">
             Hello!
           </span>
@@ -81,7 +81,7 @@ export default function Hero() {
               <span>,</span>
             </h1>
           </div>
-          <h2 className="text-dark-100 dark:text-white font-semibold text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-center min-h-[1.2em] flex items-center justify-center transition-colors">
+          <h2 className="text-dark-100 dark:text-white font-semibold text-2xl sm:text-3xl md:text-5xl text-center min-h-[1.2em] flex items-center justify-center transition-colors">
             {currentText}
             <span className="animate-pulse text-sky-500 dark:text-sky-400 ml-1">|</span>
           </h2>
