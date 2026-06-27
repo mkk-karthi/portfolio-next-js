@@ -135,9 +135,9 @@ export const metadatas: Metadata = {
 export const typingWords: string[] = [
   "Senior Full Stack Developer",
   "Senior Software Engineer",
-  // "Full Stack Developer",
-  // "Frontend Developer",
-  // "Backend Developer",
+  "Full Stack Developer",
+  "Frontend Developer",
+  "Backend Developer",
 ];
 
 export const skills: string[] = [
