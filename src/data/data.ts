@@ -170,10 +170,10 @@ export const skills: string[] = [
 
 export const experiences: Experience[] = [
   {
-    company: "ISYS Technologies, Chennai",
-    duration: "Sep 2025 - Present",
+    company: "GK Technologies, Chennai",
+    duration: "AUG 2025 - Present",
     role: "Senior Software Engineer",
-    desc: "Architecting full-stack applications using Laravel and FastAPI. Implemented an abandoned cart recovery system with coupon offers, recovering 18% of abandoned orders. Integrated Stripe payments and reduced disputes by 15% through robust error handling.",
+    desc: "Architecting full-stack applications using Laravel, Node.js and Python. Implemented an abandoned cart recovery system with coupon offers, recovering 18% of abandoned orders. Integrated Stripe and Google Play Billing for secure, seamless web and Android payments.",
   },
   {
     company: "Clarity TTS, Chennai",
