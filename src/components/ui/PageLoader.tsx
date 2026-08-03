@@ -7,25 +7,15 @@ export default function PageLoader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleLoad = () => {
-      setTimeout(() => {
-        setVisible(false);
-      }, 500);
+    const minWaitTime = 3000; // 3 seconds minimum wait time
+
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, minWaitTime);
+
+    return () => {
+      clearTimeout(timer);
     };
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-      const fallback = setTimeout(() => {
-        setVisible(false);
-      }, 1500);
-
-      return () => {
-        window.removeEventListener("load", handleLoad);
-        clearTimeout(fallback);
-      };
-    }
   }, []);
 
   useEffect(() => {
@@ -41,26 +31,39 @@ export default function PageLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white dark:bg-neutral-950 transition-all duration-500 ease-in-out ${
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
+      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-500 ease-in-out ${
+        visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
       }`}
     >
-      <div className="flex flex-col items-center gap-4">
-        {/* Premium Pulsing Gradient Spinner */}
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 rounded-full border-4 border-slate-200 dark:border-neutral-800" />
-          <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 border-r-sky-500 animate-spin" />
+      <div className="flex flex-col items-center gap-10 py-8">
+        {/* React Style Spinner */}
+        <div className="relative flex items-center justify-center w-28 h-28 my-2">
+          {/* React Ellipse Orbit 1 */}
+          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-[0_0_12px_rgba(34,211,238,0.4)] animate-[spin_3s_linear_infinite]" />
+
+          {/* React Ellipse Orbit 2 */}
+          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-[0_0_12px_rgba(34,211,238,0.4)] rotate-60 animate-[spin_3s_linear_infinite]" />
+
+          {/* React Ellipse Orbit 3 */}
+          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-[0_0_12px_rgba(34,211,238,0.4)] -rotate-60 animate-[spin_3s_linear_infinite]" />
         </div>
 
-        {/* Pulsing Text */}
-        <div className="flex items-center gap-1 mt-2">
-          <span className="text-charcoal-700 dark:text-neutral-300 font-semibold text-lg animate-pulse tracking-wide">
-            Loading
-          </span>
-          <span className="flex gap-1 animate-pulse">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-sky-400 animate-[bounce_1.4s_infinite_100ms]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-sky-400 animate-[bounce_1.4s_infinite_200ms]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-sky-400 animate-[bounce_1.4s_infinite_300ms]" />
+        {/* Pulsing Loading Text with Bouncing Dots */}
+        <div className="flex items-center gap-2 mt-4">
+          <span className="text-slate-200 font-semibold text-xl tracking-wide">Loading</span>
+          <span className="flex items-center gap-1.5 ml-0.5 mt-2">
+            <span
+              className="size-2 rounded-full bg-cyan-400 animate-bounce"
+              style={{ animationDelay: "0ms" }}
+            />
+            <span
+              className="size-2 rounded-full bg-cyan-400 animate-bounce"
+              style={{ animationDelay: "150ms" }}
+            />
+            <span
+              className="size-2 rounded-full bg-cyan-400 animate-bounce"
+              style={{ animationDelay: "300ms" }}
+            />
           </span>
         </div>
       </div>

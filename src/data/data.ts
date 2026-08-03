@@ -89,7 +89,7 @@ export const personalInfo = {
   totalProjects: 10,
   quote:
     "Karthikeyan's exceptional engineering capabilities and technical expertise ensured our platform's seamless delivery. Highly recommended.",
-  website: "https://mkkcreation.com/",
+  website: "https://mkkcreation.com",
 };
 
 export const metadatas: Metadata = {
@@ -97,6 +97,17 @@ export const metadatas: Metadata = {
   description: `Portfolio of Karthikeyan M, a Senior Full Stack Developer with ${totalExperience}+ years of experience specializing in React.js, Node.js, Python (FastAPI), and Laravel. Discover high-performance web applications and backend solutions.`,
   icons: [
     {
+      rel: "icon",
+      url: "/favicon.ico",
+      sizes: "32x32",
+    },
+    {
+      rel: "icon",
+      type: "image/svg+xml",
+      url: "/android-chrome-192x192.svg",
+    },
+    {
+      rel: "apple-touch-icon",
       url: "/android-chrome-192x192.svg",
     },
   ],
