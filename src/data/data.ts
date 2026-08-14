@@ -7,6 +7,13 @@ import {
   HouseIcon,
   InfoIcon,
   PanelsTopLeftIcon,
+  Briefcase,
+  Layers,
+  Code2,
+  Cpu,
+  Zap,
+  Rocket,
+  ShieldCheck,
 } from "lucide-react";
 import { Metadata } from "next";
 
@@ -15,6 +22,8 @@ export interface Experience {
   duration: string;
   role: string;
   desc: string;
+  highlights?: string[];
+  techStack?: string[];
 }
 
 export interface ContactItem {
@@ -30,6 +39,20 @@ export interface PortfolioItem {
   github?: string;
   desc: string;
   tech: string[];
+  category?: string;
+}
+
+export interface ServiceItem {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  badge?: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  icon: LucideIcon;
+  skills: string[];
 }
 
 export interface NavItem {
@@ -40,14 +63,16 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { label: "Home", icon: HouseIcon },
   { label: "About", icon: InfoIcon },
-  { label: "Project", icon: PanelsTopLeftIcon },
+  { label: "Services", icon: Zap },
+  { label: "Experience", icon: Briefcase },
+  { label: "Projects", icon: PanelsTopLeftIcon },
   { label: "Contact", icon: Mail },
 ];
 
 interface Job {
   start: string;
   end: string | null;
-};
+}
 
 const calculateExperienceYears = (jobs: Job[]): number => {
   const today = new Date();
@@ -84,17 +109,21 @@ const totalExperience = calculateExperienceYears([
 
 export const personalInfo = {
   name: "Karthikeyan M",
-  description: `Senior Full Stack Engineer with ${totalExperience}+ years of experience building scalable web applications across e-commerce and enterprise domains. Proficient in building high-performance architectures using React.js, Node.js, Python (FastAPI), and Laravel. Adept at integrating complex third-party APIs (OpenAI, Shopify, Stripe) and leveraging AI-assisted development tools (Claude Code, Antigravity) to accelerate release cycles, with a proven track record of optimizing system performance and collaborating in Agile/Scrum environments.`,
+  title: "Senior Full Stack Engineer & Freelance Web Specialist",
+  status: "Senior Full Stack Engineer · Chennai, India",
+  description: `Senior Full Stack Engineer with ${totalExperience}+ years of experience architecting high-performance web applications, enterprise microservices, and AI-driven automation systems. Specialized in React.js, Next.js, Node.js, Python (FastAPI), and Laravel. Known for accelerating product velocity using AI workflow tools (Claude Code, Antigravity), optimizing backend performance by up to 25%, and delivering turn-key client solutions.`,
+  freelancePitch: `Looking to launch a high-converting web app, scale an existing platform, or integrate AI/payment APIs? I bring enterprise engineering standards with agile freelance execution speed.`,
   totalExperience: totalExperience,
   totalProjects: 10,
+  clientsSatisfied: "100%",
   quote:
-    "Karthikeyan's exceptional engineering capabilities and technical expertise ensured our platform's seamless delivery. Highly recommended.",
+    "Engineering scalable web apps, high-throughput APIs, and AI integrations with modern speed & precision.",
   website: "https://mkkcreation.com",
 };
 
 export const metadatas: Metadata = {
-  title: "Karthikeyan M | Senior Full Stack Developer Portfolio",
-  description: `Portfolio of Karthikeyan M, a Senior Full Stack Developer with ${totalExperience}+ years of experience specializing in React.js, Node.js, Python (FastAPI), and Laravel. Discover high-performance web applications and backend solutions.`,
+  title: "Karthikeyan M | Senior Full Stack Developer & Freelancer",
+  description: `Portfolio of Karthikeyan M, Senior Full Stack Engineer & Freelancer with ${totalExperience}+ years experience specializing in React.js, Next.js, Node.js, Python (FastAPI), and Laravel. Available for full-time roles & freelance projects.`,
   icons: [
     {
       rel: "icon",
@@ -113,25 +142,23 @@ export const metadatas: Metadata = {
   ],
   keywords: [
     "Karthikeyan M",
-    "Full Stack Developer",
-    "Front End Developer",
-    "Back End Developer",
-    "React.js",
-    "Node.js",
-    "FastAPI",
-    "Python",
-    "Php",
-    "Laravel",
-    "Chennai",
+    "Senior Full Stack Developer",
+    "Freelance Web Developer",
+    "React.js Developer",
+    "Next.js Developer",
+    "Node.js Developer",
+    "FastAPI Python",
+    "Laravel Developer",
+    "Chennai Full Stack Developer",
+    "Freelance Full Stack Engineer",
     "Web App Development",
-    "NPM Packages",
   ],
   authors: [{ name: "Karthikeyan M" }],
   openGraph: {
-    title: "Karthikeyan M | Senior Full Stack Developer Portfolio",
-    description: `Portfolio of Karthikeyan M, a Senior Full Stack Developer with ${totalExperience}+ years of experience specializing in React.js, Node.js, Python (FastAPI), and Laravel.`,
+    title: "Karthikeyan M | Senior Full Stack Developer Portfolio & Freelance Services",
+    description: `Portfolio of Karthikeyan M, a Senior Full Stack Engineer with ${totalExperience}+ years of experience building web apps and AI-powered systems.`,
     url: "https://mkkcreation.com/",
-    siteName: "Karthikeyan Portfolio",
+    siteName: "Karthikeyan M Portfolio",
     type: "website",
     images: [
       {
@@ -144,40 +171,84 @@ export const metadatas: Metadata = {
 };
 
 export const typingWords: string[] = [
-  "Senior Full Stack Developer",
-  "Senior Software Engineer",
-  "Full Stack Developer",
-  "Frontend Developer",
-  "Backend Developer",
+  "Senior Full Stack Engineer",
+  "Freelance Web Specialist",
+  "Next.js & React Architect",
+  "API & AI Integration Specialist",
+];
+
+export const skillCategories: SkillCategory[] = [
+  {
+    category: "Frontend Development",
+    icon: Code2,
+    skills: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "Vue.js", "HTML5/CSS3"],
+  },
+  {
+    category: "Backend & Microservices",
+    icon: Layers,
+    skills: ["Node.js", "Express.js", "Python (FastAPI)", "PHP / Laravel", "REST APIs", "Microservices"],
+  },
+  {
+    category: "Databases & Caching",
+    icon: Briefcase,
+    skills: ["PostgreSQL", "MySQL", "Redis", "Database Architecture", "Query Optimization"],
+  },
+  {
+    category: "Cloud, AI & Security",
+    icon: Cpu,
+    skills: ["OpenAI API", "Stripe & Google Billing", "Docker", "Git / GitHub", "Vercel", "OWASP Security"],
+  },
 ];
 
 export const skills: string[] = [
   "React.js",
-  "TypeScript",
+  "Next.js",
   "Node.js",
   "Express.js",
-  "MySQL",
+  "TypeScript",
+  "Python (FastAPI)",
+  "PHP / Laravel",
   "PostgreSQL",
+  "MySQL",
   "Redis",
-  "Next.js",
+  "Tailwind CSS",
   "Docker",
   "Git",
   "REST APIs",
-  "Microservice Architecture",
-  "JavaScript (ES6+)",
-  "Tailwind CSS",
-  "CSS3",
-  "HTML5",
-  "Python",
-  "FastAPI",
-  "PHP",
-  "Laravel",
-  "OWASP security practices",
-  "JWT Authentication",
-  "Claude Code",
-  "GitHub Copilot",
-  "Antigravity",
-  "MVC Architecture",
+  "OpenAI Integrations",
+  "Stripe Billing",
+  "OWASP Security",
+];
+
+export const services: ServiceItem[] = [
+  {
+    icon: Rocket,
+    title: "Full-Stack Web App & MVP Development",
+    description:
+      "End-to-end development of modern web applications built with Next.js, React, Node.js, and FastAPI. Delivering high-performance APIs, database architecture, and SEO optimized scalable MVPs.",
+    badge: "Most Popular for Freelance",
+  },
+  {
+    icon: Zap,
+    title: "E-Commerce & Subscription Systems",
+    description:
+      "Building conversion-focused platforms with automated subscription billing (Stripe/Google Play Billing), automated abandoned cart recovery, user loyalty modules, invoicing systems, and real-time dashboards to maximize revenue.",
+    badge: "Revenue Focused",
+  },
+  {
+    icon: Cpu,
+    title: "API & AI System Integration",
+    description:
+      "Empowering web apps with intelligent LLM workflows (OpenAI, Claude), custom REST/gRPC API architectures, automated business logic pipelines, and third-party integrations for scalable growth.",
+    badge: "AI Powered",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Performance & Code Refactoring",
+    description:
+      "Elevating web platforms by optimizing database queries, implementing Redis caching layers, resolving OWASP security vulnerabilities, and refactoring legacy code into clean architecture.",
+    badge: "Enterprise Quality",
+  },
 ];
 
 export const experiences: Experience[] = [
@@ -185,25 +256,48 @@ export const experiences: Experience[] = [
     company: "GK Technologies, Chennai",
     duration: "AUG 2025 - Present",
     role: "Senior Software Engineer",
-    desc: "Built full-stack features for B2C subscription-based driving course platform serving 10K+ active users. Implemented abandoned cart recovery system with coupon offers, recovering 15% of abandoned orders. Integrated Stripe and Google Play Billing for secure, seamless web and Android payments.",
+    desc: "Built full-stack features for a B2C subscription-based driving course platform serving 10K+ active users.",
+    highlights: [
+      "Engineered abandoned cart recovery funnel with custom promotional triggers, recovering 15% of lost orders.",
+      "Integrated Stripe and Google Play Billing for cross-platform web and mobile subscriptions.",
+      "Leveraged AI coding assistants (Claude Code, Antigravity) to double deployment velocity.",
+    ],
+    techStack: ["React.js", "FastAPI", "Python", "Stripe", "MySQL", "REST APIs"],
   },
   {
     company: "Clarity TTS, Chennai",
     duration: "Feb 2025 - Jul 2025",
     role: "Full Stack Developer",
-    desc: "Developed features for B2B and B2C multi-provider transport booking platform (flights, hotels, transfers) handling thousands of bookings. Optimized order management and invoice generation modules improving operational  efficiency by 25%. Collaborated agile methodologies for timely project delivery and high quality.",
+    desc: "Engineered core modules for a high-traffic B2B and B2C transport booking platform handling thousands of daily bookings.",
+    highlights: [
+      "Optimized order management & invoice generation pipelines, improving operational efficiency by 25%.",
+      "Integrated multi-provider travel APIs (flights, hotels, transfers) with robust error handling.",
+      "Collaborated in Agile/Scrum sprints for rapid feature iterations.",
+    ],
+    techStack: ["Laravel", "Node.js", "Express.js", "PostgreSQL", "Redis"],
   },
   {
     company: "Constient Global Solutions, Chennai",
     duration: "Aug 2022 - Oct 2024",
     role: "Software Engineer",
-    desc: "Built scalable B2B e-commerce and job portal applications using React.js, Next.js, Node.js, Express.js, Laravel, PostgreSQL, MySQL, and Redis. Integrated Google Ads and AI-powered product content generation and SEO automation, significantly reducing manual content creation effort. Implemented loyalty and reward systems, KYC workflows, and complete job application management. Mentored junior developers on Laravel and architecture patterns..",
+    desc: "Developed enterprise B2B e-commerce platforms, member portals, and AI content creation systems.",
+    highlights: [
+      "Built AI product content generator & automated SEO metadata engine, cutting manual efforts by 70%.",
+      "Implemented member loyalty systems, automated KYC workflows, and full job recruitment engine.",
+      "Mentored junior engineers on Laravel design patterns and code quality standards.",
+    ],
+    techStack: ["React.js", "Next.js", "Node.js", "Laravel", "PostgreSQL", "Redis"],
   },
   {
     company: "Vaagai Tecknowledge, Virudhunagar",
     duration: "Jun 2021 - Jul 2022",
     role: "Junior Developer",
-    desc: "Built a full-stack members portal using Laravel, Vue.js, and React.js. Developed event management and ticketing modules with integrated payment processing. Collaborated with teams to gather requirements and  deliver timely solutions.",
+    desc: "Built full-stack web portals using Laravel, Vue.js, and React.js with integrated payment gateways.",
+    highlights: [
+      "Developed event management and ticketing platform with automated email notifications.",
+      "Created dynamic user portal with responsive layout and security controls.",
+    ],
+    techStack: ["Laravel", "React.js", "Vue.js", "MySQL", "Bootstrap"],
   },
 ];
 
@@ -211,12 +305,12 @@ export const education = [
   {
     title: "B.Sc. Computer Science",
     school: "VHNSN College (2018 - 2021)",
-    desc: "I pursued my college education at VHNSNC in 2021, specializing in Bachelor of Computer Science with English as the medium of instruction. I am proud to have achieved a commendable score of 72%, reflecting my dedication and hard work throughout my academic journey.",
+    desc: "Graduated with 72% aggregate, focusing on Data Structures, Web Technology, Software Engineering, and Database Management.",
   },
   {
-    title: "HSC",
+    title: "HSC (Higher Secondary Certificate)",
     school: "KVS Higher Secondary School (2016 - 2018)",
-    desc: "In 2018, I attended KVS HSS, where I studied in the Tamil medium and appeared for the HSC board exams. I am proud to have achieved a respectable score of 70.25%, reflecting my dedication and hard work throughout my academic journey.",
+    desc: "Completed Higher Secondary education with 70.25% aggregate in Computer Science stream.",
   },
 ];
 
@@ -249,41 +343,26 @@ export const projectData: PortfolioItem[] = [
     title: "React Games Platform",
     href: "https://games.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/react-games",
-    desc: "Interactive gaming platform with 10+ games. Showcases advanced state management, custom hooks, and fully responsive layouts.",
-    tech: ["React.js", "TypeScript", "Tailwind CSS"]
+    desc: "Interactive gaming portal featuring 10+ custom web games. Demonstrates complex React state management, custom hooks, and high-FPS UI rendering.",
+    tech: ["React.js", "TypeScript", "Tailwind CSS"],
+    category: "Frontend Application",
   },
   {
     image: "/personal-portfolio.webp",
-    title: "Developer Portfolio",
+    title: "Enterprise & Freelance Portfolio",
     href: "https://mkkcreation.com/",
     github: "https://github.com/mkk-karthi/portfolio-next-js",
-    desc: "Modern personal portfolio with project showcase, dark mode, and analytics. Optimized for performance and SEO, built on Next.js.",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
+    desc: "High-performance developer portfolio with dark/light blue slate theme, glassmorphism, SEO optimizations, and Vercel analytics.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "AOS"],
+    category: "Next.js Application",
   },
   {
     image: "/create-new-express-project-npm.webp",
     title: "Create Express Project (npm Package)",
     href: "https://www.npmjs.com/package/create-new-express-project",
     github: "https://github.com/mkk-karthi/create-new-express-project",
-    desc: "Production-ready Express.js CLI scaffolding tool that generates boilerplate code, structured folders, and custom configurations for rapid backend setup.",
-    tech: ["Node.js", "npm", "MVC Architecture", "JavaScript"]
-  },
-  {
-    image: "/ecommerce.webp",
-    title: "E-commerce Web Application",
-    desc: "Full-stack SaaS platform with product catalog, cart, payments, and analytics. Features include promotion creation, campaign management, and performance optimizations.",
-    tech: ["Laravel", "Vue.js", "PostgreSQL", "Node.js", "Redis Caching", "OpenAI Integration"]
-  },
-  {
-    image: "/social-media.webp",
-    title: "Social Media Application",
-    desc: "Full-featured social platform featuring user authentication, post creation, followers network, and real-time activity notifications built with PHP and MySQL.",
-    tech: ["PHP", "MySQL"]
-  },
-  {
-    image: "/members-portal.webp",
-    title: "Members Portal",
-    desc: "Enterprise member management system featuring role-based access control, secure authentication, and personalized user dashboards developed using Laravel and Vue.js.",
-    tech: ["Laravel", "Vue.js", "MySQL", "React.js"]
+    desc: "Production-ready CLI scaffolding package on npm for initializing structured Express.js MVC backends with zero manual configuration.",
+    tech: ["Node.js", "npm CLI", "Express.js", "JavaScript ES6"],
+    category: "Developer Tools & Backend",
   },
 ];
