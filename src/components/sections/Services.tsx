@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { services, personalInfo } from "@/data/data";
-import ClientOnly from "@/components/ui/ClientOnly";
 
 export default function Services() {
   useEffect(() => {
@@ -90,18 +89,16 @@ export default function Services() {
                 </div>
 
                 {/* Action Button */}
-                <ClientOnly>
-                  <button
-                    onClick={handleScrollToContact}
-                    className="w-full py-3 px-5 rounded-2xl bg-slate-100 dark:bg-slate-900 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 text-slate-800 dark:text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-800 hover:border-transparent group/btn cursor-pointer shadow-sm mt-auto"
-                  >
-                    <span>Start Project Inquiry</span>
-                    <ArrowRight
-                      size={16}
-                      className="transition-transform group-hover/btn:translate-x-1"
-                    />
-                  </button>
-                </ClientOnly>
+                <button
+                  onClick={handleScrollToContact}
+                  className="w-full py-3 px-5 rounded-2xl bg-slate-100 dark:bg-slate-900 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 text-slate-800 dark:text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-800 hover:border-transparent group/btn cursor-pointer shadow-sm mt-auto"
+                >
+                  <span>Start Project Inquiry</span>
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform group-hover/btn:translate-x-1"
+                  />
+                </button>
               </div>
             </div>
           );
@@ -114,7 +111,7 @@ export default function Services() {
         className="mt-10 rounded-3xl bg-linear-to-r from-blue-900/90 via-slate-900 to-sky-950/90 border border-sky-500/30 p-6 sm:p-10 text-center text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl backdrop-blur-xl"
       >
         <div className="text-left max-w-xl">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC]">
             Have a custom requirement?
           </h3>
           <p className="mt-2 text-slate-300 text-sm sm:text-base">
@@ -123,14 +120,12 @@ export default function Services() {
           </p>
         </div>
 
-        <ClientOnly>
-          <button
-            onClick={handleScrollToContact}
-            className="shrink-0 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/30 transition-all duration-300 hover:scale-105 cursor-pointer border border-white/20"
-          >
-            Get In Touch Now
-          </button>
-        </ClientOnly>
+        <button
+          onClick={handleScrollToContact}
+          className="shrink-0 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/30 transition-all duration-300 hover:scale-105 cursor-pointer border border-white/20"
+        >
+          Get In Touch Now
+        </button>
       </div>
     </section>
   );
