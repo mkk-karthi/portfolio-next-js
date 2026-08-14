@@ -1,153 +1,100 @@
-# 🛸 Antigravity Developer Hub & Project Specifications
+# 🛸 Antigravity Developer Hub & Technical Specifications
 
-This developer specification is maintained by **Antigravity**, the autonomous agentic coding assistant designed by the **Google DeepMind** team. It serves as the primary technical source of truth for features, layout details, data models, and component hierarchies in the portfolio-next-js project.
-
----
-
-## 🛠️ Project Tech Stack
-
-*   **Framework**: Next.js 16.2.7 (Turbopack integration enabled for rapid local build compilation)
-*   **Language**: TypeScript 5 (Strict type checking, full interface definitions)
-*   **Styling**: Tailwind CSS 4.3.0, custom vanilla CSS overlays for scrolling and transition effects
-*   **Component libraries / tools**:
-    *   **Lucide React** (Consistent modern icon elements)
-    *   **Swiper.js** (Responsive sliders/carousels)
-    *   **AOS** (Animate On Scroll for staggered transition effects)
-*   **Analytics**: `@vercel/analytics` for production tracking
+This specification sheet is maintained by **Antigravity**, the autonomous agentic coding assistant designed by the **Google DeepMind** team. It serves as the primary technical source of truth for features, layout details, design standards, data models, and component hierarchies for this portfolio application.
 
 ---
 
-## 📁 Repository Directory Structure
+## 🛠️ Tech Stack & Architecture
+
+- **Framework**: Next.js 16.2.12 (App Router with Turbopack enabled)
+- **Language**: TypeScript 5 (Strict mode enabled, full type definitions)
+- **Styling**: Tailwind CSS 4 + Vanilla CSS directives (`globals.css`)
+- **UI Components & Icons**:
+  - **Lucide React**: Modern, lightweight UI icon elements
+  - **Swiper.js**: Touch-enabled responsive project slider
+  - **AOS (Animate On Scroll)**: Staggered scroll entrance animations
+- **Optimization**: WebP media assets (`/profile.webp`), fluid typography with `clamp()`, static generation (SSG)
+
+---
+
+## 📁 Repository Structure
 
 ```
 portfolio-next-js/
-├── public/                     # Static files (PDFs, Images, SVGs, Avatars)
-│   ├── cv.pdf                  # Curriculum Vitae
-│   ├── user.webp               # Profile Avatar
-│   └── *.webp                  # Project previews (react-games, ecommerce, social-media, etc.)
+├── public/                     # Static media & asset files
+│   ├── profile.webp            # Developer profile avatar (1024x1024 WebP)
+│   ├── cv.pdf                  # Downloadable curriculum vitae
+│   └── *.webp                  # Project previews & background glows
 ├── src/
-│   ├── app/                    # Next.js App Router Structure
-│   │   ├── globals.css        # Tailwind directives, custom scrollbars, fonts
-│   │   ├── layout.tsx         # Document envelope (Geist font initialization, Analytics)
-│   │   └── page.tsx           # Home view composing all major section wrappers
-│   ├── components/            # Interface elements
-│   │   ├── Navbar.tsx         # Glassmorphic top navigation bar
-│   │   ├── sections/          # Page sections (Hero, HireMe, Projects, WorkExperience, Contact, Footer)
-│   │   └── ui/                # Core interactive UI components (PortfolioCard, GenericSlider, FloatControls)
-│   └── data/                  # Static Content & TypeScript Interfaces
-│       └── data.ts            # Project details, experience history, skills configuration
+│   ├── app/                    # Next.js App Router root
+│   │   ├── globals.css         # Tailwind directives, custom scrollbar & animations
+│   │   ├── layout.tsx          # Root HTML shell, fonts, Vercel Analytics
+│   │   └── page.tsx            # Main portfolio single-page composer
+│   ├── components/             # React UI components
+│   │   ├── Navbar.tsx          # Translucent glass top navigation with brand logo
+│   │   ├── sections/           # Modular page sections
+│   │   │   ├── Hero.tsx        # High-impact streamlined hero section
+│   │   │   ├── AboutMe.tsx     # Bio summary, counters & technical skills switcher
+│   │   │   ├── Services.tsx    # Streamlined freelance & enterprise service offerings
+│   │   │   ├── WorkExperience.tsx # Work & Education timeline tabs
+│   │   │   ├── Projects.tsx    # Featured projects section wrapper
+│   │   │   ├── Contact.tsx     # Direct channel contact grid
+│   │   │   └── Footer.tsx      # Clean page footer
+│   │   └── ui/                 # Shared UI primitives
+│   │       ├── ClientOnly.tsx  # Hydration-safe client boundary
+│   │       ├── FloatControls.tsx # Scroll-to-top floating control
+│   │       ├── GenericSlider.tsx # Swiper slider wrapper with autoplay pause/resume control
+│   │       ├── PageLoader.tsx  # Initial application loading state
+│   │       └── PortfolioCard.tsx # Responsive project display card (desktop hover / mobile tap overlay)
+│   └── data/                   # Dynamic data source & TypeScript interfaces
+│       └── data.ts             # Profile, experience, projects & skills data
 ├── ANTIGRAVITY.md              # [THIS FILE] AI Developer Hub & Spec Sheet
-└── README.md                  # Project overview, installation, and deployment details
+└── README.md                   # Public project overview & instructions
 ```
 
 ---
 
-## 🎨 Premium Design System & Aesthetics
+## 🎨 Design System & Aesthetic Guidelines
 
-### Theme & Colors
-*   **Primary Theme**: Default Dark mode (`dark-100` / `neutral-900` / opacity backdrops).
-*   **Primary Accents**: High-contrast Blue-to-Sky gradients (`from-blue-600 to-sky-500`).
-*   **Neutral Text Colors**: Light warm/off-whites (`#FCFCFD`, `#F9FAFB`) for body content; crisp whites for headers.
-*   **Glassmorphism**: Backdrop blur overlays (`backdrop-blur-md` / `backdrop-blur-xl`) with subtle border lines (`border-white/10`) to overlay rich content on dark gradient backgrounds.
+### Theme Palette
+- **Background Base**: Deep Midnight Slate (`bg-slate-950` / `bg-slate-900`)
+- **Primary Accents**: High-contrast Gradient (`from-blue-600 via-sky-500 to-cyan-400`)
+- **Glassmorphism**: Translucent panels (`bg-slate-950/85 backdrop-blur-2xl`, `border-sky-500/30`)
+- **Typography**: Geist Sans (primary text) and Geist Mono (monospace accents)
 
-### Typography
-*   **Fonts**: Geist Sans (primary display headings/text) and Geist Mono (monospace technical details).
-*   **Hierarchy**: Heading titles scale from `4xl` (Mobile) to `7xl` (Desktop).
-
-### Custom Elements
-1.  **Sky Blue Custom Scrollbar**
-    *   Styled to apply across Webkit browsers and standard Firefox:
-        ```css
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #171717; }
-        ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0369a1; }
-        ```
-2.  **FloatControls**
-    *   Sticky, floating actions located in screen corners:
-        *   **Bottom-Left**: Persistent theme toggler (Dark/Light).
-        *   **Bottom-Right**: Dynamic Scroll-to-Top trigger button.
+### Responsive Rules
+- **Desktop View (`>= 768px`)**: Project cards utilize smooth hover drawers (`md:group-hover:translate-y-0`) without obscuring the full card.
+- **Mobile View (`< 768px`)**: Project cards use a tap-to-open full-height glass modal overlay with a close (`X`) button that pauses carousel autoplay while open and resumes scrolling when closed.
+- **Fluid Sizing**: Headings scale dynamically using CSS `clamp()` to eliminate visual overflow on small screens.
+- **Explicit Image Containers**: Parent wrappers for Next.js `<Image fill />` define explicit pixel or breakpoint sizes.
 
 ---
 
-## 📊 TypeScript Data Structure Reference (`src/data/data.ts`)
+## 📊 Core Components Summary
 
-The project uses modular TypeScript contracts to define static mock data:
+### 1. Hero (`src/components/sections/Hero.tsx`)
+- Streamlined, high-converting layout.
+- Features: Greeting, name in gradient typography, dynamic typing carousel, location badge, Download CV button, Contact Me button, and quick stat counters.
 
-```typescript
-export interface Experience {
-  company: string;
-  duration: string;
-  role: string;
-  desc: string;
-}
+### 2. About Me (`src/components/sections/AboutMe.tsx`)
+- Contains biography overview, animated numeric counters (`Counter` component), and an interactive skill category tab switcher.
 
-export interface ContactItem {
-  icon: LucideIcon;
-  name: string;
-  href: string;
-}
+### 3. Services (`src/components/sections/Services.tsx`)
+- Streamlined service offering cards with professional descriptions under 200 characters and direct inquiry action triggers.
 
-export interface PortfolioItem {
-  image: string;
-  title: string;
-  href?: string;
-  github?: string;
-  desc: string;
-  tech: string[];
-}
+### 4. Work Experience & Education (`src/components/sections/WorkExperience.tsx`)
+- Tabbed timeline switcher between **Work Experience** and **Education** details with dot connectors and staggered `AOS` entrance animations.
 
-export interface NavItem {
-  label: string;
-  icon: LucideIcon;
-}
-```
+### 5. Projects & PortfolioCard (`src/components/sections/Projects.tsx` & `PortfolioCard.tsx`)
+- Responsive Swiper carousel displaying project cards. Synchronized autoplay controls pause swiper during detail overlay view.
 
-### Experience Duration Algorithm
-Calculates the exact total career experience years dynamically dynamically in `data.ts` using:
-```typescript
-const calculateExperienceYears = (jobs: Job[]): number => { ... }
-```
+### 6. Contact (`src/components/sections/Contact.tsx`)
+- Streamlined grid of direct communication channels (Email, Phone, LinkedIn, GitHub).
 
 ---
 
-## ⚙️ Main Components & Core Features
+## ⚙️ Development Guidelines
 
-### 1. Hero Section (`src/components/sections/Hero.tsx`)
-*   Contains profile images, dynamic text typing carousel, rating stars, and interactive links.
-*   Features:
-    *   "Download CV" and "Hire Me" primary action buttons.
-    *   Avatar image scaling tailored for PC, iPad, and Mobile layout grids to prevent overlap.
-
-### 2. HireMe / Bio (`src/components/sections/HireMe.tsx`)
-*   Grid showing biographical details alongside numeric statistics (Experience duration + total projects count).
-*   Displays a technical skill cloud showcasing the developer's core proficiencies (e.g. PHP, Laravel, Next.js, React, Python, Claude Code, Antigravity).
-
-### 3. Work & Education Timeline (`src/components/sections/WorkExperience.tsx`)
-*   Unified tab switcher toggle: **Work Experience** vs. **Education Details**.
-*   Utilizes a central dot timeline with staggered scrolling reveal animations powered by `AOS`.
-
-### 4. Slider & Project Cards (`src/components/ui/GenericSlider.tsx` & `PortfolioCard.tsx`)
-*   **Swiper Configuration**:
-    *   Configured with responsive layout breakpoints (Slides: Desktop=3, Tablet=2, Mobile=1).
-    *   Autoplay delay of `3000ms`.
-    *   **Autoplay Pause**: Autoplay pauses automatically when hovering over any project slider or card (`pauseOnMouseEnter: true`) and resumes on mouse leave.
-*   **Portfolio Card Details**:
-    *   **Top-Right corner**: Features floating glassmorphic buttons targeting **GitHub Code** and **Live Demo** URLs.
-    *   **Bottom drawer**: Slides up gracefully on card hover. Displays the project title, project description, and a flex container of project technology tags (`tech` strings array) as glassmorphic pills.
-    *   Duplicate "Live" and "Code" buttons inside the drawer are replaced by these technology badges, keeping UI clean.
-
-### 5. Contact & Footer (`src/components/sections/Contact.tsx` & `Footer.tsx`)
-*   Action links targeting developer email, phone, LinkedIn, and GitHub.
-*   Simplistic clean page footer marking the developer credentials.
-
----
-
-## 🛠️ Instructions for Feature Development
-
-When extending this project or creating new components:
-1.  **Modify Data**: Keep text details in `src/data/data.ts` to populate fields automatically.
-2.  **Add Styles**: Write Tailwind CSS directives or declare variables in `src/app/globals.css`.
-3.  **Ensure Responsiveness**: Ensure components scale down comfortably from Desktop breakpoints to iPad and Mobile viewports (< 640px).
-4.  **Premium Aesthetics**: Follow dark theme accents, smooth animations (AOS / custom hover transitions), glassmorphic backdrops, and harmonious gradients.
-5.  **Build Verification**: Always run `npm run build` after editing component files to check for typescript compile issues or hydration mismatch errors.
+1. **Clean Code**: Keep utility classes compliant with standard Tailwind CSS v4 to prevent build warnings.
+2. **Build Verification**: Always run `npm run build` after modifying components to verify zero compile or TypeScript errors.
+3. **Data Centralization**: All static text, skills, and project content must remain centralized in `src/data/data.ts`.

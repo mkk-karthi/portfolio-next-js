@@ -7,31 +7,19 @@ export default function PageLoader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const minWaitTime = 3000; // 3 seconds minimum wait time
-
+    // Hide loader immediately on mount without artificial delay
+    setVisible(false);
     const timer = setTimeout(() => {
-      setVisible(false);
-    }, minWaitTime);
-
-    return () => {
-      clearTimeout(timer);
-    };
+      setMounted(false);
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!visible) {
-      const timer = setTimeout(() => {
-        setMounted(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [visible]);
 
   if (!mounted) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-500 ease-in-out ${
+      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-300 ease-in-out ${
         visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
       }`}
     >
@@ -48,7 +36,7 @@ export default function PageLoader() {
           <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-[0_0_12px_rgba(34,211,238,0.4)] -rotate-60 animate-[spin_3s_linear_infinite]" />
         </div>
 
-        {/* Pulsing Loading Text with Bouncing Dots */}
+        {/* Loading Text */}
         <div className="flex items-center gap-2 mt-4">
           <span className="text-slate-200 font-semibold text-xl tracking-wide">Loading</span>
           <span className="flex items-center gap-1.5 ml-0.5 mt-2">

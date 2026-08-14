@@ -1,15 +1,44 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Star, ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight, Download, MapPin, Code2 } from "lucide-react";
 import ClientOnly from "@/components/ui/ClientOnly";
 import { typingWords, personalInfo } from "@/data/data";
 
-export default function Hero() {
-  const [active, setActive] = useState<"portfolio" | "hire">("portfolio");
+// Staggered entrance animation
+function FadeIn({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
 
-  // Typing animation states
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
+    el.style.transition = `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`;
+    const t = setTimeout(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, 100 + delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
+}
+
+export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -17,152 +46,190 @@ export default function Hero() {
 
   useEffect(() => {
     const currentWord = typingWords[currentWordIndex];
-
     const handleTyping = () => {
       if (!isDeleting) {
-        // Typing
-        const nextText = currentWord.substring(0, currentText.length + 1);
-        setCurrentText(nextText);
-        setTypingSpeed(80);
-
-        if (nextText === currentWord) {
-          // Pause at the end
-          setIsDeleting(true);
-          setTypingSpeed(1500); // Delay before deleting
-        }
+        const next = currentWord.substring(0, currentText.length + 1);
+        setCurrentText(next);
+        setTypingSpeed(next === currentWord ? 1800 : 80);
+        if (next === currentWord) setIsDeleting(true);
       } else {
-        // Deleting
-        const nextText = currentWord.substring(0, currentText.length - 1);
-        setCurrentText(nextText);
-        setTypingSpeed(40);
-
-        if (nextText === "") {
+        const next = currentWord.substring(0, currentText.length - 1);
+        setCurrentText(next);
+        setTypingSpeed(next === "" ? 400 : 40);
+        if (next === "") {
           setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % typingWords.length);
-          setTypingSpeed(500); // Delay before typing next word
+          setCurrentWordIndex((p) => (p + 1) % typingWords.length);
         }
       }
     };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
+    const t = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(t);
   }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
-  const handleScrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div
-      id="home"
-      className="group relative flex flex-col md:flex-row w-full min-h-full h-auto lg:-mb-2 xl:mb-0 sm:px-6 md:px-8 gap-6 sm:gap-8 md:gap-15 items-center justify-center mt-6"
-    >
-      <div className="hidden lg:flex flex-col w-70 h-34 items-start justify-start transition-all duration-300 ease-in-out absolute top-[50%] left-10 group-hover:top-20">
-        <Quote size={40} className="text-charcoal-700 dark:text-neutral-400" />
-        <p className="text-charcoal-700 dark:text-neutral-400 text-base font-medium leading-snug transition-colors">
-          {personalInfo.quote}
-        </p>
+    <section id="home" className="relative w-full min-h-svh flex items-center overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-[min(700px,80vw)] h-[min(700px,80vw)] rounded-full bg-blue-600/20 blur-3xl animate-pulse-glow" />
+        <div
+          className="absolute -bottom-32 -right-32 w-[min(600px,70vw)] h-[min(600px,70vw)] rounded-full bg-sky-500/15 blur-3xl animate-pulse-glow"
+          style={{ animationDelay: "3s" }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage: "radial-linear(circle, rgba(56,189,248,0.8) 1px, transparent 1px)",
+            backgroundSize: "clamp(32px, 4vw, 60px) clamp(32px, 4vw, 60px)",
+          }}
+        />
       </div>
 
-      <div className="relative w-full lg:w-[60%] flex flex-col items-center justify-center">
-        <div className="flex w-full max-w-4xl flex-col items-center justify-center translate-y-10 sm:translate-y-14 lg:translate-y-14 transition-all duration-300 ease-in-out group-hover:translate-y-20 group-hover:opacity-0 px-4 sm:px-6">
-          <span className="h-10 px-4 py-2 rounded-full border border-dark-100 dark:border-neutral-800 flex items-center justify-center bg-white dark:bg-neutral-900 text-dark-100 dark:text-neutral-200 transition-colors my-4">
-            Hello!
-          </span>
-          <div className="flex flex-col sm:flex-row sm:gap-2 items-center sm:items-end">
-            <h1 className="text-dark-100 dark:text-white font-semibold text-4xl sm:text-5xl md:text-6xl xl:text-7xl transition-colors flex flex-wrap justify-center sm:justify-start gap-x-2 gap-y-1">
-              <span>I'm</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 dark:from-blue-400 dark:to-sky-400">
-                {personalInfo.name}
+      {/* Main content */}
+      <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-32 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-14">
+        {/* Profile Image — top on mobile, right on desktop */}
+        <div className="order-first lg:order-last shrink-0 flex items-center justify-center w-full lg:w-auto">
+          <FadeIn
+            delay={200}
+            className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-85 lg:h-85 xl:w-100 xl:h-100 2xl:w-115 2xl:h-115"
+          >
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 p-1 shadow-[0_0_70px_rgba(56,189,248,0.35)] animate-float-slow">
+              <div className="w-full h-full rounded-full bg-slate-950" />
+            </div>
+            {/* Inner glow backdrop */}
+            <div className="absolute inset-2 rounded-full bg-linear-to-br from-blue-600/30 to-sky-500/20 blur-md pointer-events-none" />
+            {/* Image Container with matching dark slate-blue backdrop */}
+            <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-sky-400/40 bg-linear-to-b from-slate-900 via-slate-950 to-blue-950">
+              <Image
+                src="/profile.webp"
+                alt={`${personalInfo.name} — Senior Full Stack Engineer`}
+                fill
+                sizes="(max-width: 640px) 224px, (max-width: 1024px) 288px, (max-width: 1280px) 340px, (max-width: 1536px) 400px, 460px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
+            {/* Top-right badge */}
+            <div className="absolute -top-1 -right-4 bg-slate-900/95 border border-sky-500/40 rounded-2xl px-3 py-1.5 shadow-xl shadow-blue-500/20 flex items-center gap-2 backdrop-blur-md">
+              <Code2 size={14} className="text-sky-400 shrink-0" />
+              <span className="text-xs sm:text-sm font-bold text-white whitespace-nowrap">
+                Full Stack
               </span>
-              <span>,</span>
-            </h1>
-          </div>
-          <h2 className="text-dark-100 dark:text-white font-semibold text-2xl sm:text-3xl md:text-5xl text-center min-h-[1.2em] flex items-center justify-center transition-colors">
-            {currentText}
-            <span className="animate-pulse text-sky-500 dark:text-sky-400 ml-1">|</span>
-          </h2>
+            </div>
+            {/* Bottom-left badge */}
+            <div className="absolute -bottom-2 -left-4 bg-slate-900/95 border border-blue-500/40 rounded-2xl px-3 py-2 shadow-xl shadow-blue-500/15 backdrop-blur-md flex items-center gap-2">
+              <span className="text-lg sm:text-2xl font-black text-white leading-none">
+                {personalInfo.totalExperience}+
+              </span>
+              <span className="text-[10px] sm:text-xs text-slate-400 font-semibold leading-tight">
+                Years
+                <br />
+                Exp.
+              </span>
+            </div>
+          </FadeIn>
         </div>
 
-        <div className="relative w-full max-w-4xl aspect-[3/2] flex flex-col items-center justify-center mx-auto px-4">
-          <div className="absolute bottom-0 z-0 w-[90%] max-w-3xl aspect-[2/1] flex items-center justify-center pointer-events-auto">
-            <div className="absolute w-full h-full bg-gradient-to-t from-blue-600 via-blue-500 to-sky-400 rounded-t-full shadow-none dark:shadow-[0_0_50px] shadow-sky-500" />
-          </div>
+        {/* Text Content — below image on mobile, left on desktop */}
+        <div className="order-last lg:order-first flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-5 lg:gap-7 w-full max-w-2xl mx-auto lg:mx-0">
+          {/* Name */}
+          <FadeIn delay={0}>
+            <div className="flex flex-col gap-1">
+              <span className="text-slate-400 text-xs sm:text-sm font-medium tracking-[0.2em] uppercase">
+                Hello, I&apos;m
+              </span>
+              <h1 className="text-[clamp(2.6rem,7vw,5rem)] font-black tracking-tight text-white leading-[1.05]">
+                {personalInfo.name.split(" ")[0]}{" "}
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-400 to-cyan-300">
+                  {personalInfo.name.split(" ")[1]}
+                </span>
+              </h1>
+            </div>
+          </FadeIn>
 
-          <div className="absolute z-8 transition-all duration-500 ease-in-out opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-115">
-            <Image
-              src="/Frame.svg"
-              alt="Frame Decoration"
-              width={1017}
-              height={688}
-              className="object-contain w-full h-auto fill-black"
-              loading="lazy"
-            />
-          </div>
+          {/* Typing role */}
+          <FadeIn delay={150}>
+            <div className="h-8 sm:h-10 lg:h-11 flex items-center">
+              <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-sky-300">
+                  {currentText}
+                </span>
+                <span className="ml-0.5 inline-block w-0.5 h-5 sm:h-6 lg:h-7 bg-sky-400 align-middle animate-pulse rounded-full" />
+              </h2>
+            </div>
+          </FadeIn>
 
-          <Image
-            src="/profile.webp"
-            alt="Karthikeyan Profile"
-            width={0}
-            height={0}
-            sizes="100vw"
-            className="relative z-20 object-contain mt-5 w-[60%] sm:w-[45%] md:w-[55%] max-w-[55%] h-auto"
-            priority
-          />
+          {/* Location */}
+          <FadeIn delay={280}>
+            <div className="flex items-center gap-1.5 text-slate-400 text-xs sm:text-sm font-medium">
+              <MapPin size={13} className="text-sky-400 shrink-0" />
+              <span>Chennai, Tamil Nadu, India</span>
+            </div>
+          </FadeIn>
 
-          <ClientOnly>
-            <div className="absolute bottom-[8%] z-30 w-full hidden md:flex justify-center">
-              <div className="flex border-b-2 border-white/20 bg-black/30 backdrop-blur-md rounded-full gap-2 px-2 py-1.5 w-sm h-16 items-center justify-center">
-                {/* Portfolio Button */}
+          {/* CTA Buttons */}
+          <FadeIn delay={400}>
+            <ClientOnly>
+              <div className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
                 <a
                   href="/cv.pdf"
-                  download={`${personalInfo.name}_CV.pdf`}
-                  onMouseEnter={() => setActive("portfolio")}
-                  className={`group flex items-center justify-center gap-2 px-3 py-2 rounded-full transition-all duration-300 ease-in-out cursor-pointer ${active === "portfolio" ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white font-medium text-xl w-[55%] border border-white/20 shadow-lg h-12" : "bg-transparent text-white/90 font-light text-lg w-[45%] h-10 hover:text-white"}`}
+                  download={`${personalInfo.name?.replaceAll(" ", "-")}-CV.pdf`}
+                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  Download CV
-                  <ArrowUpRight
-                    size={16}
-                    className={`transition-all duration-300 ${active === "portfolio" ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-1 group-hover:opacity-100"}`}
+                  <Download
+                    size={15}
+                    className="transition-transform group-hover:-translate-y-0.5 shrink-0"
                   />
+                  <span>Download CV</span>
                 </a>
-
-                {/* Hire Me Button */}
                 <button
-                  onMouseEnter={() => setActive("hire")}
-                  onClick={handleScrollToContact}
-                  className={`group flex items-center justify-center gap-2 px-3 py-2 rounded-full transition-all duration-300 ease-in-out cursor-pointer ${active === "hire" ? "bg-gradient-to-r from-blue-600 to-sky-500 text-white font-medium text-xl w-[55%] border border-white/20 shadow-lg h-12" : "bg-transparent text-white/90 font-light text-lg w-[45%] h-10 hover:text-white"}`}
+                  onClick={scrollToContact}
+                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-sky-500/50 text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
-                  Hire me
+                  <span>Contact Me</span>
                   <ArrowUpRight
-                    size={16}
-                    className={`transition-all duration-300 ${active === "hire" ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-1 group-hover:opacity-100"}`}
+                    size={15}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                   />
                 </button>
               </div>
+            </ClientOnly>
+          </FadeIn>
+
+          {/* Stats */}
+          <FadeIn delay={530}>
+            <div className="flex items-center gap-6 sm:gap-10 pt-1">
+              {[
+                { value: `${personalInfo.totalExperience}+`, label: "Years Exp." },
+                { value: `${personalInfo.totalProjects}+`, label: "Projects Done" },
+                { value: personalInfo.clientsSatisfied, label: "Client Satisfaction" },
+              ].map((stat, i, arr) => (
+                <React.Fragment key={stat.label}>
+                  <div className="text-center lg:text-left">
+                    <div className="text-2xl sm:text-3xl font-black text-white">{stat.value}</div>
+                    <div className="text-[11px] sm:text-xs text-slate-400 font-medium mt-0.5">
+                      {stat.label}
+                    </div>
+                  </div>
+                  {i < arr.length - 1 && <div className="w-px h-9 sm:h-11 bg-slate-700/80" />}
+                </React.Fragment>
+              ))}
             </div>
-          </ClientOnly>
+          </FadeIn>
         </div>
       </div>
 
-      <div className="hidden lg:flex w-50 h-32 flex-col items-end justify-end gap-2 transition-all duration-300 ease-in-out absolute top-[50%] right-10 group-hover:top-20">
-        <div className="flex gap-1">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              size={32}
-              className="fill-sky-400 stroke-blue-600 dark:fill-blue-500 dark:stroke-sky-300"
-            />
-          ))}
-        </div>
-        <div className="text-3xl font-bold text-dark-100 dark:text-white leading-none whitespace-nowrap transition-colors">
-          {personalInfo.totalExperience}+ Years
-        </div>
-        <p className="text-sm text-dark-100 dark:text-neutral-400 transition-colors">Experience</p>
+      {/* Scroll indicator — desktop only */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-1.5 opacity-30 pointer-events-none">
+        <span className="text-[10px] text-slate-400 tracking-[0.2em] uppercase font-medium">
+          Scroll
+        </span>
+        <div className="w-px h-8 bg-linear-to-b from-sky-400 to-transparent" />
       </div>
-    </div>
+    </section>
   );
 }
