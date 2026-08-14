@@ -124,7 +124,7 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = ({
       {/* Smooth Sliding Active Pill Indicator */}
       {pill.opacity > 0 && (
         <div
-          className="absolute rounded-full bg-linear-to-r from-blue-600 to-sky-500 shadow-md shadow-blue-500/25 border border-sky-400/40 transition-all duration-300 ease-out pointer-events-none z-0"
+          className="absolute rounded-full bg-linear-to-r from-blue-600 to-sky-500 shadow-md shadow-blue-500/25 border border-sky-400/40 transition-all duration-150 ease-out pointer-events-none z-0"
           style={{
             top: `${pill.top}px`,
             left: `${pill.left}px`,
@@ -149,7 +149,7 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = ({
               aria-label={item.label}
               title={item.label}
               onClick={() => onSelect(item.label)}
-              className={`relative z-10 flex items-center justify-center w-8.5 h-8.5 rounded-full transition-colors duration-200 cursor-pointer ${
+              className={`relative z-10 flex items-center justify-center w-8.5 h-8.5 rounded-full transition-colors duration-150 cursor-pointer ${
                 isSelected
                   ? "text-white"
                   : "bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80"
@@ -167,7 +167,7 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = ({
               buttonRefs.current[item.label] = el;
             }}
             onClick={() => onSelect(item.label)}
-            className={`relative z-10 px-4 py-2 rounded-full text-xs lg:text-sm font-bold tracking-wide transition-colors duration-200 cursor-pointer select-none ${
+            className={`relative z-10 px-4 py-2 rounded-full text-xs lg:text-sm font-bold tracking-wide transition-colors duration-150 cursor-pointer select-none ${
               isSelected ? "text-white" : "text-slate-300 hover:text-white"
             }`}
           >

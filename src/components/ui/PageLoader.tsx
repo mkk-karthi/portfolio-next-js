@@ -40,18 +40,13 @@ export default function PageLoader() {
         <div className="flex items-center gap-2 mt-4">
           <span className="text-slate-200 font-semibold text-xl tracking-wide">Loading</span>
           <span className="flex items-center gap-1.5 ml-0.5 mt-2">
-            <span
-              className="size-2 rounded-full bg-cyan-400 animate-bounce"
-              style={{ animationDelay: "0ms" }}
-            />
-            <span
-              className="size-2 rounded-full bg-cyan-400 animate-bounce"
-              style={{ animationDelay: "150ms" }}
-            />
-            <span
-              className="size-2 rounded-full bg-cyan-400 animate-bounce"
-              style={{ animationDelay: "300ms" }}
-            />
+            {[0, 150, 300].map((delay) => (
+              <span
+                key={delay}
+                className="size-2 rounded-full bg-cyan-400 animate-bounce"
+                style={{ animationDelay: `${delay}ms` }}
+              />
+            ))}
           </span>
         </div>
       </div>

@@ -16,18 +16,16 @@ interface GenericSliderProps<T extends AllowedCard> {
   data: T[];
   slidesPerView: number;
   heightClass?: string;
-  cardType: "portfolio";
+  cardType?: "portfolio";
 }
 
 export function GenericSlider<T extends AllowedCard>({
   data,
   slidesPerView,
   heightClass,
-  cardType,
 }: GenericSliderProps<T>) {
   const [isClient, setIsClient] = useState(false);
   const swiperRef = useRef<SwiperType | null>(null);
-  const isPortfolio = cardType === "portfolio";
 
   useEffect(() => {
     setIsClient(true);
@@ -43,9 +41,7 @@ export function GenericSlider<T extends AllowedCard>({
           <div className="flex gap-4 overflow-x-auto">
             {data.slice(0, 3).map((item, index) => (
               <div key={index} className="shrink-0 w-full max-w-sm">
-                {cardType === "portfolio" && "image" in item && "href" in item && "desc" in item && (
-                  <PortfolioCard {...item} priority={index === 0} />
-                )}
+                <PortfolioCard {...item} priority={index === 0} />
               </div>
             ))}
           </div>
@@ -79,19 +75,19 @@ export function GenericSlider<T extends AllowedCard>({
               spaceBetween: 16,
             },
             640: {
-              slidesPerView: isPortfolio ? 1 : 2,
+              slidesPerView: 1,
               spaceBetween: 18,
             },
             850: {
-              slidesPerView: isPortfolio ? 1 : 2,
+              slidesPerView: 1,
               spaceBetween: 20,
             },
             1024: {
-              slidesPerView: isPortfolio ? 2 : Math.min(slidesPerView, 3),
+              slidesPerView: 2,
               spaceBetween: 24,
             },
             1280: {
-              slidesPerView: isPortfolio ? 2 : slidesPerView,
+              slidesPerView: slidesPerView,
               spaceBetween: 24,
             },
           }}
@@ -99,19 +95,17 @@ export function GenericSlider<T extends AllowedCard>({
         >
           {data.map((item, index) => (
             <SwiperSlide key={index} className="flex! justify-center">
-              {cardType === "portfolio" && "image" in item && "desc" in item && (
-                <PortfolioCard
-                  {...item}
-                  priority={index === 0}
-                  onToggleDetails={(isOpen) => {
-                    if (isOpen) {
-                      swiperRef.current?.autoplay?.stop();
-                    } else {
-                      swiperRef.current?.autoplay?.start();
-                    }
-                  }}
-                />
-              )}
+              <PortfolioCard
+                {...item}
+                priority={index === 0}
+                onToggleDetails={(isOpen) => {
+                  if (isOpen) {
+                    swiperRef.current?.autoplay?.stop();
+                  } else {
+                    swiperRef.current?.autoplay?.start();
+                  }
+                }}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

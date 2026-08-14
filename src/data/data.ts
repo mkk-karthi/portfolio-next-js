@@ -200,25 +200,12 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
-export const skills: string[] = [
-  "React.js",
-  "Next.js",
-  "Node.js",
-  "Express.js",
-  "TypeScript",
-  "Python (FastAPI)",
-  "PHP / Laravel",
-  "PostgreSQL",
-  "MySQL",
-  "Redis",
-  "Tailwind CSS",
-  "Docker",
-  "Git",
-  "REST APIs",
-  "OpenAI Integrations",
-  "Stripe Billing",
-  "OWASP Security",
-];
+export interface Education {
+  title: string;
+  school: string;
+  duration: string;
+  desc: string;
+}
 
 export const services: ServiceItem[] = [
   {
@@ -301,15 +288,17 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education = [
+export const education: Education[] = [
   {
     title: "B.Sc. Computer Science",
-    school: "VHNSN College (2018 - 2021)",
+    school: "VHNSN College",
+    duration: "2018 - 2021",
     desc: "Graduated with 72% aggregate, focusing on Data Structures, Web Technology, Software Engineering, and Database Management.",
   },
   {
     title: "HSC (Higher Secondary Certificate)",
-    school: "KVS Higher Secondary School (2016 - 2018)",
+    school: "KVS Higher Secondary School",
+    duration: "2016 - 2018",
     desc: "Completed Higher Secondary education with 70.25% aggregate in Computer Science stream.",
   },
 ];

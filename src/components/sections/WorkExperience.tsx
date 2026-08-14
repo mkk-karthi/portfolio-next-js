@@ -5,14 +5,6 @@ import "aos/dist/aos.css";
 import { experiences, education } from "@/data/data";
 import { CheckCircle2, Briefcase, GraduationCap } from "lucide-react";
 
-const parseSchool = (schoolStr: string) => {
-  const match = schoolStr.match(/(.*?)\s*\((.*?)\)/);
-  if (match) {
-    return { name: match[1], duration: match[2] };
-  }
-  return { name: schoolStr, duration: "" };
-};
-
 export default function WorkExperience() {
   const [activeTab, setActiveTab] = useState<"work" | "education">("work");
 
@@ -44,7 +36,7 @@ export default function WorkExperience() {
         <div className="inline-flex p-1.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-sky-500/20 backdrop-blur-xl shadow-lg">
           <button
             onClick={() => setActiveTab("work")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-150 ease-out cursor-pointer ${
               activeTab === "work"
                 ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25"
                 : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
@@ -55,7 +47,7 @@ export default function WorkExperience() {
           </button>
           <button
             onClick={() => setActiveTab("education")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-150 ease-out cursor-pointer ${
               activeTab === "education"
                 ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25"
                 : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
@@ -69,14 +61,14 @@ export default function WorkExperience() {
 
       {/* Timeline Items */}
       <div
-        className="w-full flex flex-col items-stretch animate-fade-in-up space-y-8"
+        className="w-full flex flex-col items-stretch animate-tab-switch space-y-8"
         key={activeTab}
       >
         {activeItems.map((item, index) => {
           const isWork = "company" in item;
           const title = isWork ? item.role : item.title;
-          const institution = isWork ? item.company : parseSchool(item.school).name;
-          const duration = isWork ? item.duration : parseSchool(item.school).duration;
+          const institution = isWork ? item.company : item.school;
+          const duration = item.duration;
           const desc = item.desc;
           const highlights = isWork ? item.highlights : undefined;
           const techStack = isWork ? item.techStack : undefined;

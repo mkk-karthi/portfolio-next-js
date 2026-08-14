@@ -101,7 +101,7 @@ export default function AboutMe() {
                 <span>Full Stack & Freelance Engineering</span>
               </div>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
                 Why{" "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-sky-500 to-cyan-400">
                   Work With Me
@@ -132,50 +132,43 @@ export default function AboutMe() {
           <div className="flex flex-col gap-8 w-full lg:w-[55%]">
             {/* Stats Row */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full" data-aos="fade-left">
-              {/* Experience Stat */}
-              <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
-                  <CalendarDaysIcon size={22} />
-                </div>
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
-                    <Counter target={personalInfo.totalExperience} duration={1800} />+
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                    Years Exp.
-                  </p>
-                </div>
-              </div>
-
-              {/* Projects Stat */}
-              <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
-                  <CircleCheckBigIcon size={22} />
-                </div>
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
-                    <Counter target={personalInfo.totalProjects} duration={1800} />+
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                    Projects Done
-                  </p>
-                </div>
-              </div>
-
-              {/* Client Satisfaction Stat */}
-              <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
-                  <Award size={22} />
-                </div>
-                <div>
-                  <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
-                    100%
-                  </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                    Quality Rate
-                  </p>
-                </div>
-              </div>
+              {[
+                {
+                  icon: CalendarDaysIcon,
+                  val: <><Counter target={personalInfo.totalExperience} duration={1800} />+</>,
+                  label: "Years Exp.",
+                },
+                {
+                  icon: CircleCheckBigIcon,
+                  val: <><Counter target={personalInfo.totalProjects} duration={1800} />+</>,
+                  label: "Projects Done",
+                },
+                {
+                  icon: Award,
+                  val: "100%",
+                  label: "Quality Rate",
+                },
+              ].map((stat, i) => {
+                const Icon = stat.icon;
+                return (
+                  <div
+                    key={i}
+                    className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md"
+                  >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
+                      <Icon size={22} />
+                    </div>
+                    <div>
+                      <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
+                        {stat.val}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Categorized Skills Panel */}
@@ -198,9 +191,9 @@ export default function AboutMe() {
                     <button
                       key={idx}
                       onClick={() => setActiveCategory(idx)}
-                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-150 ease-out cursor-pointer ${
                         isActive
-                          ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/20"
+                          ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/20 border border-transparent"
                           : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-400"
                       }`}
                     >
@@ -211,12 +204,15 @@ export default function AboutMe() {
                 })}
               </div>
 
+              {/* Horizontal Divider Line */}
+              <hr className="border-slate-200 dark:border-sky-500/20 my-4" />
+
               {/* Skills Tags Grid */}
-              <div className="flex flex-wrap gap-2.5">
+              <div key={activeCategory} className="flex flex-wrap gap-2.5 animate-tab-switch">
                 {skillCategories[activeCategory].skills.map((skill, i) => (
                   <span
                     key={i}
-                    className="px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:text-white transition-all duration-300 border border-slate-200 dark:border-sky-500/20 text-xs sm:text-sm font-semibold hover:-translate-y-0.5 shadow-sm"
+                    className="px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:text-white transition-all duration-150 ease-out border border-slate-200 dark:border-sky-500/20 text-xs sm:text-sm font-semibold hover:-translate-y-0.5 shadow-sm"
                   >
                     {skill}
                   </span>

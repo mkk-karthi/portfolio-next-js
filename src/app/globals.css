@@ -16,16 +16,7 @@
   --color-brand-sky: #38bdf8;
   --color-brand-cyan: #06b6d4;
 
-  --color-charcoal-900: #1d2939;
-  --color-charcoal-700: #344054;
-  --color-charcoal-400: #98a2b3;
-  --color-charcoal-100: #f1f5f9;
-  --color-dark-100: #0f172a;
-  --color-dark-200: #0b1120;
-  --color-off-white: #fcfcfd;
   --color-border-gray: rgba(56, 189, 248, 0.2);
-  --color-warm-white: #fffaf5;
-  --color-cool-white: #f8fafc;
 }
 
 html {
@@ -113,15 +104,6 @@ html:where(.dark, .dark *) ::-webkit-scrollbar-track {
   }
 }
 
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
 @keyframes heroFloat {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -131,18 +113,6 @@ html:where(.dark, .dark *) ::-webkit-scrollbar-track {
   }
   66% {
     transform: translateY(-4px) rotate(-0.5deg);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
 
@@ -180,4 +150,19 @@ html:where(.dark, .dark *) ::-webkit-scrollbar-track {
   border-color: rgba(56, 189, 248, 0.4);
   box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.25), 0 0 20px rgba(56, 189, 248, 0.15);
   transform: translateY(-4px);
+}
+
+@keyframes tabSwitch {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-tab-switch {
+  animation: tabSwitch 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
