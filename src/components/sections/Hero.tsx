@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Download, MapPin, Code2 } from "lucide-react";
-import ClientOnly from "@/components/ui/ClientOnly";
 import { typingWords, personalInfo } from "@/data/data";
 
 // Staggered entrance animation
@@ -20,14 +19,14 @@ function FadeIn({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || delay === 0) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
-    el.style.transition = `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`;
+    el.style.transform = "translateY(16px)";
+    el.style.transition = `opacity 0.4s ease ${delay}ms, transform 0.4s ease ${delay}ms`;
     const t = setTimeout(() => {
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
-    }, 100 + delay);
+    }, delay);
     return () => clearTimeout(t);
   }, [delay]);
 
@@ -40,9 +39,9 @@ function FadeIn({
 
 export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(80);
+  const [currentText, setCurrentText] = useState(typingWords[0]);
+  const [isDeleting, setIsDeleting] = useState(true);
+  const [typingSpeed, setTypingSpeed] = useState(1800);
 
   useEffect(() => {
     const currentWord = typingWords[currentWordIndex];
@@ -93,7 +92,7 @@ export default function Hero() {
         {/* Profile Image — top on mobile, right on desktop */}
         <div className="order-first lg:order-last shrink-0 flex items-center justify-center w-full lg:w-auto">
           <FadeIn
-            delay={200}
+            delay={0}
             className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-85 lg:h-85 xl:w-100 xl:h-100 2xl:w-115 2xl:h-115"
           >
             {/* Glow ring */}
@@ -155,7 +154,10 @@ export default function Hero() {
           {/* Typing role */}
           <FadeIn delay={150}>
             <div className="h-8 sm:h-10 lg:h-11 flex items-center">
-              <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold">
+              <h2
+                className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold"
+                aria-label={currentText || typingWords[0]}
+              >
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-sky-300">
                   {currentText}
                 </span>
@@ -174,31 +176,29 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <FadeIn delay={400}>
-            <ClientOnly>
-              <div className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
-                <a
-                  href="/cv.pdf"
-                  download={`${personalInfo.name?.replaceAll(" ", "-")}-CV.pdf`}
-                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <Download
-                    size={15}
-                    className="transition-transform group-hover:-translate-y-0.5 shrink-0"
-                  />
-                  <span>Download CV</span>
-                </a>
-                <button
-                  onClick={scrollToContact}
-                  className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-sky-500/50 text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-                >
-                  <span>Contact Me</span>
-                  <ArrowUpRight
-                    size={15}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
-                  />
-                </button>
-              </div>
-            </ClientOnly>
+            <div className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
+              <a
+                href="/cv.pdf"
+                download={`${personalInfo.name?.replaceAll(" ", "-")}-CV.pdf`}
+                className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <Download
+                  size={15}
+                  className="transition-transform group-hover:-translate-y-0.5 shrink-0"
+                />
+                <span>Download CV</span>
+              </a>
+              <button
+                onClick={scrollToContact}
+                className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-sky-500/50 text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+              >
+                <span>Contact Me</span>
+                <ArrowUpRight
+                  size={15}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
+                />
+              </button>
+            </div>
           </FadeIn>
 
           {/* Stats */}

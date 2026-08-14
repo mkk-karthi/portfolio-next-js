@@ -2,7 +2,6 @@
 
 import React from "react";
 import { contacts } from "@/data/data";
-import ClientOnly from "../ui/ClientOnly";
 import { MessageSquare } from "lucide-react";
 
 export default function Contact() {
@@ -42,31 +41,29 @@ export default function Contact() {
         </p>
 
         {/* Contact Links Grid */}
-        <ClientOnly>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-            {contacts.map((data, index) => {
-              const Icon = data.icon;
-              const isExternal = data.href.startsWith("http");
-              return (
-                <a
-                  key={index}
-                  href={data.href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noopener noreferrer" : undefined}
-                  className="group flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-sky-500/20 hover:border-sky-400 dark:hover:border-sky-400 text-slate-800 dark:text-slate-200 hover:text-sky-500 dark:hover:text-sky-400 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-0.5"
-                >
-                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-50 dark:bg-slate-800 group-hover:bg-linear-to-r group-hover:from-blue-600 group-hover:to-sky-500 transition-all duration-300 shrink-0">
-                    <Icon
-                      size={18}
-                      className="stroke-blue-600 dark:stroke-sky-400 group-hover:stroke-white transition-colors"
-                    />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold truncate">{data.name}</span>
-                </a>
-              );
-            })}
-          </div>
-        </ClientOnly>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+          {contacts.map((data, index) => {
+            const Icon = data.icon;
+            const isExternal = data.href.startsWith("http");
+            return (
+              <a
+                key={index}
+                href={data.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+                className="group flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-sky-500/20 hover:border-sky-400 dark:hover:border-sky-400 text-slate-800 dark:text-slate-200 hover:text-sky-500 dark:hover:text-sky-400 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-0.5"
+              >
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-blue-50 dark:bg-slate-800 group-hover:bg-linear-to-r group-hover:from-blue-600 group-hover:to-sky-500 transition-all duration-300 shrink-0">
+                  <Icon
+                    size={18}
+                    className="stroke-blue-600 dark:stroke-sky-400 group-hover:stroke-white transition-colors"
+                  />
+                </div>
+                <span className="text-xs sm:text-sm font-bold truncate">{data.name}</span>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

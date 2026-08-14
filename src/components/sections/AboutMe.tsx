@@ -8,7 +8,6 @@ import {
   Award,
   Sparkles,
 } from "lucide-react";
-import ClientOnly from "@/components/ui/ClientOnly";
 import { personalInfo, skillCategories } from "@/data/data";
 
 function Counter({ target, duration = 1500 }: { target: number; duration?: number }) {
@@ -114,18 +113,16 @@ export default function AboutMe() {
               </p>
             </div>
 
-            <ClientOnly>
-              <button
-                onClick={handleScrollToContact}
-                className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-sky-500/35 transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-0.5 border border-white/20"
-              >
-                <span>Contact Me</span>
-                <ArrowUpRightIcon
-                  size={18}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </button>
-            </ClientOnly>
+            <button
+              onClick={handleScrollToContact}
+              className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-sky-500/35 transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-0.5 border border-white/20"
+            >
+              <span>Contact Me</span>
+              <ArrowUpRightIcon
+                size={18}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </button>
           </div>
 
           {/* Right Column: Stats & Categorized Skills */}

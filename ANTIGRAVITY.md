@@ -22,9 +22,9 @@ This specification sheet is maintained by **Antigravity**, the autonomous agenti
 ```
 portfolio-next-js/
 ├── public/                     # Static media & asset files
-│   ├── profile.webp            # Developer profile avatar (1024x1024 WebP)
+│   ├── profile.webp            # Developer profile avatar (500x500 WebP, 13.8 KB)
 │   ├── cv.pdf                  # Downloadable curriculum vitae
-│   └── *.webp                  # Project previews & background glows
+│   └── *.webp                  # Compressed project previews & background glows
 ├── src/
 │   ├── app/                    # Next.js App Router root
 │   │   ├── globals.css         # Tailwind directives, custom scrollbar & animations
@@ -41,10 +41,9 @@ portfolio-next-js/
 │   │   │   ├── Contact.tsx     # Direct channel contact grid
 │   │   │   └── Footer.tsx      # Clean page footer
 │   │   └── ui/                 # Shared UI primitives
-│   │       ├── ClientOnly.tsx  # Hydration-safe client boundary
 │   │       ├── FloatControls.tsx # Scroll-to-top floating control
 │   │       ├── GenericSlider.tsx # Swiper slider wrapper with autoplay pause/resume control
-│   │       ├── PageLoader.tsx  # Initial application loading state
+│   │       ├── PageLoader.tsx  # Application load state handling
 │   │       └── PortfolioCard.tsx # Responsive project display card (desktop hover / mobile tap overlay)
 │   └── data/                   # Dynamic data source & TypeScript interfaces
 │       └── data.ts             # Profile, experience, projects & skills data

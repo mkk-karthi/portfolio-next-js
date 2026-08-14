@@ -3,25 +3,18 @@
 import React, { useState, useEffect } from "react";
 
 export default function PageLoader() {
-  const [mounted, setMounted] = useState(true);
-  const [visible, setVisible] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Hide loader immediately on mount without artificial delay
-    setVisible(false);
-    const timer = setTimeout(() => {
-      setMounted(false);
-    }, 300);
-    return () => clearTimeout(timer);
+    // PageLoader is unmounted after initial load
+    setMounted(false);
   }, []);
 
   if (!mounted) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-300 ease-in-out ${
-        visible ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-      }`}
+      className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-300 ease-in-out opacity-0 pointer-events-none"
     >
       <div className="flex flex-col items-center gap-10 py-8">
         {/* React Style Spinner */}

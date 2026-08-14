@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <div className="overflow-x-hidden">
           {children}
-          <Analytics debug={true} />
+          {process.env.VERCEL && <Analytics />}
         </div>
       </body>
     </html>

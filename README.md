@@ -56,7 +56,6 @@ portfolio-next-js/
 │   │   │   ├── Contact.tsx
 │   │   │   └── Footer.tsx
 │   │   └── ui/            # Reusable UI primitives
-│   │       ├── ClientOnly.tsx
 │   │       ├── FloatControls.tsx
 │   │       ├── GenericSlider.tsx
 │   │       ├── PageLoader.tsx
@@ -80,20 +79,24 @@ portfolio-next-js/
 ### Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/mkk-karthi/portfolio-next-js.git
    cd portfolio-next-js
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Run the development server**
+
    ```bash
    npm run dev
    ```
+
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 4. **Production Build**
