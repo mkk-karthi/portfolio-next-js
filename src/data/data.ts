@@ -196,7 +196,7 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Cloud, AI & Security",
     icon: Cpu,
-    skills: ["OpenAI API", "Stripe & Google Billing", "Docker", "Git / GitHub", "Vercel", "OWASP Security"],
+    skills: ["AWS", "OpenAI API", "Stripe & Google Billing", "Docker", "Git / GitHub", "Vercel", "OWASP Security"],
   },
 ];
 
