@@ -111,7 +111,7 @@ export const personalInfo = {
   name: "Karthikeyan M",
   title: "Senior Full Stack Engineer & Freelance Web Specialist",
   status: "Senior Full Stack Engineer · Chennai, India",
-  description: `Senior Full Stack Engineer with ${totalExperience}+ years of experience architecting high-performance web applications, enterprise microservices, and AI-driven automation systems. Specialized in React.js, Next.js, Node.js, Python (FastAPI), and Laravel. Known for accelerating product velocity using AI workflow tools (Claude Code, Antigravity), optimizing backend performance by up to 25%, and delivering turn-key client solutions.`,
+  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building B2B SaaS, e-commerce, job portal, transport booking and subscription-based platforms. Strong experience in React.js, Node.js, Express.js, PostgreSQL, MySQL and Redis. Experienced in integrating Stripe, Google Play Billing, Shopify API and OpenAI API. Hands-on experience developing scalable full-stack applications, REST APIs, payment workflows, AI-powered features and background processing in Agile/Scrum environments.`,
   freelancePitch: `Looking to launch a high-converting web app, scale an existing platform, or integrate AI/payment APIs? I bring enterprise engineering standards with agile freelance execution speed.`,
   totalExperience: totalExperience,
   totalProjects: 10,
