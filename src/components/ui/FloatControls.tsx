@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ArrowUp } from "lucide-react";
 
 export default function FloatControls() {
@@ -10,13 +10,14 @@ export default function FloatControls() {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
-    window.addEventListener("scroll", handleScroll);
+    // passive: true prevents blocking the browser's native scroll thread
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
   return (
     <button

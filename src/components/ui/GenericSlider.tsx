@@ -5,7 +5,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 import PortfolioCard from "./PortfolioCard";
 import { PortfolioItem } from "@/data/data";
@@ -31,6 +31,16 @@ export function GenericSlider<T extends AllowedCard>({
     setIsClient(true);
   }, []);
 
+  // Stable callback — prevents PortfolioCard from receiving a new prop reference
+  // on every Swiper re-render, which would bust React.memo.
+  const handleToggleDetails = useCallback((isOpen: boolean) => {
+    if (isOpen) {
+      swiperRef.current?.autoplay?.stop();
+    } else {
+      swiperRef.current?.autoplay?.start();
+    }
+  }, []);
+
   if (!isClient) {
     // Return a placeholder during SSR to prevent hydration mismatch
     return (
@@ -40,7 +50,7 @@ export function GenericSlider<T extends AllowedCard>({
         <div className="w-full px-4 sm:px-6 lg:px-0 max-w-7xl">
           <div className="flex gap-4 overflow-x-auto">
             {data.slice(0, 3).map((item, index) => (
-              <div key={index} className="shrink-0 w-full max-w-sm">
+              <div key={item.title} className="shrink-0 w-full max-w-sm">
                 <PortfolioCard {...item} priority={index === 0} />
               </div>
             ))}
@@ -94,17 +104,11 @@ export function GenericSlider<T extends AllowedCard>({
           className="pb-16!"
         >
           {data.map((item, index) => (
-            <SwiperSlide key={index} className="flex! justify-center">
+            <SwiperSlide key={item.title} className="flex! justify-center">
               <PortfolioCard
                 {...item}
                 priority={index === 0}
-                onToggleDetails={(isOpen) => {
-                  if (isOpen) {
-                    swiperRef.current?.autoplay?.stop();
-                  } else {
-                    swiperRef.current?.autoplay?.start();
-                  }
-                }}
+                onToggleDetails={handleToggleDetails}
               />
             </SwiperSlide>
           ))}

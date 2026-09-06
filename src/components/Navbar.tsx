@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { navItems, NavItem } from "@/data/data";
 
@@ -60,7 +60,7 @@ function useActiveSection(items: NavItem[]) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [items]);
 
-  const scrollToSection = (label: string) => {
+  const scrollToSection = useCallback((label: string) => {
     setSelected(label);
     isClickScrolling.current = true;
 
@@ -70,7 +70,7 @@ function useActiveSection(items: NavItem[]) {
     setTimeout(() => {
       isClickScrolling.current = false;
     }, 850);
-  };
+  }, []);
 
   return { selected, scrollToSection };
 }
@@ -87,7 +87,7 @@ interface NavItemsGroupProps {
   className?: string;
 }
 
-const NavItemsGroup: React.FC<NavItemsGroupProps> = ({
+const NavItemsGroup: React.FC<NavItemsGroupProps> = React.memo(({
   items,
   selected,
   onSelect,
@@ -177,12 +177,13 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = ({
       })}
     </div>
   );
-};
+});
+NavItemsGroup.displayName = "NavItemsGroup";
 
 /**
  * Professional Center Brand Emblem Badge
  */
-const BrandLogo: React.FC<{ onClick: () => void }> = ({ onClick }) => (
+const BrandLogo: React.FC<{ onClick: () => void }> = React.memo(({ onClick }) => (
   <div
     onClick={onClick}
     className="group relative flex items-center justify-center cursor-pointer shrink-0 p-[1.5px] rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
@@ -199,7 +200,8 @@ const BrandLogo: React.FC<{ onClick: () => void }> = ({ onClick }) => (
       />
     </div>
   </div>
-);
+));
+BrandLogo.displayName = "BrandLogo";
 
 /**
  * Main Navbar Component
@@ -207,8 +209,10 @@ const BrandLogo: React.FC<{ onClick: () => void }> = ({ onClick }) => (
 const Navbar: React.FC = () => {
   const { selected, scrollToSection } = useActiveSection(navItems);
 
-  const leftItems = navItems.slice(0, 3);
-  const rightItems = navItems.slice(3);
+  const leftItems = useMemo(() => navItems.slice(0, 3), []);
+  const rightItems = useMemo(() => navItems.slice(3), []);
+
+  const handleLogoClick = useCallback(() => scrollToSection("Home"), [scrollToSection]);
 
   return (
     <header className="fixed top-4 inset-x-0 w-full max-w-[94%] sm:max-w-[85%] lg:max-w-4xl h-16 bg-slate-900/90 dark:bg-slate-950/90 text-white px-3 sm:px-6 py-2 rounded-full backdrop-blur-2xl shadow-2xl shadow-blue-950/30 mx-auto flex items-center justify-between z-50 border border-slate-700/60 dark:border-sky-500/30">
@@ -221,7 +225,7 @@ const Navbar: React.FC = () => {
       />
 
       {/* Center Brand Emblem */}
-      <BrandLogo onClick={() => scrollToSection("Home")} />
+      <BrandLogo onClick={handleLogoClick} />
 
       {/* Right Navigation (Desktop) */}
       <NavItemsGroup

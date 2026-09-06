@@ -1,26 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { services, personalInfo } from "@/data/data";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 
 export default function Services() {
-  useEffect(() => {
-    import("aos").then((AOSModule) => {
-      AOSModule.default.init({
-        duration: 800,
-        once: false,
-        easing: "ease-out-quad",
-      });
-    });
-  }, []);
-
-  const handleScrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const handleScrollToContact = useScrollToSection("contact");
 
   return (
     <section
@@ -38,7 +24,7 @@ export default function Services() {
       >
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 dark:bg-slate-900/80 border border-blue-200 dark:border-sky-500/30 text-blue-600 dark:text-sky-400 text-xs sm:text-sm font-semibold mb-4 shadow-sm backdrop-blur-md">
           <Sparkles size={14} className="opacity-80" />
-          <span>Freelance & Enterprise Offerings</span>
+          <span>Freelance &amp; Enterprise Offerings</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -59,7 +45,7 @@ export default function Services() {
           const Icon = service.icon;
           return (
             <div
-              key={idx}
+              key={service.title}
               data-aos="fade-up"
               data-aos-delay={idx * 150}
               className="group relative rounded-3xl bg-white dark:bg-slate-900/70 border border-slate-200 dark:border-sky-500/20 p-6 sm:p-8 transition-all duration-300 ease-in-out hover:border-sky-500/50 hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1.5 flex flex-col justify-between backdrop-blur-xl"
@@ -111,12 +97,12 @@ export default function Services() {
         className="mt-10 rounded-3xl bg-linear-to-r from-blue-900/90 via-slate-900 to-sky-950/90 border border-sky-500/30 p-6 sm:p-10 text-center text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl backdrop-blur-xl"
       >
         <div className="text-left max-w-xl">
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC]">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-50">
             Have a custom requirement?
           </h3>
           <p className="mt-2 text-slate-300 text-sm sm:text-base">
             Whether you need a dedicated Senior Full-Stack Engineer or a custom solution built from
-            scratch, let's connect today.
+            scratch, let&apos;s connect today.
           </p>
         </div>
 
