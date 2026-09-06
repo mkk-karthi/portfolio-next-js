@@ -3,18 +3,22 @@
 import React, { useState, useEffect } from "react";
 
 export default function PageLoader() {
-  const [mounted, setMounted] = useState(false);
+  // Start visible; hide after the page has fully mounted & painted.
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // PageLoader is unmounted after initial load
-    setMounted(false);
+    // Hide loader after a short frame so the CSS fade-out transition plays.
+    const t = requestAnimationFrame(() => {
+      setVisible(false);
+    });
+    return () => cancelAnimationFrame(t);
   }, []);
-
-  if (!mounted) return null;
 
   return (
     <div
-      className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-300 ease-in-out opacity-0 pointer-events-none"
+      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-500 ease-in-out pointer-events-none ${
+        visible ? "opacity-100" : "opacity-0"
+      }`}
     >
       <div className="flex flex-col items-center gap-10 py-8">
         {/* React Style Spinner */}

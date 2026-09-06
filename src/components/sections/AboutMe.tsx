@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
   CalendarDaysIcon,
   CircleCheckBigIcon,
@@ -9,78 +9,95 @@ import {
   Sparkles,
 } from "lucide-react";
 import { personalInfo, skillCategories } from "@/data/data";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 
-function Counter({ target, duration = 1500 }: { target: number; duration?: number }) {
+function AnimatedCounter({
+  target,
+  suffix,
+  duration = 2,
+  parentInView,
+}: {
+  target: number;
+  suffix: string;
+  duration?: number;
+  parentInView: boolean;
+}) {
   const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLSpanElement>(null);
+  const startedRef = useRef(false);
 
   useEffect(() => {
-    let observer: IntersectionObserver;
-    let animationFrameId: number;
+    if (!parentInView || startedRef.current) return;
+    startedRef.current = true;
 
-    const startAnimation = () => {
-      const startTime = performance.now();
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
+    let start = 0;
+    const step = target / (duration * 60);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 1000 / 60);
 
-        // Easing out quad
-        const easeProgress = progress * (2 - progress);
-        const nextCount = Math.floor(easeProgress * target);
+    return () => clearInterval(timer);
+  }, [parentInView, target, duration]);
 
-        setCount(nextCount);
-
-        if (progress < 1) {
-          animationFrameId = requestAnimationFrame(animate);
-        } else {
-          setCount(target);
-        }
-      };
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    if (elementRef.current) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            startAnimation();
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1 },
-      );
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      if (observer) observer.disconnect();
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
-  }, [target, duration]);
-
-  return <span ref={elementRef}>{count}</span>;
+  return (
+    <span className="tabular-nums">
+      {count.toLocaleString("en-IN")}
+      {suffix}
+    </span>
+  );
 }
+
+// Stable stats config — defined outside the component so the array
+// reference never changes between renders.
+const statsConfig = [
+  {
+    icon: CalendarDaysIcon,
+    target: personalInfo.totalExperience,
+    label: "Years Exp.",
+  },
+  {
+    icon: CircleCheckBigIcon,
+    target: personalInfo.totalProjects,
+    label: "Projects Done",
+  },
+] as const;
 
 export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState<number>(0);
+  const [statsInView, setStatsInView] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
 
+  // Observe when the stats row enters the viewport
   useEffect(() => {
-    import("aos").then((AOSModule) => {
-      AOSModule.default.init({
-        duration: 800,
-        once: false,
-        easing: "ease-out-quad",
-        mirror: true,
-      });
-    });
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  const handleScrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const handleScrollToContact = useScrollToSection("contact");
+
+  // Memoize the active skills array so switching categories doesn't
+  // recreate the entire list reference unnecessarily.
+  const activeSkills = useMemo(() => skillCategories[activeCategory].skills, [activeCategory]);
+
+  const handleCategorySelect = useCallback((idx: number) => {
+    setActiveCategory(idx);
+  }, []);
 
   return (
     <section
@@ -92,12 +109,12 @@ export default function AboutMe() {
           {/* Left Column: Heading, Bio & CTA */}
           <div
             className="flex flex-col justify-between items-start gap-8 w-full lg:w-[45%]"
-            data-aos="fade-right"
+            data-aos="fade-up"
           >
             <div className="flex flex-col gap-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold w-fit">
                 <Sparkles size={14} />
-                <span>Full Stack & Freelance Engineering</span>
+                <span>Full Stack &amp; Freelance Engineering</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -128,44 +145,44 @@ export default function AboutMe() {
           {/* Right Column: Stats & Categorized Skills */}
           <div className="flex flex-col gap-8 w-full lg:w-[55%]">
             {/* Stats Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full" data-aos="fade-left">
-              {[
-                {
-                  icon: CalendarDaysIcon,
-                  val: <><Counter target={personalInfo.totalExperience} duration={1800} />+</>,
-                  label: "Years Exp.",
-                },
-                {
-                  icon: CircleCheckBigIcon,
-                  val: <><Counter target={personalInfo.totalProjects} duration={1800} />+</>,
-                  label: "Projects Done",
-                },
-                {
-                  icon: Award,
-                  val: "100%",
-                  label: "Quality Rate",
-                },
-              ].map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <div
-                    key={i}
-                    className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md"
-                  >
-                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
-                      <Icon size={22} />
-                    </div>
-                    <div>
-                      <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
-                        {stat.val}
-                      </p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
-                        {stat.label}
-                      </p>
-                    </div>
+            <div
+              ref={statsRef}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              {statsConfig.map(({ icon: Icon, target, label }) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
+                    <Icon size={22} />
                   </div>
-                );
-              })}
+                  <div>
+                    <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
+                      <AnimatedCounter target={target} suffix="+" parentInView={statsInView} />
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
+                      {label}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              {/* Quality Rate — static, no counter needed */}
+              <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
+                  <Award size={22} />
+                </div>
+                <div>
+                  <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
+                    <AnimatedCounter target={100} suffix="%" parentInView={statsInView} />
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">
+                    Quality Rate
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Categorized Skills Panel */}
@@ -179,26 +196,31 @@ export default function AboutMe() {
                 Technical Competencies
               </h3>
 
-              {/* Category Pills Switcher */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {skillCategories.map((cat, idx) => {
-                  const CatIcon = cat.icon;
-                  const isActive = activeCategory === idx;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveCategory(idx)}
-                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-150 ease-out cursor-pointer ${
-                        isActive
-                          ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/20 border border-transparent"
-                          : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-400"
-                      }`}
-                    >
-                      <CatIcon size={14} />
-                      <span>{cat.category}</span>
-                    </button>
-                  );
-                })}
+              {/* Category Pills — horizontal scroll on mobile, wrap on desktop */}
+              <div className="relative mb-6">
+                {/* Fade-right scroll hint — visible only when content overflows on mobile */}
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-slate-50/90 dark:from-slate-900/90 to-transparent z-10 lg:hidden" />
+
+                <div className="flex gap-2 overflow-x-auto lg:flex-wrap lg:overflow-visible pb-1 lg:pb-0 scroll-smooth scrollbar-none [-webkit-overflow-scrolling:touch]">
+                  {skillCategories.map((cat, idx) => {
+                    const CatIcon = cat.icon;
+                    const isActive = activeCategory === idx;
+                    return (
+                      <button
+                        key={cat.category}
+                        onClick={() => handleCategorySelect(idx)}
+                        className={`flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 ease-out cursor-pointer ${
+                          isActive
+                            ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/20 border border-transparent"
+                            : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-400"
+                        }`}
+                      >
+                        <CatIcon size={14} className="shrink-0" />
+                        <span className="whitespace-nowrap">{cat.category}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Horizontal Divider Line */}
@@ -206,9 +228,9 @@ export default function AboutMe() {
 
               {/* Skills Tags Grid */}
               <div key={activeCategory} className="flex flex-wrap gap-2.5 animate-tab-switch">
-                {skillCategories[activeCategory].skills.map((skill, i) => (
+                {activeSkills.map((skill) => (
                   <span
-                    key={i}
+                    key={skill}
                     className="px-4 py-2 rounded-xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:text-white transition-all duration-150 ease-out border border-slate-200 dark:border-sky-500/20 text-xs sm:text-sm font-semibold hover:-translate-y-0.5 shadow-sm"
                   >
                     {skill}

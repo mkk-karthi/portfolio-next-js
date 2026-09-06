@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Download, MapPin, Code2 } from "lucide-react";
+import { ArrowUpRight, Download, MapPin, Code2, ChevronsDown } from "lucide-react";
 import { typingWords, personalInfo } from "@/data/data";
+import { useScrollToSection } from "@/hooks/useScrollToSection";
 
 // Staggered entrance animation
-function FadeIn({
+const FadeIn = React.memo(function FadeIn({
   children,
   delay = 0,
   className = "",
@@ -19,7 +20,13 @@ function FadeIn({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || delay === 0) return;
+    if (!el) return;
+    if (delay === 0) {
+      // No delay — start visible immediately
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+      return;
+    }
     el.style.opacity = "0";
     el.style.transform = "translateY(16px)";
     el.style.transition = `opacity 0.4s ease ${delay}ms, transform 0.4s ease ${delay}ms`;
@@ -35,13 +42,25 @@ function FadeIn({
       {children}
     </div>
   );
-}
+});
+
+// Memoized stats data — stable reference, never rebuilt on re-render
+const heroStats = [
+  { value: `${personalInfo.totalExperience}+`, label: "Years Exp." },
+  { value: `${personalInfo.totalProjects}+`, label: "Projects Done" },
+  { value: personalInfo.clientsSatisfied, label: "Client Satisfaction" },
+] as const;
+
+// CV download filename — computed once
+const cvFileName = `${personalInfo.name?.replaceAll(" ", "-")}-CV.pdf`;
 
 export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState(typingWords[0]);
   const [isDeleting, setIsDeleting] = useState(true);
   const [typingSpeed, setTypingSpeed] = useState(1800);
+
+  const scrollToContact = useScrollToSection("contact");
 
   useEffect(() => {
     const currentWord = typingWords[currentWordIndex];
@@ -65,9 +84,8 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, [currentText, isDeleting, currentWordIndex, typingSpeed]);
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  // Memoize name parts so they don't re-split every render
+  const [firstName, lastName] = useMemo(() => personalInfo.name.split(" "), []);
 
   return (
     <section id="home" className="relative w-full min-h-svh flex items-center overflow-hidden">
@@ -143,9 +161,9 @@ export default function Hero() {
                 Hello, I&apos;m
               </span>
               <h1 className="text-[clamp(2.6rem,7vw,5rem)] font-black tracking-tight text-white leading-[1.05]">
-                {personalInfo.name.split(" ")[0]}{" "}
+                {firstName}{" "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-sky-400 to-cyan-300">
-                  {personalInfo.name.split(" ")[1]}
+                  {lastName}
                 </span>
               </h1>
             </div>
@@ -179,7 +197,7 @@ export default function Hero() {
             <div className="flex flex-row gap-3 justify-center lg:justify-start flex-wrap">
               <a
                 href="/cv.pdf"
-                download={`${personalInfo.name?.replaceAll(" ", "-")}-CV.pdf`}
+                download={cvFileName}
                 className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <Download
@@ -204,11 +222,7 @@ export default function Hero() {
           {/* Stats */}
           <FadeIn delay={530}>
             <div className="flex items-center gap-6 sm:gap-10 pt-1">
-              {[
-                { value: `${personalInfo.totalExperience}+`, label: "Years Exp." },
-                { value: `${personalInfo.totalProjects}+`, label: "Projects Done" },
-                { value: personalInfo.clientsSatisfied, label: "Client Satisfaction" },
-              ].map((stat, i, arr) => (
+              {heroStats.map((stat, i, arr) => (
                 <React.Fragment key={stat.label}>
                   <div className="text-center lg:text-left">
                     <div className="text-2xl sm:text-3xl font-black text-white">{stat.value}</div>
@@ -229,7 +243,7 @@ export default function Hero() {
         <span className="text-[10px] text-slate-400 tracking-[0.2em] uppercase font-medium">
           Scroll
         </span>
-        <div className="w-px h-8 bg-linear-to-b from-sky-400 to-transparent" />
+        <ChevronsDown size={30} className="text-sky-400 animate-bounce" />
       </div>
     </section>
   );

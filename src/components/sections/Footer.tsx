@@ -13,7 +13,7 @@ export default function Footer() {
       >
         MKK Creation
       </a>
-      . All Rights Reserved. Built with Next.js, React & Tailwind CSS.
+      . All Rights Reserved.
     </footer>
   );
 }

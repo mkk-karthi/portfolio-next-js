@@ -1,9 +1,9 @@
-"use client";
-
 import React from "react";
 import { contacts } from "@/data/data";
 import { MessageSquare } from "lucide-react";
 
+// No "use client" needed — this component has zero client-side interactivity.
+// Running as a Server Component reduces the JS bundle sent to the browser.
 export default function Contact() {
   return (
     <section
@@ -42,12 +42,12 @@ export default function Contact() {
 
         {/* Contact Links Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-          {contacts.map((data, index) => {
+          {contacts.map((data) => {
             const Icon = data.icon;
             const isExternal = data.href.startsWith("http");
             return (
               <a
-                key={index}
+                key={data.href}
                 href={data.href}
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}

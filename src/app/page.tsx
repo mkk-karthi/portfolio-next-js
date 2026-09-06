@@ -8,10 +8,12 @@ import Contact from "@/components/sections/Contact";
 import FloatControls from "@/components/ui/FloatControls";
 import Footer from "@/components/sections/Footer";
 import PageLoader from "@/components/ui/PageLoader";
+import AOSInit from "@/components/AOSInit";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 flex flex-col items-center justify-start overflow-x-hidden">
+      <AOSInit />
       <PageLoader />
       <Navbar />
       <main className="w-full flex flex-col items-center justify-start flex-1 pt-16">

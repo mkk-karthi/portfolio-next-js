@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import "aos/dist/aos.css";
+import { useState, useCallback, useMemo } from "react";
 import { experiences, education } from "@/data/data";
 import { CheckCircle2, Briefcase, GraduationCap } from "lucide-react";
 
 export default function WorkExperience() {
   const [activeTab, setActiveTab] = useState<"work" | "education">("work");
 
-  const activeItems = activeTab === "work" ? experiences : education;
+  // Memoize derived list — avoids recomputing on every render
+  const activeItems = useMemo(
+    () => (activeTab === "work" ? experiences : education),
+    [activeTab]
+  );
+
+  const handleWorkTab = useCallback(() => setActiveTab("work"), []);
+  const handleEducationTab = useCallback(() => setActiveTab("education"), []);
 
   return (
     <section
@@ -35,7 +41,7 @@ export default function WorkExperience() {
       <div className="w-full flex justify-center mb-8" data-aos="fade-up">
         <div className="inline-flex p-1.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-sky-500/20 backdrop-blur-xl shadow-lg">
           <button
-            onClick={() => setActiveTab("work")}
+            onClick={handleWorkTab}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-150 ease-out cursor-pointer ${
               activeTab === "work"
                 ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25"
@@ -46,7 +52,7 @@ export default function WorkExperience() {
             <span>Work Experience</span>
           </button>
           <button
-            onClick={() => setActiveTab("education")}
+            onClick={handleEducationTab}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-150 ease-out cursor-pointer ${
               activeTab === "education"
                 ? "bg-linear-to-r from-blue-600 to-sky-500 text-white shadow-md shadow-blue-500/25"
@@ -75,7 +81,7 @@ export default function WorkExperience() {
 
           return (
             <div
-              key={index}
+              key={`${institution}-${duration}`}
               className="group relative flex flex-col lg:flex-row items-stretch justify-between gap-6 p-5 sm:p-7 rounded-3xl bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-sky-500/20 backdrop-blur-xl shadow-xl hover:border-sky-500/40 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300"
               data-aos="fade-up"
               data-aos-delay={index * 100}
@@ -93,9 +99,9 @@ export default function WorkExperience() {
 
                 {techStack && (
                   <div className="flex flex-wrap gap-1.5 mt-4">
-                    {techStack.map((tech, tIdx) => (
+                    {techStack.map((tech) => (
                       <span
-                        key={tIdx}
+                        key={tech}
                         className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium"
                       >
                         {tech}
@@ -119,11 +125,11 @@ export default function WorkExperience() {
                   {highlights && (
                     <div className="mt-4 space-y-2">
                       <p className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                        Key Achievements & Impact:
+                        Key Achievements &amp; Impact:
                       </p>
-                      {highlights.map((h, hIdx) => (
+                      {highlights.map((h) => (
                         <div
-                          key={hIdx}
+                          key={h}
                           className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium"
                         >
                           <CheckCircle2 size={16} className="text-sky-500 shrink-0 mt-0.5" />
