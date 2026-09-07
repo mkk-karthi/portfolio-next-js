@@ -78,10 +78,7 @@ const calculateExperienceYears = (jobs: Job[]): number => {
   const today = new Date();
 
   const normalizedJobs = jobs
-    .map((job) => [
-      new Date(job.start),
-      new Date(job.end ?? today),
-    ] as const)
+    .map((job) => [new Date(job.start), new Date(job.end ?? today)] as const)
     .sort((a, b) => a[0].getTime() - b[0].getTime());
 
   let total = 0;
@@ -181,12 +178,27 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Frontend Development",
     icon: Code2,
-    skills: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "Vue.js", "HTML5/CSS3"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "Tailwind CSS",
+      "Vue.js",
+      "HTML5/CSS3",
+    ],
   },
   {
     category: "Backend & Microservices",
     icon: Layers,
-    skills: ["Node.js", "Express.js", "Python (FastAPI)", "PHP / Laravel", "REST APIs", "Microservices"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Python (FastAPI)",
+      "PHP / Laravel",
+      "REST APIs",
+      "Microservices",
+    ],
   },
   {
     category: "Databases & Caching",
@@ -196,7 +208,15 @@ export const skillCategories: SkillCategory[] = [
   {
     category: "Cloud, AI & Security",
     icon: Cpu,
-    skills: ["AWS", "OpenAI API", "Stripe & Google Billing", "Docker", "Git / GitHub", "Vercel", "OWASP Security"],
+    skills: [
+      "AWS",
+      "OpenAI API",
+      "Stripe & Google Billing",
+      "Docker",
+      "Git / GitHub",
+      "Vercel",
+      "OWASP Security",
+    ],
   },
 ];
 
@@ -241,12 +261,13 @@ export const services: ServiceItem[] = [
 export const experiences: Experience[] = [
   {
     company: "GK Technologies, Chennai",
-    duration: "AUG 2025 - Present",
+    duration: "SEP 2025 - Present",
     role: "Senior Software Engineer",
     desc: "Built full-stack features for a online driving course platform serving 10K+ active users.",
     highlights: [
-      "Engineered abandoned cart recovery funnel with custom promotional triggers, recovering 15% of lost orders.",
-      "Integrated Stripe and Google Play Billing for cross-platform web and mobile payments.",
+      "Built full-stack features for online driving course platform serving 10K+ active users.",
+      "Implemented abandoned cart recovery system with coupon offers, recovering abandoned orders.",
+      "Integrated Stripe and Google Play Billing for secure, seamless web and Android payments.",
       "Leveraged AI coding assistants (Claude Code, Antigravity) to double deployment velocity.",
     ],
     techStack: ["React.js", "FastAPI", "Python", "Stripe", "MySQL", "REST APIs"],
@@ -257,9 +278,9 @@ export const experiences: Experience[] = [
     role: "Full Stack Developer",
     desc: "Engineered core modules for a high-traffic B2B and B2C transport booking platform handling thousands of daily bookings.",
     highlights: [
-      "Optimized order management & invoice generation pipelines, improving operational efficiency by 25%.",
-      "Integrated multi-provider travel APIs (flights, hotels, transfers) with robust error handling.",
-      "Collaborated in Agile/Scrum sprints for rapid feature iterations.",
+      "Developed features for B2B and B2C multi-provider transport booking platform (flights, hotels, transfers) handling thousands of bookings.",
+      "Worked on flight booking data processing and invoice generation workflows.",
+      "Collaborated agile methodologies for timely project delivery and high quality.",
     ],
     techStack: ["Laravel", "Node.js", "Express.js", "PostgreSQL", "Redis"],
   },
@@ -269,9 +290,10 @@ export const experiences: Experience[] = [
     role: "Software Engineer",
     desc: "Developed enterprise B2B e-commerce platforms, member portals, and AI content creation systems.",
     highlights: [
-      "Built AI product content generator & automated SEO metadata engine, cutting manual efforts by 70%.",
-      "Implemented member loyalty systems, automated KYC workflows, and full job recruitment engine.",
-      "Mentored junior engineers on Laravel design patterns and code quality standards.",
+      "Built scalable B2B e-commerce and job portal applications, integrated Google Ads and AI-powered product content generation and SEO automation.",
+      "Implemented loyalty and reward systems, e-KYC workflows, and complete job application management.",
+      "Contributed to a social media platform built using Core PHP by fixing application issues and bugs.",
+      "Led 3-person team building shopify integration, mentored 2 junior developer.",
     ],
     techStack: ["React.js", "Next.js", "Node.js", "Laravel", "PostgreSQL", "Redis"],
   },
@@ -281,8 +303,9 @@ export const experiences: Experience[] = [
     role: "Junior Developer",
     desc: "Built full-stack web portals using Laravel, Vue.js, and React.js with integrated payment gateways.",
     highlights: [
-      "Developed event management and ticketing platform with automated email notifications.",
-      "Created dynamic user portal with responsive layout and security controls.",
+      "Built a full-stack members portal using Laravel, Vue.js, and React.js.",
+      "Worked on event management and ticketing modules with integrated payment processing.",
+      "Developed an order management system supporting bulk orders, stock management and invoice generation.",
     ],
     techStack: ["Laravel", "React.js", "Vue.js", "MySQL", "Bootstrap"],
   },
