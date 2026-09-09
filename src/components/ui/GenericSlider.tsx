@@ -49,9 +49,9 @@ export function GenericSlider<T extends AllowedCard>({
       >
         <div className="w-full px-4 sm:px-6 lg:px-0 max-w-7xl">
           <div className="flex gap-4 overflow-x-auto">
-            {data.slice(0, 3).map((item, index) => (
+            {data.slice(0, 3).map((item) => (
               <div key={item.title} className="shrink-0 w-full max-w-sm">
-                <PortfolioCard {...item} priority={index === 0} />
+                <PortfolioCard {...item} priority={false} />
               </div>
             ))}
           </div>
@@ -103,11 +103,11 @@ export function GenericSlider<T extends AllowedCard>({
           }}
           className="pb-16!"
         >
-          {data.map((item, index) => (
+          {data.map((item) => (
             <SwiperSlide key={item.title} className="flex! justify-center">
               <PortfolioCard
                 {...item}
-                priority={index === 0}
+                priority={false}
                 onToggleDetails={handleToggleDetails}
               />
             </SwiperSlide>

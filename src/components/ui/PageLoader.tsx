@@ -3,20 +3,31 @@
 import React, { useState, useEffect } from "react";
 
 export default function PageLoader() {
-  // Start visible; hide after the page has fully mounted & painted.
+  const [mounted, setMounted] = useState(true);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Hide loader after a short frame so the CSS fade-out transition plays.
-    const t = requestAnimationFrame(() => {
+    // Start fade-out on mount frame for instant visual continuity without blocking LCP
+    const frame = requestAnimationFrame(() => {
       setVisible(false);
     });
-    return () => cancelAnimationFrame(t);
+
+    // Completely unmount after fade transition completes
+    const unmountTimer = setTimeout(() => {
+      setMounted(false);
+    }, 350);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(unmountTimer);
+    };
   }, []);
+
+  if (!mounted) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-all duration-500 ease-in-out pointer-events-none ${
+      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-300 ease-in-out pointer-events-none ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >

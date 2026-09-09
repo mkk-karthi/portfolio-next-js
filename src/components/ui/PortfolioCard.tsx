@@ -57,9 +57,10 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
           src={image}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, 640px"
+          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 540px"
           className="object-cover object-top z-0 transition-transform duration-700 ease-out group-hover:scale-105"
           priority={priority}
+          loading={priority ? "eager" : "lazy"}
         />
 
         {/* Default Card View */}
@@ -107,7 +108,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
 
           {/* Bottom Title */}
           <div className="transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-3">
-            <h3 className="font-extrabold text-xl sm:text-3xl md:text-4xl text-white leading-tight drop-shadow-md">
+            <h3 className="font-extrabold text-xl sm:text-2xl md:text-3xl text-white leading-tight drop-shadow-md">
               {title}
             </h3>
           </div>

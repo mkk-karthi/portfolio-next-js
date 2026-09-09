@@ -14,7 +14,7 @@ import { useScrollToSection } from "@/hooks/useScrollToSection";
 function AnimatedCounter({
   target,
   suffix,
-  duration = 2,
+  duration = 1.5,
   parentInView,
 }: {
   target: number;
@@ -29,25 +29,41 @@ function AnimatedCounter({
     if (!parentInView || startedRef.current) return;
     startedRef.current = true;
 
-    let start = 0;
-    const step = target / (duration * 60);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 1000 / 60);
+    // Respect user reduced-motion preferences
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(target);
+      return;
+    }
 
-    return () => clearInterval(timer);
+    let startTime: number | null = null;
+    let animId: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeOutProgress * target));
+
+      if (progress < 1) {
+        animId = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+      }
+    };
+
+    animId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animId);
   }, [parentInView, target, duration]);
 
+  const fullText = `${target.toLocaleString("en-IN")}${suffix}`;
+
   return (
-    <span className="tabular-nums">
-      {count.toLocaleString("en-IN")}
-      {suffix}
+    <span aria-label={fullText}>
+      <span aria-hidden="true" className="tabular-nums">
+        {count.toLocaleString("en-IN")}
+        {suffix}
+      </span>
+      <span className="sr-only">{fullText}</span>
     </span>
   );
 }
@@ -99,9 +115,14 @@ export default function AboutMe() {
     setActiveCategory(idx);
   }, []);
 
+  const currentCategorySlug = skillCategories[activeCategory].category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-");
+
   return (
     <section
       id="about"
+      aria-labelledby="about-heading"
       className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 transition-colors duration-500 z-10"
     >
       <div className="w-full bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-sky-500/20 rounded-3xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl shadow-2xl shadow-blue-500/5">
@@ -113,11 +134,14 @@ export default function AboutMe() {
           >
             <div className="flex flex-col gap-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold w-fit">
-                <Sparkles size={14} />
+                <Sparkles size={14} aria-hidden="true" />
                 <span>Full Stack &amp; Freelance Engineering</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+              <h2
+                id="about-heading"
+                className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight"
+              >
                 Why{" "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-sky-500 to-cyan-400">
                   Work With Me
@@ -132,11 +156,13 @@ export default function AboutMe() {
 
             <button
               onClick={handleScrollToContact}
+              aria-label="Contact Karthikeyan M"
               className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-sky-500/35 transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-0.5 border border-white/20"
             >
               <span>Contact Me</span>
               <ArrowUpRightIcon
                 size={18}
+                aria-hidden="true"
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </button>
@@ -156,7 +182,10 @@ export default function AboutMe() {
                   key={label}
                   className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md"
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
+                  <div
+                    aria-hidden="true"
+                    className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
+                  >
                     <Icon size={22} />
                   </div>
                   <div>
@@ -169,9 +198,12 @@ export default function AboutMe() {
                   </div>
                 </div>
               ))}
-              {/* Quality Rate — static, no counter needed */}
+              {/* Quality Rate */}
               <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md">
+                <div
+                  aria-hidden="true"
+                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
+                >
                   <Award size={22} />
                 </div>
                 <div>
@@ -191,23 +223,41 @@ export default function AboutMe() {
               data-aos="fade-up"
               data-aos-delay="150"
             >
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-2 h-5 bg-linear-to-b from-blue-600 to-sky-500 rounded-full" />
+              <h3
+                id="skills-heading"
+                className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"
+              >
+                <span className="w-2 h-5 bg-linear-to-b from-blue-600 to-sky-500 rounded-full" aria-hidden="true" />
                 Technical Competencies
               </h3>
 
               {/* Category Pills — horizontal scroll on mobile, wrap on desktop */}
               <div className="relative mb-6">
                 {/* Fade-right scroll hint — visible only when content overflows on mobile */}
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-slate-50/90 dark:from-slate-900/90 to-transparent z-10 lg:hidden" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-slate-50/90 dark:from-slate-900/90 to-transparent z-10 lg:hidden"
+                />
 
-                <div className="flex gap-2 overflow-x-auto lg:flex-wrap lg:overflow-visible pb-1 lg:pb-0 scroll-smooth scrollbar-none [-webkit-overflow-scrolling:touch]">
+                <div
+                  role="tablist"
+                  aria-label="Skill categories"
+                  className="flex gap-2 overflow-x-auto lg:flex-wrap lg:overflow-visible pb-1 lg:pb-0 scroll-smooth scrollbar-none [-webkit-overflow-scrolling:touch]"
+                >
                   {skillCategories.map((cat, idx) => {
                     const CatIcon = cat.icon;
                     const isActive = activeCategory === idx;
+                    const tabId = `tab-${cat.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+                    const panelId = `panel-${cat.category.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
                     return (
                       <button
                         key={cat.category}
+                        role="tab"
+                        id={tabId}
+                        aria-selected={isActive}
+                        aria-controls={panelId}
+                        tabIndex={isActive ? 0 : -1}
                         onClick={() => handleCategorySelect(idx)}
                         className={`flex items-center gap-2 shrink-0 px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 ease-out cursor-pointer ${
                           isActive
@@ -215,7 +265,7 @@ export default function AboutMe() {
                             : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-sky-400"
                         }`}
                       >
-                        <CatIcon size={14} className="shrink-0" />
+                        <CatIcon size={14} className="shrink-0" aria-hidden="true" />
                         <span className="whitespace-nowrap">{cat.category}</span>
                       </button>
                     );
@@ -224,10 +274,16 @@ export default function AboutMe() {
               </div>
 
               {/* Horizontal Divider Line */}
-              <hr className="border-slate-200 dark:border-sky-500/20 my-4" />
+              <hr className="border-slate-200 dark:border-sky-500/20 my-4" aria-hidden="true" />
 
               {/* Skills Tags Grid */}
-              <div key={activeCategory} className="flex flex-wrap gap-2.5 animate-tab-switch">
+              <div
+                id={`panel-${currentCategorySlug}`}
+                role="tabpanel"
+                aria-labelledby={`tab-${currentCategorySlug}`}
+                key={activeCategory}
+                className="flex flex-wrap gap-2.5 animate-tab-switch"
+              >
                 {activeSkills.map((skill) => (
                   <span
                     key={skill}
