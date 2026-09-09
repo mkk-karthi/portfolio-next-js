@@ -44,6 +44,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link
+          rel="preload"
+          href="/profile.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased scrollbar-thumb-sky-700 scrollbar-track-sky-100`}
         suppressHydrationWarning={true}
