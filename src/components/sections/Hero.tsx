@@ -128,6 +128,8 @@ export default function Hero() {
                 sizes="(max-width: 640px) 224px, (max-width: 1024px) 288px, (max-width: 1280px) 340px, (max-width: 1536px) 400px, 460px"
                 className="object-cover object-top"
                 priority
+                unoptimized
+                fetchPriority="high"
               />
             </div>
             {/* Top-right badge */}
