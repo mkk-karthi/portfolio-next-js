@@ -60,6 +60,7 @@ html:where(.dark, .dark *) ::-webkit-scrollbar-track {
   bottom: 0px !important;
   display: flex !important;
   justify-content: center !important;
+  align-items: center !important;
   gap: 8px !important;
 }
 
@@ -127,6 +128,7 @@ html:where(.dark, .dark *) ::-webkit-scrollbar-track {
 .animate-float-slow {
   animation: heroFloat 6s ease-in-out infinite;
 }
+
 
 .gradient-text {
   background: linear-gradient(135deg, #2563eb 0%, #38bdf8 50%, #06b6d4 100%);

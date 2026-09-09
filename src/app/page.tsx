@@ -1,20 +1,22 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
-import AboutMe from "@/components/sections/AboutMe";
-import Services from "@/components/sections/Services";
-import WorkExperience from "@/components/sections/WorkExperience";
-import Projects from "@/components/sections/Projects";
-import Contact from "@/components/sections/Contact";
-import FloatControls from "@/components/ui/FloatControls";
-import Footer from "@/components/sections/Footer";
-import PageLoader from "@/components/ui/PageLoader";
 import AOSInit from "@/components/AOSInit";
+import PageLoader from "@/components/ui/PageLoader";
+
+const AboutMe = dynamic(() => import("@/components/sections/AboutMe"));
+const Services = dynamic(() => import("@/components/sections/Services"));
+const WorkExperience = dynamic(() => import("@/components/sections/WorkExperience"));
+const Projects = dynamic(() => import("@/components/sections/Projects"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
+const FloatControls = dynamic(() => import("@/components/ui/FloatControls"));
+const Footer = dynamic(() => import("@/components/sections/Footer"));
 
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 flex flex-col items-center justify-start overflow-x-hidden">
-      <AOSInit />
       <PageLoader />
+      <AOSInit />
       <Navbar />
       <main className="w-full flex flex-col items-center justify-start flex-1 pt-16">
         <Hero />
@@ -29,3 +31,4 @@ export default function Home() {
     </div>
   );
 }
+

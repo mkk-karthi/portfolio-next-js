@@ -87,97 +87,99 @@ interface NavItemsGroupProps {
   className?: string;
 }
 
-const NavItemsGroup: React.FC<NavItemsGroupProps> = React.memo(({
-  items,
-  selected,
-  onSelect,
-  isMobile = false,
-  className = "",
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const [pill, setPill] = useState<PillState>({ top: 0, left: 0, width: 0, height: 0, opacity: 0 });
+const NavItemsGroup: React.FC<NavItemsGroupProps> = React.memo(
+  ({ items, selected, onSelect, isMobile = false, className = "" }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+    const [pill, setPill] = useState<PillState>({
+      top: 0,
+      left: 0,
+      width: 0,
+      height: 0,
+      opacity: 0,
+    });
 
-  useEffect(() => {
-    const updatePill = () => {
-      const activeEl = buttonRefs.current[selected];
-      if (containerRef.current && activeEl && containerRef.current.contains(activeEl)) {
-        setPill({
-          top: activeEl.offsetTop,
-          left: activeEl.offsetLeft,
-          width: activeEl.offsetWidth,
-          height: activeEl.offsetHeight,
-          opacity: 1,
-        });
-      } else {
-        setPill((p) => ({ ...p, opacity: 0 }));
-      }
-    };
+    useEffect(() => {
+      const updatePill = () => {
+        const activeEl = buttonRefs.current[selected];
+        if (containerRef.current && activeEl && containerRef.current.contains(activeEl)) {
+          setPill({
+            top: activeEl.offsetTop,
+            left: activeEl.offsetLeft,
+            width: activeEl.offsetWidth,
+            height: activeEl.offsetHeight,
+            opacity: 1,
+          });
+        } else {
+          setPill((p) => ({ ...p, opacity: 0 }));
+        }
+      };
 
-    updatePill();
-    window.addEventListener("resize", updatePill);
-    return () => window.removeEventListener("resize", updatePill);
-  }, [selected]);
+      updatePill();
+      window.addEventListener("resize", updatePill);
+      return () => window.removeEventListener("resize", updatePill);
+    }, [selected]);
 
-  return (
-    <div ref={containerRef} className={`relative flex items-center ${className}`}>
-      {/* Smooth Sliding Active Pill Indicator */}
-      {pill.opacity > 0 && (
-        <div
-          className="absolute rounded-full bg-linear-to-r from-blue-600 to-sky-500 shadow-md shadow-blue-500/25 border border-sky-400/40 transition-all duration-150 ease-out pointer-events-none z-0"
-          style={{
-            top: `${pill.top}px`,
-            left: `${pill.left}px`,
-            width: `${pill.width}px`,
-            height: `${pill.height}px`,
-            opacity: pill.opacity,
-          }}
-        />
-      )}
+    return (
+      <div ref={containerRef} className={`relative flex items-center ${className}`}>
+        {/* Smooth Sliding Active Pill Indicator */}
+        {pill.opacity > 0 && (
+          <div
+            className="absolute rounded-full bg-linear-to-r from-blue-600 to-sky-500 shadow-md shadow-blue-500/25 border border-sky-400/40 transition-all duration-150 ease-out pointer-events-none z-0"
+            style={{
+              top: `${pill.top}px`,
+              left: `${pill.left}px`,
+              width: `${pill.width}px`,
+              height: `${pill.height}px`,
+              opacity: pill.opacity,
+            }}
+          />
+        )}
 
-      {items.map((item) => {
-        const isSelected = selected === item.label;
-        const Icon = item.icon;
+        {items.map((item) => {
+          const isSelected = selected === item.label;
+          const Icon = item.icon;
 
-        if (isMobile) {
+          if (isMobile) {
+            return (
+              <button
+                key={item.label}
+                ref={(el) => {
+                  buttonRefs.current[item.label] = el;
+                }}
+                aria-label={item.label}
+                title={item.label}
+                onClick={() => onSelect(item.label)}
+                className={`relative z-10 flex items-center justify-center size-8.5 rounded-full transition-colors duration-150 cursor-pointer ${
+                  isSelected
+                    ? "text-white"
+                    : "bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80"
+                }`}
+              >
+                <Icon size={15} />
+              </button>
+            );
+          }
+
           return (
             <button
               key={item.label}
               ref={(el) => {
                 buttonRefs.current[item.label] = el;
               }}
-              aria-label={item.label}
-              title={item.label}
               onClick={() => onSelect(item.label)}
-              className={`relative z-10 flex items-center justify-center w-8.5 h-8.5 rounded-full transition-colors duration-150 cursor-pointer ${
-                isSelected
-                  ? "text-white"
-                  : "bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80"
+              className={`relative z-10 px-4 py-2 rounded-full text-xs lg:text-sm font-bold tracking-wide transition-colors duration-150 cursor-pointer select-none ${
+                isSelected ? "text-white" : "text-slate-300 hover:text-white"
               }`}
             >
-              <Icon size={15} />
+              {item.label}
             </button>
           );
-        }
-
-        return (
-          <button
-            key={item.label}
-            ref={(el) => {
-              buttonRefs.current[item.label] = el;
-            }}
-            onClick={() => onSelect(item.label)}
-            className={`relative z-10 px-4 py-2 rounded-full text-xs lg:text-sm font-bold tracking-wide transition-colors duration-150 cursor-pointer select-none ${
-              isSelected ? "text-white" : "text-slate-300 hover:text-white"
-            }`}
-          >
-            {item.label}
-          </button>
-        );
-      })}
-    </div>
-  );
-});
+        })}
+      </div>
+    );
+  },
+);
 NavItemsGroup.displayName = "NavItemsGroup";
 
 /**
