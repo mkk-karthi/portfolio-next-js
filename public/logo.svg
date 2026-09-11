@@ -7,12 +7,7 @@
  
  <style xmlns="http://www.w3.org/2000/svg">
   :root {
-    fill: #000;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      fill: #fff;
-    }
+    fill: #fff;
   }
 </style>
 

@@ -147,6 +147,8 @@ export const metadatas: Metadata = {
     "FastAPI Python",
     "Laravel Developer",
     "Chennai Full Stack Developer",
+    "Virudhunagar Full Stack Developer",
+    "Tamilnadu Full Stack Developer",
     "Freelance Full Stack Engineer",
     "Web App Development",
   ],
