@@ -31,7 +31,7 @@ export function GenericSlider<T extends AllowedCard>({
     setIsClient(true);
   }, []);
 
-  // Stable callback — prevents PortfolioCard from receiving a new prop reference
+  // Stable callback - prevents PortfolioCard from receiving a new prop reference
   // on every Swiper re-render, which would bust React.memo.
   const handleToggleDetails = useCallback((isOpen: boolean) => {
     if (isOpen) {
@@ -105,11 +105,7 @@ export function GenericSlider<T extends AllowedCard>({
         >
           {data.map((item) => (
             <SwiperSlide key={item.title} className="flex! justify-center">
-              <PortfolioCard
-                {...item}
-                priority={false}
-                onToggleDetails={handleToggleDetails}
-              />
+              <PortfolioCard {...item} priority={false} onToggleDetails={handleToggleDetails} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -9,7 +9,6 @@ const Services = dynamic(() => import("@/components/sections/Services"));
 const WorkExperience = dynamic(() => import("@/components/sections/WorkExperience"));
 const Projects = dynamic(() => import("@/components/sections/Projects"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
-const OpenToWork = dynamic(() => import("@/components/sections/OpenToWork"));
 const FloatControls = dynamic(() => import("@/components/ui/FloatControls"));
 const Footer = dynamic(() => import("@/components/sections/Footer"));
 
@@ -25,7 +24,6 @@ export default function Home() {
         <Services />
         <WorkExperience />
         <Projects />
-        <OpenToWork />
         <Contact />
       </main>
       <FloatControls />

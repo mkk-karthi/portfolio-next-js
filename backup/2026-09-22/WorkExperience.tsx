@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { experiences, education, experienceData } from "@/data/data";
+import { experiences, education } from "@/data/data";
 import { CheckCircle2, Briefcase, GraduationCap } from "lucide-react";
 
 export default function WorkExperience() {
-  const { description } = experienceData;
   const [activeTab, setActiveTab] = useState<"work" | "education">("work");
 
   // Memoize derived list - avoids recomputing on every render
@@ -30,7 +29,8 @@ export default function WorkExperience() {
           </span>
         </h2>
         <p className="mt-3 text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-xl">
-          {description}
+          Proven track record delivering full-stack enterprise solutions and scalable web
+          infrastructure.
         </p>
       </div>
 
@@ -84,7 +84,7 @@ export default function WorkExperience() {
               data-aos-delay={index * 100}
             >
               {/* Left Column: Company & Duration */}
-              <div className="w-full lg:w-3/10 flex flex-col justify-start border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 pb-4 lg:pb-0 lg:pr-6">
+              <div className="w-full lg:w-1/3 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 pb-4 lg:pb-0 lg:pr-6">
                 <div>
                   <span className="inline-block px-3 py-1 rounded-full bg-blue-50 dark:bg-sky-950/80 text-blue-600 dark:text-sky-400 font-bold text-xs mb-2 border border-blue-200 dark:border-sky-800">
                     {duration}
@@ -109,7 +109,7 @@ export default function WorkExperience() {
               </div>
 
               {/* Right Column: Role Title, Summary & Key Achievements */}
-              <div className="w-full lg:w-7/10 flex flex-col justify-between">
+              <div className="w-full lg:w-2/3 flex flex-col justify-between">
                 <div>
                   <h4 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 via-sky-500 to-cyan-400">
                     {title}

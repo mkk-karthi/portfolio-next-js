@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Karthikeyan M — Senior Full Stack Developer Portfolio",
+    name: "Karthikeyan M - Senior Full Stack Developer Portfolio",
     short_name: "Karthikeyan M",
     description: "Portfolio of Karthikeyan M, Senior Full Stack Engineer & Freelancer",
     start_url: "/",
