@@ -52,7 +52,7 @@ export default function OpenToWork() {
 
           {/* ── Info Cards ── */}
           <div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
+            className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-12"
             data-aos="fade-up"
             data-aos-delay="100"
           >
