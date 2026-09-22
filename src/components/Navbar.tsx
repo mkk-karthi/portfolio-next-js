@@ -189,7 +189,7 @@ const BrandLogo: React.FC<{ onClick: () => void }> = React.memo(({ onClick }) =>
   <div
     onClick={onClick}
     className="group relative flex items-center justify-center cursor-pointer shrink-0 p-[1.5px] rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
-    title="Karthikeyan M — Back to Top"
+    title="Karthikeyan M - Back to Top"
   >
     <div className="size-9 sm:size-10 rounded-full bg-slate-950 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-200">
       <Image
@@ -217,7 +217,7 @@ const Navbar: React.FC = () => {
   const handleLogoClick = useCallback(() => scrollToSection("Home"), [scrollToSection]);
 
   return (
-    <header className="fixed top-4 inset-x-0 w-full max-w-[94%] sm:max-w-[85%] lg:max-w-4xl h-16 bg-slate-900/90 dark:bg-slate-950/90 text-white px-3 sm:px-6 py-2 rounded-full backdrop-blur-2xl shadow-2xl shadow-blue-950/30 mx-auto flex items-center justify-between z-50 border border-slate-700/60 dark:border-sky-500/30">
+    <header className="fixed top-4 inset-x-0 w-11/12 sm:w-5/6 lg:max-w-4xl h-16 bg-slate-900/90 dark:bg-slate-950/90 text-white px-3 sm:px-6 py-2 rounded-full backdrop-blur-2xl shadow-2xl shadow-blue-950/30 mx-auto flex items-center justify-between z-50 border border-slate-700/60 dark:border-sky-500/30">
       {/* Left Navigation (Desktop) */}
       <NavItemsGroup
         items={leftItems}

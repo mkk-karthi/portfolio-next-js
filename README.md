@@ -1,4 +1,4 @@
-# Karthikeyan M — Senior Full Stack Engineer Portfolio
+# Karthikeyan M - Senior Full Stack Engineer Portfolio
 
 A modern, high-performance, and fully responsive portfolio website built with **Next.js 16 (App Router)**, **TypeScript**, and **Tailwind CSS 4**. Designed with a modern Midnight Slate-Blue dark theme, fluid typography, rich micro-animations, glassmorphism, and responsive architecture.
 

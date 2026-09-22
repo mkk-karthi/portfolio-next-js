@@ -2,13 +2,13 @@
 
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import {
-  CalendarDaysIcon,
-  CircleCheckBigIcon,
   ArrowUpRightIcon,
   Award,
   Sparkles,
+  CalendarDaysIcon,
+  CircleCheckBigIcon,
 } from "lucide-react";
-import { personalInfo, skillCategories } from "@/data/data";
+import { personalInfo, skillCategories, aboutData } from "@/data/data";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
 
 function AnimatedCounter({
@@ -68,8 +68,6 @@ function AnimatedCounter({
   );
 }
 
-// Stable stats config — defined outside the component so the array
-// reference never changes between renders.
 const statsConfig = [
   {
     icon: CalendarDaysIcon,
@@ -84,6 +82,7 @@ const statsConfig = [
 ] as const;
 
 export default function AboutMe() {
+  const { badge } = aboutData;
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [statsInView, setStatsInView] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -107,8 +106,7 @@ export default function AboutMe() {
 
   const handleScrollToContact = useScrollToSection("contact");
 
-  // Memoize the active skills array so switching categories doesn't
-  // recreate the entire list reference unnecessarily.
+  // Memoize active skills array
   const activeSkills = useMemo(() => skillCategories[activeCategory].skills, [activeCategory]);
 
   const handleCategorySelect = useCallback((idx: number) => {
@@ -129,13 +127,13 @@ export default function AboutMe() {
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12 lg:gap-14">
           {/* Left Column: Heading, Bio & CTA */}
           <div
-            className="flex flex-col justify-between items-start gap-8 w-full lg:w-[45%]"
+            className="flex flex-col justify-between items-start gap-8 w-full lg:w-4/9"
             data-aos="fade-up"
           >
             <div className="flex flex-col gap-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold w-fit">
                 <Sparkles size={14} aria-hidden="true" />
-                <span>Full Stack &amp; Freelance Engineering</span>
+                <span>{badge}</span>
               </div>
 
               <h2
@@ -156,7 +154,7 @@ export default function AboutMe() {
 
             <button
               onClick={handleScrollToContact}
-              aria-label="Contact Karthikeyan M"
+              aria-label={`Contact ${personalInfo.name}`}
               className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-sky-500/35 transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-0.5 border border-white/20"
             >
               <span>Contact Me</span>
@@ -169,7 +167,7 @@ export default function AboutMe() {
           </div>
 
           {/* Right Column: Stats & Categorized Skills */}
-          <div className="flex flex-col gap-8 w-full lg:w-[55%]">
+          <div className="flex flex-col gap-8 w-full lg:w-5/9">
             {/* Stats Row */}
             <div
               ref={statsRef}
@@ -184,7 +182,7 @@ export default function AboutMe() {
                 >
                   <div
                     aria-hidden="true"
-                    className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
+                    className="size-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
                   >
                     <Icon size={22} />
                   </div>
@@ -202,7 +200,7 @@ export default function AboutMe() {
               <div className="rounded-2xl border border-slate-200 dark:border-sky-500/20 p-5 bg-slate-50/80 dark:bg-slate-900/80 flex items-center gap-4 shadow-sm backdrop-blur-md">
                 <div
                   aria-hidden="true"
-                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
+                  className="size-12 flex items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-sky-500 text-white shrink-0 shadow-md"
                 >
                   <Award size={22} />
                 </div>
@@ -227,13 +225,15 @@ export default function AboutMe() {
                 id="skills-heading"
                 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2"
               >
-                <span className="w-2 h-5 bg-linear-to-b from-blue-600 to-sky-500 rounded-full" aria-hidden="true" />
+                <span
+                  className="w-2 h-5 bg-linear-to-b from-blue-600 to-sky-500 rounded-full"
+                  aria-hidden="true"
+                />
                 Technical Competencies
               </h3>
 
-              {/* Category Pills — horizontal scroll on mobile, wrap on desktop */}
+              {/* Category Pills */}
               <div className="relative mb-6">
-                {/* Fade-right scroll hint — visible only when content overflows on mobile */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-slate-50/90 dark:from-slate-900/90 to-transparent z-10 lg:hidden"

@@ -64,7 +64,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
         />
 
         {/* Default Card View */}
-        <div className="relative z-20 w-full h-full flex flex-col justify-between p-4 sm:p-6">
+        <div className="relative z-20 size-full flex flex-col justify-between p-4 sm:p-6">
           {/* Top Header: Category Tag & Quick Link Buttons */}
           <div className="flex items-center justify-between gap-3 w-full">
             {category ? (
@@ -83,7 +83,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View GitHub repository for ${title}`}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
+                  className="size-9 sm:size-10 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
                   title="View GitHub Repository"
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -96,7 +96,7 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View live demo for ${title}`}
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
+                  className="size-9 sm:size-10 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/20 hover:bg-linear-to-r hover:from-blue-600 hover:to-sky-500 hover:border-transparent flex items-center justify-center transition-all duration-300 shadow-lg hover:scale-105"
                   title="Redirect to Live Demo"
                   onClick={(e) => e.stopPropagation()}
                 >
@@ -122,14 +122,14 @@ const PortfolioCard: React.FC<PortfolioCardProps> = React.memo(
         <div
           className={`absolute inset-x-0 bottom-0 w-full transition-all duration-500 ease-in-out z-30 flex flex-col justify-between bg-slate-950/85 backdrop-blur-2xl border-t border-sky-500/30 p-5 sm:p-6 overflow-y-auto ${
             /* Mobile/Tablet layout */
-            "max-md:inset-0 max-md:h-full max-md:w-full max-md:p-6 max-md:gap-4"
+            "max-md:inset-0 max-md:size-full max-md:p-6 max-md:gap-4"
           } ${
             showDetails
               ? "max-md:translate-y-0 max-md:opacity-100 max-md:pointer-events-auto"
               : "max-md:translate-y-full max-md:opacity-0 max-md:pointer-events-none"
           } ${
             /* Desktop layout: Hoverable bottom drawer overlay */
-            "md:top-auto md:bottom-0 md:h-auto md:max-h-[85%] md:translate-y-full md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
+            "md:top-auto md:bottom-0 md:h-auto md:max-h-5/6 md:translate-y-full md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100"
           }`}
           onClick={(e) => e.stopPropagation()}
         >

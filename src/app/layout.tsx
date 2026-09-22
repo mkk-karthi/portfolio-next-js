@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { metadatas } from "@/data/data";
+import { metadatas, personalInfo } from "@/data/data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,12 +45,63 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link
+      <link
           rel="preload"
           href="/profile.webp"
           as="image"
           type="image/webp"
           fetchPriority="high"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: personalInfo.name,
+              jobTitle: personalInfo.targetRole,
+              url: personalInfo.website,
+              email: personalInfo.email,
+              telephone: personalInfo.phone,
+              image: `${personalInfo.website}/profile.webp`,
+              sameAs: [
+                personalInfo.linkedInUrl,
+                personalInfo.githubUrl,
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: personalInfo.locationShort,
+                addressRegion: "Tamil Nadu",
+                addressCountry: "IN",
+              },
+              knowsAbout: [
+                "React.js",
+                "Next.js",
+                "Node.js",
+                "PostgreSQL",
+                "Full Stack Developer",
+                "Full Stack Engineer",
+                "React + Node Developer",
+                "Software Engineer",
+                "MERN Developer",
+                "AI Integration",
+                "Stripe Payment Systems",
+              ],
+              seeks: {
+                "@type": "JobPosting",
+                title: personalInfo.targetRole,
+                employmentType: "FULL_TIME",
+                jobLocation: {
+                  "@type": "Place",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: personalInfo.locationShort,
+                    addressCountry: "IN",
+                  },
+                },
+              },
+            }),
+          }}
         />
       </head>
       <body

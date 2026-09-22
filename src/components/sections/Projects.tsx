@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { GenericSlider } from "@/components/ui/GenericSlider";
-import { projectData } from "@/data/data";
+import { projectData, projectsData } from "@/data/data";
 import { FolderGit2 } from "lucide-react";
 
 export default function Projects() {
+  const { description } = projectsData;
   return (
     <section
       id="project"
@@ -25,7 +26,7 @@ export default function Projects() {
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold">
           <FolderGit2 size={14} />
-          <span>Showcase & Code Repositories</span>
+          <span>Showcase &amp; Code Repositories</span>
         </div>
 
         <h2 className="font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-slate-900 dark:text-white leading-tight">
@@ -36,8 +37,7 @@ export default function Projects() {
         </h2>
 
         <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-2xl">
-          Explore interactive web applications, npm packages, and developer tools built with React,
-          Next.js, and Node.js.
+          {description}
         </p>
       </div>
 
