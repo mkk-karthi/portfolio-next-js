@@ -1,3 +1,5 @@
+"use client";
+
 import { openToWorkCards, openToWorkData } from "@/data/data";
 
 export default function OpenToWork() {
