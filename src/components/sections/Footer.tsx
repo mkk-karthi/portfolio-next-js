@@ -1,3 +1,5 @@
+"use client";
+
 import { personalInfo } from "@/data/data";
 
 export default function Footer() {

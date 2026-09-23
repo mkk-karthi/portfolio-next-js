@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { contacts, personalInfo } from "@/data/data";
 import { MessageSquare } from "lucide-react";

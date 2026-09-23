@@ -1,17 +1,17 @@
-import dynamic from "next/dynamic";
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
+import AboutMe from "@/components/sections/AboutMe";
+import Services from "@/components/sections/Services";
+import WorkExperience from "@/components/sections/WorkExperience";
+import Projects from "@/components/sections/Projects";
+import OpenToWork from "@/components/sections/OpenToWork";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
+import FloatControls from "@/components/ui/FloatControls";
 import AOSInit from "@/components/AOSInit";
 import PageLoader from "@/components/ui/PageLoader";
-
-const AboutMe = dynamic(() => import("@/components/sections/AboutMe"));
-const Services = dynamic(() => import("@/components/sections/Services"));
-const WorkExperience = dynamic(() => import("@/components/sections/WorkExperience"));
-const Projects = dynamic(() => import("@/components/sections/Projects"));
-const Contact = dynamic(() => import("@/components/sections/Contact"));
-const OpenToWork = dynamic(() => import("@/components/sections/OpenToWork"));
-const FloatControls = dynamic(() => import("@/components/ui/FloatControls"));
-const Footer = dynamic(() => import("@/components/sections/Footer"));
 
 export default function Home() {
   return (
@@ -33,4 +33,3 @@ export default function Home() {
     </div>
   );
 }
-
