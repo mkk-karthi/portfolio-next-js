@@ -1,24 +1,41 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import LogoSvg from "./LogoSVG";
 
 export default function PageLoader() {
   const [mounted, setMounted] = useState(true);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
+      if (mounted) {
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+        document.documentElement.style.overflow = "auto";
+      }
+    }, 0);
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [mounted]);
+
+  useEffect(() => {
     // Start fade-out on mount frame for instant visual continuity without blocking LCP
-    const frame = requestAnimationFrame(() => {
+    const fadeTimer = setTimeout(() => {
       setVisible(false);
-    });
+    }, 1000);
 
     // Completely unmount after fade transition completes
     const unmountTimer = setTimeout(() => {
       setMounted(false);
-    }, 350);
+    }, 1500);
 
     return () => {
-      cancelAnimationFrame(frame);
+      clearTimeout(fadeTimer);
       clearTimeout(unmountTimer);
     };
   }, []);
@@ -27,36 +44,30 @@ export default function PageLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-300 ease-in-out pointer-events-none ${
+      className={`fixed inset-0 z-9999 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-500 ease-in-out pointer-events-none ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
-      <div className="flex flex-col items-center gap-10 py-8">
-        {/* React Style Spinner */}
-        <div className="relative flex items-center justify-center size-28 my-2">
-          {/* React Ellipse Orbit 1 */}
-          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-md shadow-cyan-400/40 animate-[spin_3s_linear_infinite]" />
+      <div className="flex items-center justify-center">
+        <div className="absolute h-32 w-32 animate-ping rounded-full bg-sky-500/20 duration-1000"></div>
+        <div className="absolute h-24 w-24 animate-pulse rounded-full bg-sky-500/40"></div>
 
-          {/* React Ellipse Orbit 2 */}
-          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-md shadow-cyan-400/40 rotate-60 animate-[spin_3s_linear_infinite]" />
-
-          {/* React Ellipse Orbit 3 */}
-          <div className="absolute w-24 h-9 rounded-[50%] border-3 border-cyan-400/80 shadow-md shadow-cyan-400/40 -rotate-60 animate-[spin_3s_linear_infinite]" />
+        <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full bg-slate-800 p-4 shadow-xl border border-slate-700 text-sky-400">
+          <LogoSvg className="size-24 fill-sky-400" />
         </div>
+      </div>
 
-        {/* Loading Text */}
-        <div className="flex items-center gap-2 mt-4">
-          <span className="text-slate-200 font-semibold text-xl tracking-wide">Loading</span>
-          <span className="flex items-center gap-1.5 ml-0.5 mt-2">
-            {[0, 150, 300].map((delay) => (
-              <span
-                key={delay}
-                className="size-2 rounded-full bg-cyan-400 animate-bounce"
-                style={{ animationDelay: `${delay}ms` }}
-              />
-            ))}
-          </span>
-        </div>
+      <div className="flex items-center gap-1 mt-6 text-lg font-semibold tracking-widest text-sky-400">
+        <span>Loading</span>
+        <span className="flex items-center gap-1 mt-2">
+          {[0, 150, 300].map((delay) => (
+            <span
+              key={delay}
+              className="size-1 rounded-full bg-sky-400 animate-bounce"
+              style={{ animationDelay: `${delay}ms` }}
+            />
+          ))}
+        </span>
       </div>
     </div>
   );

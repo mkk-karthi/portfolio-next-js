@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import Image from "next/image";
 import { navItems, NavItem } from "@/data/data";
+import LogoSvg from "./ui/LogoSVG";
 
 const SECTION_IDS: Record<string, string> = {
   Home: "home",
@@ -189,17 +189,10 @@ const BrandLogo: React.FC<{ onClick: () => void }> = React.memo(({ onClick }) =>
   <div
     onClick={onClick}
     className="group relative flex items-center justify-center cursor-pointer shrink-0 p-[1.5px] rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
-    title="Karthikeyan M - Back to Top"
+    title="MKK Creation"
   >
     <div className="size-9 sm:size-10 rounded-full bg-slate-950 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-200">
-      <Image
-        src="/logo.svg"
-        alt="Karthikeyan M"
-        width={28}
-        height={28}
-        priority
-        className="size-7 sm:size-8 object-contain"
-      />
+      <LogoSvg className="size-7 sm:size-8 fill-white" />
     </div>
   </div>
 ));
