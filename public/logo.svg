@@ -3,13 +3,7 @@
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="512" height="512" viewBox="0 0 512 512">
- 
- <style xmlns="http://www.w3.org/2000/svg">
-  :root {
-    fill: #fff;
-  }
-</style>
+ width="512" height="512" viewBox="0 0 512 512" fill="#fff">
 
   <g transform="translate(0,512) scale(0.1,-0.1)"
   stroke="none">
