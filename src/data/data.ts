@@ -345,9 +345,18 @@ export const experienceData = {
 
 export const projectData: PortfolioItem[] = [
   {
+    image: "/nanban-crackers.webp",
+    title: "Nanban Crackers – Festive E-Commerce",
+    href: "https://nanbancrackers.mkkcreation.com",
+    desc: "Sivakasi direct factory fireworks e-commerce platform featuring 100+ wholesale products, curated gift box combos, Zustand persistent cart, minimum order validation, and client-side PDF invoice generation.",
+    tech: ["Next.js 16", "React 19", "Tailwind CSS", "Zustand", "jsPDF"],
+    category: "Next.js E-Commerce",
+  },
+  {
     image: "/photography-portfolio.webp",
     title: "Photography & Framing Studio",
     href: "https://photography.mkkcreation.com/",
+    github: "https://github.com/mkk-karthi/photography",
     desc: "Luxury photography and custom photo framing studio website featuring interactive service packages, event galleries, dynamic pricing calculator, and booking inquiry workflows.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Antigravity"],
     category: "Next.js Web Application",
