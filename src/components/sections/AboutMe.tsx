@@ -131,10 +131,13 @@ export default function AboutMe() {
             data-aos="fade-up"
           >
             <div className="flex flex-col gap-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold w-fit">
+              <a
+                href="#about"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-sky-950/60 border border-blue-200 dark:border-sky-800 text-blue-600 dark:text-sky-400 text-xs font-bold w-fit hover:border-sky-400 transition-colors"
+              >
                 <Sparkles size={14} aria-hidden="true" />
                 <span>{badge}</span>
-              </div>
+              </a>
 
               <h2
                 id="about-heading"
@@ -152,7 +155,8 @@ export default function AboutMe() {
               </p>
             </div>
 
-            <button
+            <a
+              href="#contact"
               onClick={handleScrollToContact}
               aria-label={`Contact ${personalInfo.name}`}
               className="group flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-linear-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-sky-500/35 transition-all duration-300 ease-in-out cursor-pointer hover:-translate-y-0.5 border border-white/20"
@@ -163,7 +167,7 @@ export default function AboutMe() {
                 aria-hidden="true"
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
-            </button>
+            </a>
           </div>
 
           {/* Right Column: Stats & Categorized Skills */}

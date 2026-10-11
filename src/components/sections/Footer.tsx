@@ -13,6 +13,28 @@ export default function Footer() {
         </p>
       </div>
 
+      {/* Quick Navigation Links */}
+      <div className="w-full flex flex-wrap items-center justify-center gap-6 py-4 px-4 text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 border-b border-slate-200/60 dark:border-slate-800/60">
+        <a href="/" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          Home
+        </a>
+        <a href="#about" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          About
+        </a>
+        <a href="#services" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          Services
+        </a>
+        <a href="#experience" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          Experience
+        </a>
+        <a href="#projects" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          Projects
+        </a>
+        <a href="#contact" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors">
+          Contact
+        </a>
+      </div>
+
       {/* Copyright */}
       <div className="w-full text-center text-xs sm:text-sm py-4 text-slate-600 dark:text-slate-400">
         &copy; <span>{new Date().getFullYear()} </span>
