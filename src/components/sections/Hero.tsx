@@ -198,7 +198,8 @@ export default function Hero() {
                   />
                   <span>Download CV</span>
                 </a>
-                <button
+                <a
+                  href="#contact"
                   onClick={scrollToContact}
                   className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 hover:border-sky-500/50 text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
@@ -207,7 +208,13 @@ export default function Hero() {
                     size={15}
                     className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                   />
-                </button>
+                </a>
+                <a
+                  href="#about"
+                  className="group inline-flex items-center gap-2 px-5 py-3 sm:py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 hover:border-sky-500/30 text-slate-300 hover:text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <span>About Me</span>
+                </a>
               </div>
             </FadeIn>
 

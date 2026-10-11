@@ -89,7 +89,8 @@ export default function Services() {
                   <FileText size={14} />
                   View Resume
                 </a>
-                <button
+                <a
+                  href="#contact"
                   onClick={handleScrollToContact}
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 font-semibold text-sm transition-all duration-200 hover:bg-sky-50 dark:hover:bg-sky-950/30 cursor-pointer group/btn"
                 >
@@ -98,7 +99,7 @@ export default function Services() {
                     size={14}
                     className="transition-transform group-hover/btn:translate-x-0.5"
                   />
-                </button>
+                </a>
                 <div className="ml-auto">
                   <CheckCircle2
                     size={18}
@@ -133,16 +134,26 @@ export default function Services() {
             </p>
           </div>
 
-          <a
-            href={personalInfo.cvFile}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="services-view-resume-cta"
-            className="shrink-0 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-linear-to-r from-blue-500 to-sky-400 hover:from-blue-400 hover:to-sky-300 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-900/50 transition-all duration-300 hover:scale-105 hover:shadow-blue-700/50 whitespace-nowrap"
-          >
-            <FileText size={18} />
-            View My Resume
-          </a>
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <a
+              href="#contact"
+              onClick={handleScrollToContact}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-linear-to-r from-blue-500 to-sky-400 hover:from-blue-400 hover:to-sky-300 text-white font-bold text-sm sm:text-base shadow-xl shadow-blue-900/50 transition-all duration-300 hover:scale-105"
+            >
+              <span>Get In Touch</span>
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href={personalInfo.cvFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="services-view-resume-cta"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/20 transition-all duration-300"
+            >
+              <FileText size={16} />
+              <span>Resume</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

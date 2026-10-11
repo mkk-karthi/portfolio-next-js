@@ -25,6 +25,7 @@ import { Metadata } from "next";
 export interface NavItem {
   label: string;
   icon: LucideIcon;
+  href: string;
 }
 
 export interface SkillCategory {
@@ -153,12 +154,12 @@ export const personalInfo = {
 // ── Navigation Items ──
 
 export const navItems: NavItem[] = [
-  { label: "Home", icon: HouseIcon },
-  { label: "About", icon: InfoIcon },
-  { label: "Services", icon: Zap },
-  { label: "Experience", icon: Briefcase },
-  { label: "Projects", icon: PanelsTopLeftIcon },
-  { label: "Contact", icon: Mail },
+  { label: "Home", icon: HouseIcon, href: "/" },
+  { label: "About", icon: InfoIcon, href: "#about" },
+  { label: "Services", icon: Zap, href: "#services" },
+  { label: "Experience", icon: Briefcase, href: "#experience" },
+  { label: "Projects", icon: PanelsTopLeftIcon, href: "#projects" },
+  { label: "Contact", icon: Mail, href: "#contact" },
 ];
 
 // ── Hero Section ──
@@ -341,12 +342,29 @@ export const experienceData = {
     "Proven track record delivering full-stack enterprise solutions and scalable web infrastructure.",
 };
 
-// ── Portfolio Projects ──
+// Portfolio Projects
 
 export const projectData: PortfolioItem[] = [
   {
+    image: "/ai-agent.webp",
+    title: "MKK AI Agent - Multi-Provider Platform",
+    github: "https://github.com/mkk-karthi/ai-agent-backend",
+    desc: "Production-ready enterprise AI agent platform featuring real-time SSE streaming, dynamic multi-model orchestration (Gemini & OpenAI), autonomous web search grounding (Tavily/Jina/DuckDuckGo), relational tree-structured message branching, token metering, and AES-256 encrypted credential management.",
+    tech: [
+      "React 19",
+      "TypeScript",
+      "Express.js 5",
+      "PostgreSQL",
+      "Prisma 7",
+      "TanStack Query",
+      "Tailwind CSS v4",
+      "Zustand",
+    ],
+    category: "Full-Stack AI Platform",
+  },
+  {
     image: "/nanban-crackers.webp",
-    title: "Nanban Crackers – Festive E-Commerce",
+    title: "Nanban Crackers - Festive E-Commerce",
     href: "https://nanbancrackers.mkkcreation.com",
     desc: "Sivakasi direct factory fireworks e-commerce platform featuring 100+ wholesale products, curated gift box combos, Zustand persistent cart, minimum order validation, and client-side PDF invoice generation.",
     tech: ["Next.js 16", "React 19", "Tailwind CSS", "Zustand", "jsPDF"],

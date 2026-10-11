@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://mkkcreation.com",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 1,
+      priority: 1.0,
     },
   ];
 }
