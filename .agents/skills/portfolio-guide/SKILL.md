@@ -36,6 +36,8 @@ portfolio-next-js/
 │       └── portfolio-guide/
 │           └── SKILL.md              # THIS SKILL: Single source of truth for all agents
 ├── public/                           # Static assets: images, resume (/cv.pdf), profile.webp
+│   ├── llms.txt                      # AI SEO: Markdown knowledge file for AI crawlers & LLMs
+│   └── llm.txt                       # Mirror for alternative LLM crawler standard convention
 ├── src/
 │   ├── app/
 │   │   ├── globals.css               # Core styling tokens, theme colors, CSS scrollbars
