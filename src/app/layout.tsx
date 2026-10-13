@@ -45,12 +45,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-      <link
+        <link
           rel="preload"
           href="/profile.webp"
           as="image"
           type="image/webp"
           fetchPriority="high"
+        />
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href="/llms.txt"
+          title="LLM Context"
         />
         <script
           type="application/ld+json"

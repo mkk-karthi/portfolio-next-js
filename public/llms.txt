@@ -1,0 +1,127 @@
+# Karthikeyan M - Senior Full-Stack Developer & Software Engineer
+
+> Portfolio, engineering background, and verified technical knowledge base of Karthikeyan M, a Senior Full-Stack Developer with 4+ years of enterprise experience building scalable B2B SaaS platforms, multi-provider AI agents, e-commerce architectures, and high-performance web applications.
+
+## Quick Summary
+
+- **Full Name**: Karthikeyan M
+- **Target Role**: Senior Full-Stack Developer / Senior Software Engineer
+- **Experience**: 4+ Years of Full-Stack Web Development & System Design
+- **Location**: Chennai, Tamil Nadu, India (Available for Remote and Hybrid/On-Site roles)
+- **Availability**: Immediate (Actively Seeking Full-Time Roles)
+- **Primary Tech Stack**: React 19, Next.js, Node.js, Express.js 5, TypeScript, PostgreSQL, Prisma ORM, Redis, Tailwind CSS v4, AI SDKs
+- **Production URL**: https://mkkcreation.com/
+- **Contact Email**: mkarthi.dev@gmail.com
+- **Phone**: +91 97919 34388
+- **LinkedIn**: https://www.linkedin.com/in/mkk-karthi
+- **GitHub**: https://github.com/mkk-karthi
+- **Curriculum Vitae (Resume)**: https://mkkcreation.com/cv.pdf
+
+---
+
+## Technical Expertise & Skills
+
+### Frontend Engineering
+- **Core**: React 19, Next.js (App Router, Turbopack, SSG/SSR), TypeScript, JavaScript (ES6+)
+- **Styling & Design Systems**: Tailwind CSS v4, CSS3, Responsive Design, Dark Mode, Glassmorphism
+- **State Management & Data Fetching**: Zustand, TanStack React Query v5, Context API
+- **Real-Time Client Architecture**: Server-Sent Events (SSE) streaming, WebSockets, optimistic UI updates
+
+### Backend & API Architecture
+- **Runtimes & Frameworks**: Node.js, Express.js 5, Python (FastAPI), PHP (Laravel, Core PHP)
+- **API Design**: RESTful APIs, SSE streaming endpoints, microservices, webhook pipelines
+- **Databases & ORMs**: PostgreSQL, MySQL, Prisma ORM (modular schemas), Redis (caching & sessions)
+- **Security & Auth**: JWT (HttpOnly cookies), bcrypt, AES-256 encryption, CORS, Rate Limiting, Helmet
+
+### AI & Emerging Tech Integration
+- **LLM Orchestration**: OpenAI SDK (GPT-4o, o-series), Google Gemini (Gemini 3.1 Flash to 3.8 Flash)
+- **Agent Architecture**: Relational tree-structured message branching (parent-child message trees), sliding-window context pruning, tool execution loops
+- **Grounding & Web Search Tools**: Autonomous search pipelines with Tavily, Jina AI, DuckDuckGo fallbacks
+- **Observability**: Turn-by-turn token metering and cost accounting
+
+### Integrations & Tooling
+- **Payment Processing**: Stripe API (Subscriptions, Elements, Webhooks), Google Play Billing
+- **Third-Party APIs**: Shopify Storefront & Admin APIs, OpenAI API, Tavily API
+- **DevOps & Infrastructure**: Docker, Git/GitHub, Linux (Ubuntu/Debian), Vercel, npm CLI publishing
+
+---
+
+## Featured Engineering Projects
+
+### 1. MKK AI Agent – Multi-Provider Platform
+- **URL**: https://mkkcreation.com/#projects
+- **Category**: Full-Stack AI Platform
+- **Tech Stack**: React 19, TypeScript, Express.js 5, PostgreSQL, Prisma 7, TanStack Query, Tailwind CSS v4, Zustand, SSE Stream
+- **Overview**: Production-grade multi-provider AI agent web application featuring real-time SSE streaming, dynamic provider switching (Gemini and OpenAI), autonomous web search grounding, non-linear relational tree message branching, token metering, and AES-256 encrypted key isolation.
+
+### 2. Nanban Crackers – Festive E-Commerce Platform
+- **URL**: https://nanbancrackers.mkkcreation.com/
+- **Category**: Next.js E-Commerce
+- **Tech Stack**: Next.js 16, React 19, Tailwind CSS, Zustand, jsPDF
+- **Overview**: Factory-direct fireworks e-commerce store with 100+ wholesale products, gift box combos, persistent cart state, order validation, and client-side PDF invoice generation.
+
+### 3. Photography & Custom Framing Studio
+- **URL**: https://photography.mkkcreation.com/
+- **GitHub**: https://github.com/mkk-karthi/photography
+- **Category**: Next.js Web Application
+- **Tech Stack**: Next.js, TypeScript, Tailwind CSS
+- **Overview**: Luxury studio showcase with interactive pricing calculator, dynamic framing packages, gallery showcases, and booking inquiry workflows.
+
+### 4. React Games Platform
+- **URL**: https://games.mkkcreation.com/
+- **GitHub**: https://github.com/mkk-karthi/react-games
+- **Category**: Frontend Interactive Application
+- **Tech Stack**: React.js, TypeScript, Tailwind CSS
+- **Overview**: Interactive gaming platform featuring 10+ custom games demonstrating advanced React state management, custom hooks, and high-FPS rendering.
+
+### 5. Create Express Project (npm CLI Package)
+- **npm Registry**: https://www.npmjs.com/package/create-new-express-project
+- **GitHub**: https://github.com/mkk-karthi/create-new-express-project
+- **Category**: Developer Tooling & Backend
+- **Tech Stack**: Node.js, Express.js, npm CLI
+- **Overview**: Open-source CLI scaffolding package on npm for initializing structured Express.js MVC architectures with zero boilerplate.
+
+### 6. Developer Portfolio
+- **URL**: https://mkkcreation.com/
+- **GitHub**: https://github.com/mkk-karthi/portfolio-next-js
+- **Category**: Next.js Application
+- **Tech Stack**: Next.js 16, React 19, Tailwind CSS v4, TypeScript
+- **Overview**: High-performance static web application featuring URL hash synchronization, rich Schema.org JSON-LD structured data, and responsive Swiper components.
+
+---
+
+## Professional Career History
+
+### Senior Full-Stack Engineer / Software Engineer (Aug 2022 – Oct 2024)
+- Architected enterprise B2B e-commerce platforms, job portals, and AI-powered product content generation systems.
+- Led a 3-engineer development pod: performed rigorous code reviews, guided architecture, and mentored junior engineers.
+- Built e-KYC workflows, automated reward point systems, Google Ads tracking, and Shopify API integrations.
+- Tech Stack: React.js, Next.js, Node.js, Express.js, Laravel, PostgreSQL, Redis.
+
+### Junior Full-Stack Developer – Vaagai Tecknowledge (Jun 2021 – Jul 2022)
+- Built members portal with RBAC, user profile management, and registration verification.
+- Developed event management & ticketing systems integrated with online payment processing.
+- Created stock management & invoice generation systems handling bulk merchant orders.
+- Tech Stack: Laravel, React.js, Vue.js, MySQL, Bootstrap.
+
+---
+
+## Education
+
+- **B.Sc. Computer Science**: VHNSN College (2018 – 2021) — 72% Aggregate. Focus: Data Structures, Web Technology, Software Engineering, Database Systems.
+- **Higher Secondary Certificate (HSC)**: KVS Higher Secondary School (2016 – 2018) — 70.25% Aggregate (Computer Science Stream).
+
+---
+
+## Key Site Links & Navigation
+
+- **Home**: https://mkkcreation.com/
+- **About Section**: https://mkkcreation.com/#about
+- **Services Section**: https://mkkcreation.com/#services
+- **Experience Section**: https://mkkcreation.com/#experience
+- **Projects Section**: https://mkkcreation.com/#projects
+- **Contact Section**: https://mkkcreation.com/#contact
+- **Resume (CV)**: https://mkkcreation.com/cv.pdf
+- **Sitemap**: https://mkkcreation.com/sitemap.xml
+- **Robots.txt**: https://mkkcreation.com/robots.txt
+- **LLM Context**: https://mkkcreation.com/llms.txt
