@@ -25,10 +25,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mkkcreation.com"),
-  alternates: {
-    canonical: "https://mkkcreation.com",
-  },
+  metadataBase: new URL("https://mkkcreation.com/"),
   title: metadatas.title,
   description: metadatas.description,
   icons: metadatas.icons,
@@ -45,19 +42,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <link rel="canonical" href="https://mkkcreation.com/" />
         <link
           rel="preload"
-          href="/profile.webp"
+          href="/images/profile.webp"
           as="image"
           type="image/webp"
           fetchPriority="high"
         />
-        <link
-          rel="alternate"
-          type="text/markdown"
-          href="/llms.txt"
-          title="LLM Context"
-        />
+        <link rel="alternate" type="text/markdown" href="/llms.txt" title="LLM Context" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -67,7 +60,7 @@ export default function RootLayout({
                 {
                   "@type": "WebSite",
                   "@id": `${personalInfo.website}/#website`,
-                  url: personalInfo.website,
+                  url: `${personalInfo.website}/`,
                   name: `${personalInfo.name} - Senior Full Stack Developer`,
                   description: metadatas.description,
                   inLanguage: "en-US",
@@ -77,10 +70,10 @@ export default function RootLayout({
                   "@id": `${personalInfo.website}/#person`,
                   name: personalInfo.name,
                   jobTitle: personalInfo.targetRole,
-                  url: personalInfo.website,
+                  url: `${personalInfo.website}/`,
                   email: personalInfo.email,
                   telephone: personalInfo.phone,
-                  image: `${personalInfo.website}/profile.webp`,
+                  image: `${personalInfo.website}/images/profile.webp`,
                   sameAs: [personalInfo.linkedInUrl, personalInfo.githubUrl],
                   address: {
                     "@type": "PostalAddress",

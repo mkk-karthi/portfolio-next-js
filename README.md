@@ -37,9 +37,9 @@ A modern, high-performance, and fully responsive portfolio website built with **
 ```
 portfolio-next-js/
 ├── public/                 # Static assets (PDFs, WebP images, favicons)
-│   ├── profile.webp       # Developer profile image
-│   ├── cv.pdf             # Curriculum Vitae
-│   └── *.webp             # Project screenshots & background assets
+│   ├── assets/            # Static documents (Karthikeyan-M-Resume.pdf)
+│   ├── images/            # WebP images (profile, projects, background)
+│   └── *.svg, *.ico       # Brand icons and favicon
 ├── src/
 │   ├── app/               # Next.js App Router
 │   │   ├── globals.css    # Global CSS, animations & custom scrollbar

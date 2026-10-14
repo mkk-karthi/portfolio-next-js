@@ -15,7 +15,7 @@
 - **Phone**: +91 97919 34388
 - **LinkedIn**: https://www.linkedin.com/in/mkk-karthi
 - **GitHub**: https://github.com/mkk-karthi
-- **Curriculum Vitae (Resume)**: https://mkkcreation.com/cv.pdf
+- **Curriculum Vitae (Resume)**: https://mkkcreation.com/assets/Karthikeyan-M-Resume.pdf
 
 ---
 
@@ -121,7 +121,7 @@
 - **Experience Section**: https://mkkcreation.com/#experience
 - **Projects Section**: https://mkkcreation.com/#projects
 - **Contact Section**: https://mkkcreation.com/#contact
-- **Resume (CV)**: https://mkkcreation.com/cv.pdf
+- **Resume (CV)**: https://mkkcreation.com/assets/Karthikeyan-M-Resume.pdf
 - **Sitemap**: https://mkkcreation.com/sitemap.xml
 - **Robots.txt**: https://mkkcreation.com/robots.txt
 - **LLM Context**: https://mkkcreation.com/llms.txt

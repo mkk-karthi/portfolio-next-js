@@ -135,8 +135,8 @@ export const personalInfo = {
   linkedInHandle: "linkedin.com/in/mkk-karthi",
   githubUrl: "https://github.com/mkk-karthi",
   githubHandle: "github.com/mkk-karthi",
-  cvFile: "/cv.pdf",
-  cvDownloadName: "Karthikeyan-M-CV.pdf",
+  cvFile: "/assets/Karthikeyan-M-Resume.pdf",
+  cvDownloadName: "Karthikeyan-M-Resume.pdf",
   title: "Senior Full Stack Engineer - Open to Full-Time Opportunities",
   status: "Senior Full Stack Engineer · Chennai, India · Open to Work",
   description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building AI-Powered B2B SaaS, e-commerce, job portal, transport booking and online driving course application. Strong experience in React.js, Node.js, Express.js, PostgreSQL, MySQL and Redis. Experienced in integrating Stripe, Google Play Billing, Shopify API and OpenAI API. Hands-on experience developing scalable full-stack applications, REST APIs, payment workflows, AI-powered features and background processing in Agile/Scrum environments.`,
@@ -148,7 +148,7 @@ export const personalInfo = {
   targetRole: "Senior Full-Stack Developer",
   targetRoleFull: "Senior Full-Stack Developer or Software Engineer",
   primaryTechSummary: "React • Node.js • PostgreSQL",
-  website: "https://mkkcreation.com",
+  website: "https://mkkcreation.com/",
 };
 
 // ── Navigation Items ──
@@ -346,7 +346,7 @@ export const experienceData = {
 
 export const projectData: PortfolioItem[] = [
   {
-    image: "/ai-agent.webp",
+    image: "/images/ai-agent.webp",
     title: "MKK AI Agent - Multi-Provider Platform",
     github: "https://github.com/mkk-karthi/ai-agent-backend",
     desc: "Production-ready enterprise AI agent platform featuring real-time SSE streaming, dynamic multi-model orchestration (Gemini & OpenAI), autonomous web search grounding (Tavily/Jina/DuckDuckGo), relational tree-structured message branching, token metering, and AES-256 encrypted credential management.",
@@ -363,7 +363,7 @@ export const projectData: PortfolioItem[] = [
     category: "Full-Stack AI Platform",
   },
   {
-    image: "/nanban-crackers.webp",
+    image: "/images/nanban-crackers.webp",
     title: "Nanban Crackers - Festive E-Commerce",
     href: "https://nanbancrackers.mkkcreation.com",
     desc: "Sivakasi direct factory fireworks e-commerce platform featuring 100+ wholesale products, curated gift box combos, Zustand persistent cart, minimum order validation, and client-side PDF invoice generation.",
@@ -371,7 +371,7 @@ export const projectData: PortfolioItem[] = [
     category: "Next.js E-Commerce",
   },
   {
-    image: "/photography-portfolio.webp",
+    image: "/images/photography-portfolio.webp",
     title: "Photography & Framing Studio",
     href: "https://photography.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/photography",
@@ -380,7 +380,7 @@ export const projectData: PortfolioItem[] = [
     category: "Next.js Web Application",
   },
   {
-    image: "/react-games.webp",
+    image: "/images/react-games.webp",
     title: "React Games Platform",
     href: "https://games.mkkcreation.com/",
     github: "https://github.com/mkk-karthi/react-games",
@@ -389,7 +389,7 @@ export const projectData: PortfolioItem[] = [
     category: "Frontend Application",
   },
   {
-    image: "/personal-portfolio.webp",
+    image: "/images/personal-portfolio.webp",
     title: "Enterprise & Freelance Portfolio",
     href: "https://mkkcreation.com/",
     github: "https://github.com/mkk-karthi/portfolio-next-js",
@@ -398,7 +398,7 @@ export const projectData: PortfolioItem[] = [
     category: "Next.js Application",
   },
   {
-    image: "/create-new-express-project-npm.webp",
+    image: "/images/create-new-express-project-npm.webp",
     title: "Create Express Project (npm Package)",
     href: "https://www.npmjs.com/package/create-new-express-project",
     github: "https://github.com/mkk-karthi/create-new-express-project",
@@ -537,7 +537,7 @@ export const metadatas: Metadata = {
     type: "website",
     images: [
       {
-        url: "/user.webp",
+        url: "/images/user.webp",
         width: 400,
         height: 400,
       },

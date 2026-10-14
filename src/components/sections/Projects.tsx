@@ -14,7 +14,7 @@ export default function Projects() {
       className="relative flex flex-col w-full max-w-7xl mx-auto min-h-120 sm:min-h-152 gap-8 sm:gap-10 items-center px-4 sm:px-6 lg:px-12 py-10 sm:py-12 bg-white/80 dark:bg-slate-900/70 border border-slate-200 dark:border-sky-500/20 rounded-3xl overflow-hidden my-8 sm:my-10 transition-colors duration-500 backdrop-blur-xl shadow-2xl"
     >
       <Image
-        src="/tech_service_bg.webp"
+        src="/images/tech_service_bg.webp"
         alt=""
         fill
         className="object-cover absolute opacity-10 dark:opacity-25 pointer-events-none"

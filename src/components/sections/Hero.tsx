@@ -114,7 +114,7 @@ export default function Hero() {
               {/* Image */}
               <div className="absolute inset-1 rounded-full overflow-hidden border-2 border-sky-400/40 bg-linear-to-b from-slate-900 via-slate-950 to-blue-950">
                 <Image
-                  src="/profile.webp"
+                  src="/images/profile.webp"
                   alt={`${name} - ${personalInfo.status}`}
                   fill
                   sizes="(max-width: 640px) 224px, (max-width: 1024px) 288px, (max-width: 1280px) 340px, (max-width: 1536px) 400px, 460px"

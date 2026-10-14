@@ -35,7 +35,7 @@ portfolio-next-js/
 │   └── skills/
 │       └── portfolio-guide/
 │           └── SKILL.md              # THIS SKILL: Single source of truth for all agents
-├── public/                           # Static assets: images, resume (/cv.pdf), profile.webp
+├── public/                           # Static assets: /images/ (WebP), /assets/ (resume PDF)
 │   ├── llms.txt                      # AI SEO: Markdown knowledge file for AI crawlers & LLMs
 │   └── llm.txt                       # Mirror for alternative LLM crawler standard convention
 ├── src/
@@ -81,7 +81,7 @@ All text, metadata, links, and content are defined in [`src/data/data.ts`](file:
 
 | Exported Object / Array | Purpose |
 | :--- | :--- |
-| `personalInfo` | Name, title, email, phone, location, LinkedIn/GitHub URLs, resume path (`/cv.pdf`), core pitch, total experience years |
+| `personalInfo` | Name, title, email, phone, location, LinkedIn/GitHub URLs, resume path (`/assets/Karthikeyan-M-Resume.pdf`), core pitch, total experience years |
 | `navItems` | Navigation list with labels, Lucide icons, and anchor links (`#home`, `#about`, `#services`, `#experience`, `#projects`, `#contact`) |
 | `typingWords` | Animated rotating titles for the Hero typewriter effect |
 | `skillCategories` | Frontend, Backend, Database, Cloud & DevOps, AI & Tools with skill arrays |
