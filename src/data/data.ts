@@ -148,7 +148,7 @@ export const personalInfo = {
   targetRole: "Senior Full-Stack Developer",
   targetRoleFull: "Senior Full-Stack Developer or Software Engineer",
   primaryTechSummary: "React • Node.js • PostgreSQL",
-  website: "https://mkkcreation.com/",
+  website: "https://mkkcreation.com",
 };
 
 // ── Navigation Items ──
@@ -373,7 +373,7 @@ export const projectData: PortfolioItem[] = [
   {
     image: "/images/photography-portfolio.webp",
     title: "Photography & Framing Studio",
-    href: "https://photography.mkkcreation.com/",
+    href: "https://photography.mkkcreation.com",
     github: "https://github.com/mkk-karthi/photography",
     desc: "Luxury photography and custom photo framing studio website featuring interactive service packages, event galleries, dynamic pricing calculator, and booking inquiry workflows.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Antigravity"],
@@ -382,7 +382,7 @@ export const projectData: PortfolioItem[] = [
   {
     image: "/images/react-games.webp",
     title: "React Games Platform",
-    href: "https://games.mkkcreation.com/",
+    href: "https://games.mkkcreation.com",
     github: "https://github.com/mkk-karthi/react-games",
     desc: "Interactive gaming portal featuring 10+ custom web games. Demonstrates complex React state management, custom hooks, and high-FPS UI rendering.",
     tech: ["React.js", "TypeScript", "Tailwind CSS"],
@@ -391,7 +391,7 @@ export const projectData: PortfolioItem[] = [
   {
     image: "/images/personal-portfolio.webp",
     title: "Enterprise & Freelance Portfolio",
-    href: "https://mkkcreation.com/",
+    href: "https://mkkcreation.com",
     github: "https://github.com/mkk-karthi/portfolio-next-js",
     desc: "High-performance developer portfolio with dark/light blue slate theme, glassmorphism, SEO optimizations, and Vercel analytics.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "AOS"],
@@ -532,7 +532,7 @@ export const metadatas: Metadata = {
   openGraph: {
     title: `${personalInfo.name} | Senior Full-Stack Developer - Open to Full-Time Hire`,
     description: `Senior Full Stack Developer with ${totalExperience}+ years of experience. Actively seeking full-time Senior Full-Stack Developer / Software Engineer roles. React.js, Node.js, PostgreSQL, AI integrations.`,
-    url: "https://mkkcreation.com/",
+    url: "https://mkkcreation.com",
     siteName: `${personalInfo.name} Portfolio`,
     type: "website",
     images: [

@@ -25,7 +25,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mkkcreation.com/"),
+  metadataBase: new URL("https://mkkcreation.com"),
   title: metadatas.title,
   description: metadatas.description,
   icons: metadatas.icons,
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="canonical" href="https://mkkcreation.com/" />
+        <link rel="canonical" href="https://mkkcreation.com" />
         <link
           rel="preload"
           href="/images/profile.webp"

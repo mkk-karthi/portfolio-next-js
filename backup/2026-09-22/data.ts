@@ -156,7 +156,7 @@ export const metadatas: Metadata = {
   openGraph: {
     title: "Karthikeyan M | Senior Full Stack Developer Portfolio & Freelance Services",
     description: `Portfolio of Karthikeyan M, a Senior Full Stack Engineer with ${totalExperience}+ years of experience building web apps and AI-powered systems.`,
-    url: "https://mkkcreation.com/",
+    url: "https://mkkcreation.com",
     siteName: "Karthikeyan M Portfolio",
     type: "website",
     images: [
@@ -355,7 +355,7 @@ export const projectData: PortfolioItem[] = [
   {
     image: "/react-games.webp",
     title: "React Games Platform",
-    href: "https://games.mkkcreation.com/",
+    href: "https://games.mkkcreation.com",
     github: "https://github.com/mkk-karthi/react-games",
     desc: "Interactive gaming portal featuring 10+ custom web games. Demonstrates complex React state management, custom hooks, and high-FPS UI rendering.",
     tech: ["React.js", "TypeScript", "Tailwind CSS"],
@@ -364,7 +364,7 @@ export const projectData: PortfolioItem[] = [
   {
     image: "/personal-portfolio.webp",
     title: "Enterprise & Freelance Portfolio",
-    href: "https://mkkcreation.com/",
+    href: "https://mkkcreation.com",
     github: "https://github.com/mkk-karthi/portfolio-next-js",
     desc: "High-performance developer portfolio with dark/light blue slate theme, glassmorphism, SEO optimizations, and Vercel analytics.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "AOS"],
