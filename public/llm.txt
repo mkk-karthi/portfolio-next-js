@@ -10,12 +10,12 @@
 - **Location**: Chennai, Tamil Nadu, India (Available for Remote and Hybrid/On-Site roles)
 - **Availability**: Immediate (Actively Seeking Full-Time Roles)
 - **Primary Tech Stack**: React 19, Next.js, Node.js, Express.js 5, TypeScript, PostgreSQL, Prisma ORM, Redis, Tailwind CSS v4, AI SDKs
-- **Production URL**: https://mkkcreation.com/
+- **Production URL**: https://mkkcreation.com
 - **Contact Email**: mkarthi.dev@gmail.com
 - **Phone**: +91 97919 34388
 - **LinkedIn**: https://www.linkedin.com/in/mkk-karthi
 - **GitHub**: https://github.com/mkk-karthi
-- **Curriculum Vitae (Resume)**: https://mkkcreation.com/cv.pdf
+- **Curriculum Vitae (Resume)**: https://mkkcreation.com/assets/Karthikeyan-M-Resume.pdf
 
 ---
 
@@ -55,20 +55,20 @@
 - **Overview**: Production-grade multi-provider AI agent web application featuring real-time SSE streaming, dynamic provider switching (Gemini and OpenAI), autonomous web search grounding, non-linear relational tree message branching, token metering, and AES-256 encrypted key isolation.
 
 ### 2. Nanban Crackers – Festive E-Commerce Platform
-- **URL**: https://nanbancrackers.mkkcreation.com/
+- **URL**: https://nanbancrackers.mkkcreation.com
 - **Category**: Next.js E-Commerce
 - **Tech Stack**: Next.js 16, React 19, Tailwind CSS, Zustand, jsPDF
 - **Overview**: Factory-direct fireworks e-commerce store with 100+ wholesale products, gift box combos, persistent cart state, order validation, and client-side PDF invoice generation.
 
 ### 3. Photography & Custom Framing Studio
-- **URL**: https://photography.mkkcreation.com/
+- **URL**: https://photography.mkkcreation.com
 - **GitHub**: https://github.com/mkk-karthi/photography
 - **Category**: Next.js Web Application
 - **Tech Stack**: Next.js, TypeScript, Tailwind CSS
 - **Overview**: Luxury studio showcase with interactive pricing calculator, dynamic framing packages, gallery showcases, and booking inquiry workflows.
 
 ### 4. React Games Platform
-- **URL**: https://games.mkkcreation.com/
+- **URL**: https://games.mkkcreation.com
 - **GitHub**: https://github.com/mkk-karthi/react-games
 - **Category**: Frontend Interactive Application
 - **Tech Stack**: React.js, TypeScript, Tailwind CSS
@@ -82,7 +82,7 @@
 - **Overview**: Open-source CLI scaffolding package on npm for initializing structured Express.js MVC architectures with zero boilerplate.
 
 ### 6. Developer Portfolio
-- **URL**: https://mkkcreation.com/
+- **URL**: https://mkkcreation.com
 - **GitHub**: https://github.com/mkk-karthi/portfolio-next-js
 - **Category**: Next.js Application
 - **Tech Stack**: Next.js 16, React 19, Tailwind CSS v4, TypeScript
@@ -115,13 +115,13 @@
 
 ## Key Site Links & Navigation
 
-- **Home**: https://mkkcreation.com/
+- **Home**: https://mkkcreation.com
 - **About Section**: https://mkkcreation.com/#about
 - **Services Section**: https://mkkcreation.com/#services
 - **Experience Section**: https://mkkcreation.com/#experience
 - **Projects Section**: https://mkkcreation.com/#projects
 - **Contact Section**: https://mkkcreation.com/#contact
-- **Resume (CV)**: https://mkkcreation.com/cv.pdf
+- **Resume (CV)**: https://mkkcreation.com/assets/Karthikeyan-M-Resume.pdf
 - **Sitemap**: https://mkkcreation.com/sitemap.xml
 - **Robots.txt**: https://mkkcreation.com/robots.txt
 - **LLM Context**: https://mkkcreation.com/llms.txt

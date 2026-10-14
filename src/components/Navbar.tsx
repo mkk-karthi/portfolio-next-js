@@ -34,7 +34,7 @@ function useActiveSection(items: NavItem[]) {
     if (typeof window !== "undefined" && window.location.hash) {
       const hash = window.location.hash.replace("#", "");
       const matched = items.find(
-        (item) => (SECTION_IDS[item.label] || item.label.toLowerCase()) === hash
+        (item) => (SECTION_IDS[item.label] || item.label.toLowerCase()) === hash,
       );
       if (matched) {
         setSelected(matched.label);
@@ -162,7 +162,11 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = React.memo(
     }, [selected]);
 
     return (
-      <nav ref={containerRef} aria-label="Main Navigation" className={`relative flex items-center ${className}`}>
+      <nav
+        ref={containerRef}
+        aria-label="Main Navigation"
+        className={`relative flex items-center ${className}`}
+      >
         {/* Smooth Sliding Active Pill Indicator */}
         {pill.opacity > 0 && (
           <div
@@ -222,26 +226,28 @@ const NavItemsGroup: React.FC<NavItemsGroupProps> = React.memo(
         })}
       </nav>
     );
-  }
+  },
 );
 NavItemsGroup.displayName = "NavItemsGroup";
 
 /**
  * Professional Center Brand Emblem Badge
  */
-const BrandLogo: React.FC<{ onClick: (e: React.MouseEvent) => void }> = React.memo(({ onClick }) => (
-  <a
-    href="/"
-    onClick={onClick}
-    className="group relative flex items-center justify-center cursor-pointer shrink-0 p-0.5 rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
-    title="MKK Creation - Home"
-    aria-label="Home"
-  >
-    <div className="size-9 sm:size-10 rounded-full bg-slate-950 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-200">
-      <LogoSvg className="size-7 sm:size-8 fill-white" />
-    </div>
-  </a>
-));
+const BrandLogo: React.FC<{ onClick: (e: React.MouseEvent) => void }> = React.memo(
+  ({ onClick }) => (
+    <a
+      href="/"
+      onClick={onClick}
+      className="group relative flex items-center justify-center cursor-pointer shrink-0 p-0.5 rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
+      title="MKK Creation - Home"
+      aria-label="Home"
+    >
+      <div className="size-9 sm:size-10 rounded-full bg-slate-950 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-200">
+        <LogoSvg className="size-7 sm:size-8 fill-white" />
+      </div>
+    </a>
+  ),
+);
 BrandLogo.displayName = "BrandLogo";
 
 /**
@@ -255,7 +261,7 @@ const Navbar: React.FC = () => {
 
   const handleLogoClick = useCallback(
     (e: React.MouseEvent) => scrollToSection(navItems[0], e),
-    [scrollToSection]
+    [scrollToSection],
   );
 
   return (
