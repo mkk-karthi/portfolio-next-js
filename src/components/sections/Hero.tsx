@@ -209,12 +209,12 @@ export default function Hero() {
                     className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                   />
                 </a>
-                <a
+                {/* <a
                   href="#about"
                   className="group inline-flex items-center gap-2 px-5 py-3 sm:py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 hover:border-sky-500/30 text-slate-300 hover:text-white font-bold text-sm hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <span>About Me</span>
-                </a>
+                </a> */}
               </div>
             </FadeIn>
 
