@@ -118,7 +118,7 @@ const totalExperience = calculateExperienceYears([
   { start: "2021-07-15", end: "2022-07-15" },
   { start: "2022-08-01", end: "2024-10-30" },
   { start: "2025-02-10", end: "2025-07-07" },
-  { start: "2025-09-02", end: null },
+  { start: "2025-09-02", end: "2026-07-31" },
 ]);
 
 // ── Personal Info (Single Source of Truth) ──
@@ -139,7 +139,7 @@ export const personalInfo = {
   cvDownloadName: "Karthikeyan-M-Resume.pdf",
   title: "Senior Full Stack Engineer - Open to Full-Time Opportunities",
   status: "Senior Full Stack Engineer · Chennai, India · Open to Work",
-  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building AI-Powered B2B SaaS, e-commerce, job portal, transport booking and online driving course application. Strong experience in React.js, Node.js, Express.js, PostgreSQL, MySQL and Redis. Experienced in integrating Stripe, Google Play Billing, Shopify API and OpenAI API. Hands-on experience developing scalable full-stack applications, REST APIs, payment workflows, AI-powered features and background processing in Agile/Scrum environments.`,
+  description: `Senior Full Stack Developer with ${totalExperience}+ years of experience building AI-Powered B2B SaaS, e-commerce, job portal, transport booking and online driving course application. Strong experience in React.js, Node.js, Express.js, PostgreSQL, MySQL and Redis. Experienced in integrating Stripe, Google Play Billing, Shopify API and OpenAI API. Hands-on experience developing scalable full-stack applications, REST APIs, payment workflows, AI-powered features, Git, CI/CD pipeline, and Agile/Scrum workflows, with experience in code reviews, team collaboration, and mentoring junior developers.`,
   corePitch: `Actively seeking Senior Full-Stack Developer or Software Engineer roles. I bring ${totalExperience}+ years of enterprise-grade experience building scalable SaaS platforms, integrating payment systems, and delivering features - ready to contribute from day one.`,
   totalExperience,
   totalProjects: 10,
@@ -168,7 +168,6 @@ export const typingWords: string[] = [
   "Senior Software Engineer",
   "Full Stack Developer",
   "React + Node Developer",
-  "Next.js & React Architect",
   "API & AI Integration Expert",
 ];
 
@@ -273,15 +272,15 @@ export const servicesData = {
 export const experiences: Experience[] = [
   {
     company: "GK Technologies, Chennai",
-    duration: "SEP 2025 - Present",
+    duration: "SEP 2025 - JUL 2026",
     role: "Senior Software Engineer",
     desc: "Leading full-stack features for a online driving course platform serving 10K+ active users.",
     highlights: [
-      "Built full-stack features for online driving course platform with real-time progress tracking.",
-      "Implemented abandoned cart recovery system with coupon offers, converting previously lost orders back into completed purchases.",
-      "Integrated Stripe & Google Play Billing: Delivered secure payment processing with real-time webhook processing.",
+      "Developed full-stack features for an online driving course platform using React.js, Node.js, PostgreSQL and Laravel, enabling course management and learner progress tracking.",
+      "Implemented an abandoned-cart recovery workflow with targeted coupon offers to encourage customers and recover 30% of abandoned carts.",
+      "Integrated Stripe webhook and Google Play Billing to handling idempotent transaction verification and maintaining a 99.8% checkout success rate.",
     ],
-    techStack: ["React.js", "FastAPI", "Python", "Stripe", "MySQL", "REST APIs"],
+    techStack: ["React.js", "Node.js", "Laravel", "PostgreSQL", "Stripe", "REST APIs"],
   },
   {
     company: "Clarity TTS, Chennai",
@@ -289,11 +288,11 @@ export const experiences: Experience[] = [
     role: "Full Stack Developer",
     desc: "Engineered core booking and invoice modules for a high-traffic B2B & B2C multi-provider transport platform handling thousands of daily transactions.",
     highlights: [
-      "Developed features for B2B and B2C multi-provider transport booking platform (flights, hotels, transfers) handling thousands of bookings.",
-      "Worked on flight booking data processing and invoice generation workflows, reducing manual effort significantly.",
-      "Collaborated agile methodologies for timely project delivery and high quality.",
+      "Developed multi-provider transport booking platform covering flights, hotels, and transfers using Laravel, Vue.js, React.js, Node.js (Express.js) and MySQL.",
+      "Implemented flight-booking data processing and invoice-generation workflows to support booking operations.",
+      "Collaborated with cross-functional teams in an Agile/Scrum environment to deliver and maintain transport booking features.",
     ],
-    techStack: ["Laravel", "Node.js", "Express.js", "PostgreSQL", "Redis"],
+    techStack: ["Laravel", "React.js", "Node.js", "Express.js", "MySQL", "Redis"],
   },
   {
     company: "Constient Global Solutions, Chennai",
@@ -301,12 +300,13 @@ export const experiences: Experience[] = [
     role: "Software Engineer",
     desc: "Delivered enterprise B2B e-commerce platforms, job portals, and AI-powered content systems - including leading a 3-person team on Shopify integration.",
     highlights: [
-      "Built scalable B2B e-commerce and job portal applications, integrated reward points system, Google Ads and AI-powered product content generation and SEO automation.",
-      "Built e-KYC verification, and complete job application management for a multi-module enterprise portal.",
-      "Led 3-engineer team: Code reviews, Shopify integration, mentored 2 junior developers.",
+      "Developed multi-tenant B2B/B2C e-commerce applications using Laravel, Vue.js, Node.js with PostgreSQL, implemented loyalty and reward systems, increasing repeat purchases by 30%.",
+      "Integrated Google Ads, AI-powered product content generation and SEO automation to reduce manual content creation efforts.",
+      "Built a job portal with e-KYC verification and application management using React, Node.js with MySQL, supporting 50K+ applications.",
+      "Led a three-engineer team, conducted code reviews, integrated the Shopify API, and mentored two junior developers.",
       "Contributed to a social media platform built using Core PHP by fixing application issues and bugs.",
     ],
-    techStack: ["React.js", "Next.js", "Node.js", "Laravel", "PostgreSQL", "Redis"],
+    techStack: ["React.js", "Next.js", "Node.js", "Laravel", "PostgreSQL", "MySQL", "Redis"],
   },
   {
     company: "Vaagai Tecknowledge, Virudhunagar",
@@ -314,9 +314,9 @@ export const experiences: Experience[] = [
     role: "Junior Developer",
     desc: "Shipped full-stack web portals with payment gateways, event management, and inventory systems - building the technical foundation for the career ahead.",
     highlights: [
-      "Built full-stack members portal: User registration, profile management, role-based access.",
+      "Built full-stack members portal features using Laravel, Vue.js and MySQL, along with user registration, profile management, role-based access for over 200K+ active members.",
       "Implemented event management & ticketing modules with integrated payment processing.",
-      "Created order management system: Bulk orders, stock tracking, invoice generation.",
+      "Developed order management system using CodeIgniter to handle bulk orders, stock tracking, invoice generation.",
     ],
     techStack: ["Laravel", "React.js", "Vue.js", "MySQL", "Bootstrap"],
   },

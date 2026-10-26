@@ -238,11 +238,11 @@ const BrandLogo: React.FC<{ onClick: (e: React.MouseEvent) => void }> = React.me
     <a
       href="/"
       onClick={onClick}
-      className="group relative flex items-center justify-center cursor-pointer shrink-0 p-0.5 rounded-full bg-linear-to-br from-blue-500 via-sky-400 to-cyan-300 shadow-md shadow-blue-500/20 hover:shadow-sky-400/40 transition-all duration-300"
+      className="group relative flex items-center justify-center cursor-pointer shrink-0 p-0.5 rounded-full"
       title="MKK Creation - Home"
       aria-label="Home"
     >
-      <div className="size-9 sm:size-10 rounded-full bg-slate-950 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors duration-200">
+      <div className="rounded-full bg-slate-950 flex items-center justify-center">
         <LogoSvg className="size-7 sm:size-8 fill-white" />
       </div>
     </a>
