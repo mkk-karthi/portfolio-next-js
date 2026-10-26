@@ -17,6 +17,7 @@ import {
   Target,
   MapPin,
   Clock,
+  User2Icon,
 } from "lucide-react";
 import { Metadata } from "next";
 
@@ -155,7 +156,7 @@ export const personalInfo = {
 
 export const navItems: NavItem[] = [
   { label: "Home", icon: HouseIcon, href: "/" },
-  { label: "About", icon: InfoIcon, href: "#about" },
+  { label: "About", icon: User2Icon, href: "#about" },
   { label: "Services", icon: Zap, href: "#services" },
   { label: "Experience", icon: Briefcase, href: "#experience" },
   { label: "Projects", icon: PanelsTopLeftIcon, href: "#projects" },
